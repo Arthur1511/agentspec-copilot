@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentSpec — Spec-Driven Data Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ THEME: AgentSpec Terminal — from banner.svg palette ============ */
+  :root {
+    --font-body: 'Instrument Serif', Georgia, serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    /* Banner palette */
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --surface: #1a1f29;
+    --surface2: #21262d;
+    --surface-elevated: #2a3040;
+    --border: rgba(48, 54, 61, 0.6);
+    --border-bright: rgba(232, 168, 124, 0.2);
+    --border-glow: rgba(232, 168, 124, 0.35);
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --text-muted: #6e7681;
+    /* Banner accent: copper/terracotta */
+    --accent: #e8a87c;
+    --accent-deep: #d4845f;
+    --accent-dim: rgba(232, 168, 124, 0.08);
+    --accent-glow: rgba(232, 168, 124, 0.12);
+    /* Semantic — from reference image */
+    --green: #4ade80;
+    --green-dim: rgba(74, 222, 128, 0.08);
+    --green-border: rgba(74, 222, 128, 0.3);
+    --blue: #60a5fa;
+    --blue-dim: rgba(96, 165, 250, 0.08);
+    --blue-border: rgba(96, 165, 250, 0.3);
+    --amber: #fbbf24;
+    --amber-dim: rgba(251, 191, 36, 0.08);
+    --amber-border: rgba(251, 191, 36, 0.3);
+    --red: #f87171;
+    --red-dim: rgba(248, 113, 113, 0.08);
+    /* Grid */
+    --grid: #21262d;
+    --code-bg: #0d1117;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #faf8f2; --bg2: #f0ece0; --surface: #ffffff; --surface2: #f5f0e6;
+      --surface-elevated: #fffdf5; --border: rgba(30,30,50,0.08); --border-bright: rgba(212,132,95,0.2);
+      --border-glow: rgba(212,132,95,0.3); --text: #1a1814; --text-dim: #7a7468; --text-muted: #9a9484;
+      --accent: #d4845f; --accent-deep: #b8692e; --accent-dim: rgba(212,132,95,0.06);
+      --accent-glow: rgba(212,132,95,0.1); --green: #16a34a; --green-dim: rgba(22,163,74,0.06);
+      --green-border: rgba(22,163,74,0.25); --blue: #2563eb; --blue-dim: rgba(37,99,235,0.06);
+      --blue-border: rgba(37,99,235,0.25); --amber: #d97706; --amber-dim: rgba(217,119,6,0.06);
+      --amber-border: rgba(217,119,6,0.25); --red: #dc2626; --red-dim: rgba(220,38,38,0.06);
+      --grid: rgba(0,0,0,0.04); --code-bg: #2a2520;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); color: var(--text); background: var(--bg); overflow: hidden; }
+
+  /* ============ DECK ENGINE ============ */
+  .deck { height: 100dvh; overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+  .slide {
+    height: 100dvh; scroll-snap-align: start; overflow: hidden; position: relative;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 6vh, 80px) clamp(40px, 8vw, 120px);
+    isolation: isolate;
+    opacity: 0; transform: translateY(40px) scale(0.98);
+    transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  }
+  .slide.visible { opacity: 1; transform: none; }
+  .slide .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .slide.visible .reveal { opacity: 1; transform: none; }
+  .slide.visible .reveal:nth-child(1) { transition-delay: 0.1s; }
+  .slide.visible .reveal:nth-child(2) { transition-delay: 0.2s; }
+  .slide.visible .reveal:nth-child(3) { transition-delay: 0.3s; }
+  .slide.visible .reveal:nth-child(4) { transition-delay: 0.4s; }
+  .slide.visible .reveal:nth-child(5) { transition-delay: 0.5s; }
+  .slide.visible .reveal:nth-child(6) { transition-delay: 0.6s; }
+  @media (prefers-reduced-motion: reduce) { .slide, .slide .reveal { opacity:1!important; transform:none!important; transition:none!important; } }
+
+  /* Subtle grid background — matching banner.svg */
+  .slide::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: -1; opacity: 0.3;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* ============ NAV CHROME ============ */
+  .deck-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-deep)); z-index: 100; transition: width 0.3s ease; pointer-events: none; }
+  .deck-dots { position: fixed; right: clamp(12px,2vw,24px); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 100; padding: 8px; background: color-mix(in srgb, var(--bg) 70%, transparent); border-radius: 20px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .deck-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); opacity: 0.3; border: none; padding: 0; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+  .deck-dot:hover { opacity: 0.6; }
+  .deck-dot.active { opacity: 1; transform: scale(1.5); background: var(--accent); }
+  .deck-counter { position: fixed; bottom: clamp(12px,2vh,24px); right: clamp(12px,2vw,24px); font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); z-index: 100; font-variant-numeric: tabular-nums; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+  .deck-hints { position: fixed; bottom: clamp(12px,2vh,24px); left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); opacity: 0.6; z-index: 100; transition: opacity 0.5s; white-space: nowrap; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+  .deck-hints.faded { opacity: 0; pointer-events: none; }
+
+  /* ============ SHARED ============ */
+  .slide__display { font-size: clamp(48px,10vw,120px); font-weight: 400; letter-spacing: -2px; line-height: 0.95; text-wrap: balance; }
+  .slide__heading { font-size: clamp(28px,5vw,48px); font-weight: 400; letter-spacing: -0.5px; line-height: 1.15; text-wrap: balance; }
+  .slide__body { font-size: clamp(16px,2.2vw,22px); line-height: 1.6; color: var(--text-dim); text-wrap: pretty; }
+  .slide__subtitle { font-family: var(--font-mono); font-size: clamp(12px,1.5vw,18px); color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; }
+  .slide__label { font-family: var(--font-mono); font-size: clamp(10px,1.2vw,13px); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 12px; }
+  .slide__decor { position: absolute; pointer-events: none; z-index: 0; }
+
+  /* ============ TITLE ============ */
+  .slide--title { justify-content: center; align-items: center; text-align: center; background-image: radial-gradient(ellipse at 50% 30%, var(--accent-glow) 0%, transparent 50%); }
+  .slide--title .slide__display { background: linear-gradient(135deg, #f0b88c 0%, #d4845f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .slide--title .pill-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: clamp(24px,4vh,48px); }
+  .slide--title .pill { font-family: var(--font-mono); font-size: clamp(12px,1.3vw,14px); padding: 6px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+  .slide--title .pill strong { color: var(--accent); font-weight: 600; }
+
+  /* ============ SPLIT ============ */
+  .slide--split { padding: 0; }
+  .slide--split .slide__panels { display: grid; grid-template-columns: 1fr 1fr; height: 100%; }
+  .slide--split .slide__panel { padding: clamp(40px,6vh,80px) clamp(32px,4vw,60px); display: flex; flex-direction: column; justify-content: center; }
+  .slide--split .slide__panel--left { background: var(--surface); }
+  .slide--split .slide__panel--right { background: var(--bg2); }
+  .slide__bullets { list-style: none; padding: 0; }
+  .slide__bullets li { padding: 10px 0 10px 24px; position: relative; font-size: clamp(16px,2vw,22px); line-height: 1.5; color: var(--text-dim); }
+  .slide__bullets li::before { content: ''; position: absolute; left: 0; top: 20px; width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ============ VISUAL PIPELINE — reference image style ============ */
+  .vpipe { display: flex; align-items: stretch; gap: 0; margin-top: clamp(16px,3vh,32px); flex: 1; min-height: 0; }
+  .vpipe__col { display: flex; flex-direction: column; justify-content: center; gap: clamp(8px,1.2vh,14px); flex: 1; min-width: 0; }
+  .vpipe__card {
+    background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px;
+    padding: clamp(12px,2vh,22px) clamp(12px,1.5vw,20px);
+    position: relative; overflow: hidden; transition: border-color 0.3s;
+  }
+  .vpipe__card:hover { border-color: var(--border-glow); }
+  .vpipe__card--accent { border-color: var(--accent); border-left: 3px solid var(--accent); box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px var(--accent-dim); }
+  .vpipe__card--green  { border-color: var(--green-border); border-left: 3px solid var(--green); box-shadow: 0 0 20px var(--green-dim), inset 0 0 20px var(--green-dim); }
+  .vpipe__card--blue   { border-color: var(--blue-border); border-left: 3px solid var(--blue); box-shadow: 0 0 20px var(--blue-dim), inset 0 0 20px var(--blue-dim); }
+  .vpipe__card--amber  { border-color: var(--amber-border); border-left: 3px solid var(--amber); box-shadow: 0 0 20px var(--amber-dim), inset 0 0 20px var(--amber-dim); }
+  .vpipe__card-tag { font-family: var(--font-mono); font-size: clamp(10px,1.1vw,13px); font-weight: 700; letter-spacing: 1px; }
+  .vpipe__card-tag--accent { color: var(--accent); }
+  .vpipe__card-tag--green  { color: var(--green); }
+  .vpipe__card-tag--blue   { color: var(--blue); }
+  .vpipe__card-tag--amber  { color: var(--amber); }
+  .vpipe__card-title { font-size: clamp(14px,1.6vw,20px); font-weight: 400; margin: 4px 0 2px; }
+  .vpipe__card-desc { font-size: clamp(11px,1.2vw,14px); color: var(--text-dim); line-height: 1.4; }
+  .vpipe__card-badge { font-family: var(--font-mono); font-size: clamp(9px,1vw,11px); color: var(--text-muted); margin-top: 6px; display: inline-block; }
+  .vpipe__arrow { display: flex; align-items: center; justify-content: center; padding: 0 clamp(4px,0.6vw,10px); flex-shrink: 0; }
+  .vpipe__arrow svg { color: var(--accent); opacity: 0.5; }
+  .vpipe__section-label { font-family: var(--font-mono); font-size: clamp(9px,1vw,11px); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); text-align: center; margin-bottom: 8px; }
+
+  /* ============ DASHBOARD ============ */
+  .slide--dashboard .slide__kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(140px,20vw,220px), 1fr)); gap: clamp(12px,2vw,24px); }
+  .slide__kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: clamp(16px,3vh,32px) clamp(16px,2vw,24px); min-width: 0; overflow: hidden; }
+  .slide__kpi-val { font-size: clamp(36px,6vw,64px); font-weight: 400; letter-spacing: -1.5px; line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .slide__kpi-label { font-family: var(--font-mono); font-size: clamp(9px,1.2vw,13px); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); margin-top: 8px; }
+  .slide__kpi-trend { font-family: var(--font-mono); font-size: 12px; margin-top: 4px; }
+
+  /* ============ FULL-BLEED ============ */
+  .slide--bleed { padding: 0; justify-content: flex-end; }
+  .slide__bg { position: absolute; inset: 0; z-index: 0; }
+  .slide__bg--brand { background: linear-gradient(135deg, #0d1117 0%, #161b22 40%, #1a1f29 100%); }
+  .slide__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,17,23,0.8) 0%, rgba(13,17,23,0.3) 40%, transparent 100%); z-index: 1; }
+  .slide--bleed .slide__content { position: relative; z-index: 2; padding: clamp(40px,6vh,80px) clamp(40px,8vw,120px); color: #ffffff; }
+  .slide--bleed .slide__heading { color: #ffffff; }
+  .slide--bleed .slide__subtitle { color: rgba(255,255,255,0.6); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-height: 700px) { .slide { padding: clamp(24px,4vh,40px) clamp(32px,6vw,80px); } .slide__display { font-size: clamp(36px,8vw,72px); } }
+  @media (max-height: 500px) { .slide { padding: clamp(16px,3vh,24px) clamp(24px,5vw,48px); } .deck-dots { display: none; } .slide__display { font-size: clamp(28px,7vw,48px); } }
+  @media (max-width: 768px) { .slide--split .slide__panels { grid-template-columns: 1fr; } .vpipe { flex-direction: column; } .vpipe__arrow { transform: rotate(90deg); padding: 4px 0; } .slide--dashboard .slide__kpis { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ═══════ SLIDE 1: TITLE — matches banner.svg ═══════ -->
+  <section class="slide slide--title">
+    <svg class="slide__decor" style="top:0;right:0;" width="120" height="120" viewBox="0 0 120 120">
+      <line x1="120" y1="0" x2="120" y2="40" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+      <line x1="80" y1="0" x2="120" y2="0" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+    </svg>
+    <svg class="slide__decor" style="bottom:0;left:0;" width="120" height="120" viewBox="0 0 120 120">
+      <line x1="0" y1="80" x2="0" y2="120" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+      <line x1="0" y1="120" x2="40" y2="120" stroke="var(--accent)" stroke-width="2" opacity="0.15"/>
+    </svg>
+    <div class="reveal">
+      <p class="slide__subtitle" style="margin-bottom:clamp(16px,2vh,32px);">Spec-Driven Development for Data Engineering</p>
+    </div>
+    <h1 class="slide__display reveal">AgentSpec</h1>
+    <div class="reveal">
+      <p class="slide__subtitle" style="margin-top:clamp(12px,1.5vh,20px); opacity:0.7;">Stop hallucinating pipelines. Start engineering them.</p>
+    </div>
+    <div class="reveal pill-row">
+      <span class="pill"><strong>58</strong> agents</span>
+      <span class="pill"><strong>22</strong> KB domains</span>
+      <span class="pill"><strong>29</strong> commands</span>
+      <span class="pill"><strong>5</strong> phases</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SLIDE 2: SPLIT — Before / After ═══════ -->
+  <section class="slide slide--split">
+    <div class="slide__panels">
+      <div class="slide__panel slide__panel--left">
+        <p class="slide__label reveal" style="color:var(--red);">Without a Spec</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">AI + Data Engineering = Chaos</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Hallucinated SQL &mdash; invented columns, wrong JOINs</li>
+          <li class="reveal">Wrong partition strategies that break in production</li>
+          <li class="reveal">No schema contracts, no freshness SLAs</li>
+          <li class="reveal">Every conversation starts from zero context</li>
+        </ul>
+        <style>.slide__panel--left .slide__bullets li::before { background: var(--red); }</style>
+      </div>
+      <div class="slide__panel slide__panel--right">
+        <p class="slide__label reveal" style="color:var(--green);">With AgentSpec</p>
+        <h2 class="slide__heading reveal" style="font-size:clamp(22px,3.5vw,36px);">Structured, Verified, Shipped</h2>
+        <ul class="slide__bullets" style="margin-top:16px;">
+          <li class="reveal">Data contracts and SLAs baked into requirements</li>
+          <li class="reveal">22 curated knowledge domains checked first</li>
+          <li class="reveal">Confidence scoring before any agent acts</li>
+          <li class="reveal">Quality gates at every phase transition</li>
+        </ul>
+        <style>.slide__panel--right .slide__bullets li::before { background: var(--green); }</style>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SLIDE 3: VISUAL PIPELINE — reference image style ═══════ -->
+  <section class="slide" style="background-image: radial-gradient(ellipse at 30% 50%, var(--accent-glow) 0%, transparent 40%), radial-gradient(ellipse at 80% 40%, var(--green-dim) 0%, transparent 35%);">
+    <p class="slide__label reveal">The Engine</p>
+    <h2 class="slide__heading reveal">5-Phase Spec-Driven Pipeline</h2>
+
+    <div class="vpipe reveal">
+      <!-- COL 1: Brainstorm + Define -->
+      <div class="vpipe__col">
+        <div class="vpipe__section-label">Explore &amp; Capture</div>
+        <div class="vpipe__card vpipe__card--accent">
+          <div class="vpipe__card-tag vpipe__card-tag--accent">PHASE 0</div>
+          <div class="vpipe__card-title">Brainstorm</div>
+          <div class="vpipe__card-desc">Data flow sketches, approach exploration, YAGNI ruthlessly</div>
+          <div class="vpipe__card-badge">BRAINSTORM_.md</div>
+        </div>
+        <div class="vpipe__card vpipe__card--accent">
+          <div class="vpipe__card-tag vpipe__card-tag--accent">PHASE 1</div>
+          <div class="vpipe__card-title">Define</div>
+          <div class="vpipe__card-desc">Data contracts, schema SLAs, source inventory, clarity &ge; 12/15</div>
+          <div class="vpipe__card-badge">DEFINE_.md</div>
+        </div>
+      </div>
+
+      <div class="vpipe__arrow">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- COL 2: Design -->
+      <div class="vpipe__col">
+        <div class="vpipe__section-label">Architect</div>
+        <div class="vpipe__card vpipe__card--blue" style="flex:1;">
+          <div class="vpipe__card-tag vpipe__card-tag--blue">PHASE 2</div>
+          <div class="vpipe__card-title">Design</div>
+          <div class="vpipe__card-desc">Pipeline DAG, partition strategy, file manifest, code patterns, testing strategy</div>
+          <div class="vpipe__card-badge">DESIGN_.md</div>
+        </div>
+      </div>
+
+      <div class="vpipe__arrow">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- COL 3: Build — agent fan-out -->
+      <div class="vpipe__col">
+        <div class="vpipe__section-label">Agent Delegation</div>
+        <div class="vpipe__card vpipe__card--green">
+          <div class="vpipe__card-tag vpipe__card-tag--green">dbt-specialist</div>
+          <div class="vpipe__card-title">Models &amp; Tests</div>
+          <div class="vpipe__card-desc">Staging, marts, incremental, dbt build + sqlfluff</div>
+        </div>
+        <div class="vpipe__card vpipe__card--green">
+          <div class="vpipe__card-tag vpipe__card-tag--green">spark-engineer</div>
+          <div class="vpipe__card-title">PySpark Jobs</div>
+          <div class="vpipe__card-desc">Distributed transforms, AQE, partitioning</div>
+        </div>
+        <div class="vpipe__card vpipe__card--green">
+          <div class="vpipe__card-tag vpipe__card-tag--green">pipeline-architect</div>
+          <div class="vpipe__card-title">DAG Orchestration</div>
+          <div class="vpipe__card-desc">Airflow / Dagster, sensors, triggers</div>
+        </div>
+      </div>
+
+      <div class="vpipe__arrow">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M5 12h14m-4-4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- COL 4: Ship -->
+      <div class="vpipe__col">
+        <div class="vpipe__section-label">Verify &amp; Ship</div>
+        <div class="vpipe__card vpipe__card--amber" style="flex:1;">
+          <div class="vpipe__card-tag vpipe__card-tag--amber">PHASE 3 &rarr; 4</div>
+          <div class="vpipe__card-title">Build &amp; Ship</div>
+          <div class="vpipe__card-desc">All tests pass, GE suite verified, quality gates met, lessons learned archived</div>
+          <div class="vpipe__card-badge">BUILD_REPORT + archive/</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KB bar — like the reference image's bottom bar -->
+    <div class="reveal" style="margin-top:clamp(10px,1.5vh,18px); padding:10px 18px; background:var(--surface); border:1px solid var(--border); border-radius:8px; text-align:center;">
+      <span style="font-family:var(--font-mono); font-size:clamp(10px,1.1vw,13px); color:var(--text-muted); letter-spacing:1px;">22 KB DOMAINS:&nbsp;</span>
+      <span style="font-family:var(--font-mono); font-size:clamp(10px,1.1vw,13px); color:var(--accent);">dbt &middot; spark &middot; sql &middot; airflow &middot; streaming &middot; data-modeling &middot; lakehouse &middot; medallion &middot; aws &middot; gcp &middot; fabric &middot; &hellip;</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SLIDE 4: DASHBOARD — By The Numbers ═══════ -->
+  <section class="slide slide--dashboard" style="background-image:radial-gradient(ellipse at 70% 30%, var(--accent-glow) 0%, transparent 40%);">
+    <p class="slide__label reveal">What You Get</p>
+    <h2 class="slide__heading reveal">Everything, Out of the Box</h2>
+    <div class="slide__kpis" style="margin-top:clamp(16px,3vh,32px);">
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--accent);">58</div>
+        <div class="slide__kpi-label">Specialized Agents</div>
+        <div class="slide__kpi-trend" style="color:var(--text-muted);">T1 &middot; T2 &middot; T3 tiers</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--blue);">22</div>
+        <div class="slide__kpi-label">KB Domains</div>
+        <div class="slide__kpi-trend" style="color:var(--text-muted);">dbt &middot; Spark &middot; Airflow &middot; SQL</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--green);">21</div>
+        <div class="slide__kpi-label">Slash Commands</div>
+        <div class="slide__kpi-trend" style="color:var(--text-muted);">/pipeline &middot; /schema &middot; /build</div>
+      </div>
+      <div class="slide__kpi reveal">
+        <div class="slide__kpi-val" style="color:var(--amber);">8</div>
+        <div class="slide__kpi-label">Agent Categories</div>
+        <div class="slide__kpi-trend" style="color:var(--text-muted);">Architect &rarr; Workflow</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SLIDE 5: FULL-BLEED — CTA ═══════ -->
+  <section class="slide slide--bleed">
+    <div class="slide__bg slide__bg--brand"></div>
+    <div class="slide__scrim"></div>
+    <div class="slide__content">
+      <p class="slide__label reveal" style="color:var(--accent);">Get Started</p>
+      <h2 class="slide__heading reveal" style="font-size:clamp(32px,6vw,56px);">Clone. Copy. Build.</h2>
+      <p class="slide__subtitle reveal" style="margin-top:16px; color:rgba(232,168,124,0.7);">
+        git clone agentspec &nbsp;&rarr;&nbsp; cp -r .claude your-project/ &nbsp;&rarr;&nbsp; /brainstorm
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // SlideEngine — from template
+  function SlideEngine(){this.deck=document.querySelector('.deck');this.slides=[].slice.call(document.querySelectorAll('.slide'));this.current=0;this.total=this.slides.length;this.buildChrome();this.bindEvents();this.observe();this.update();}
+  SlideEngine.prototype.buildChrome=function(){var bar=document.createElement('div');bar.className='deck-progress';document.body.appendChild(bar);this.bar=bar;var dots=document.createElement('div');dots.className='deck-dots';var self=this;this.slides.forEach(function(_,i){var d=document.createElement('button');d.className='deck-dot';d.title='Slide '+(i+1);d.onclick=function(){self.goTo(i);};dots.appendChild(d);});document.body.appendChild(dots);this.dots=[].slice.call(dots.children);var ctr=document.createElement('div');ctr.className='deck-counter';document.body.appendChild(ctr);this.counter=ctr;var hints=document.createElement('div');hints.className='deck-hints';hints.textContent='\u2190 \u2192 or scroll to navigate';document.body.appendChild(hints);this.hints=hints;this.hintTimer=setTimeout(function(){hints.classList.add('faded');},4000);};
+  SlideEngine.prototype.bindEvents=function(){var self=this;document.addEventListener('keydown',function(e){if(e.target.closest('input,textarea,[contenteditable]'))return;if(['ArrowDown','ArrowRight',' ','PageDown'].indexOf(e.key)>-1){e.preventDefault();self.next();}else if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();self.prev();}else if(e.key==='Home'){e.preventDefault();self.goTo(0);}else if(e.key==='End'){e.preventDefault();self.goTo(self.total-1);}self.fadeHints();});var tY;this.deck.addEventListener('touchstart',function(e){tY=e.touches[0].clientY;},{passive:true});this.deck.addEventListener('touchend',function(e){var dy=tY-e.changedTouches[0].clientY;if(Math.abs(dy)>50){dy>0?self.next():self.prev();}});};
+  SlideEngine.prototype.observe=function(){var self=this;var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');self.current=self.slides.indexOf(entry.target);self.update();}});},{threshold:0.5});this.slides.forEach(function(s){obs.observe(s);});};
+  SlideEngine.prototype.goTo=function(i){this.slides[Math.max(0,Math.min(i,this.total-1))].scrollIntoView({behavior:'smooth'});};
+  SlideEngine.prototype.next=function(){if(this.current<this.total-1)this.goTo(this.current+1);};
+  SlideEngine.prototype.prev=function(){if(this.current>0)this.goTo(this.current-1);};
+  SlideEngine.prototype.update=function(){this.bar.style.width=((this.current+1)/this.total*100)+'%';var c=this.current;this.dots.forEach(function(d,i){d.classList.toggle('active',i===c);});this.counter.textContent=(this.current+1)+' / '+this.total;};
+  SlideEngine.prototype.fadeHints=function(){clearTimeout(this.hintTimer);this.hints.classList.add('faded');};
+  document.addEventListener('DOMContentLoaded',function(){new SlideEngine();});
+</script>
+
+</body>
+</html>

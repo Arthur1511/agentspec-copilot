@@ -1,0 +1,424 @@
+schema_version: "1.0"
+domain: xgboost
+file_type: parameter_reference
+last_validated: "2026-04-17"
+source: "https://xgboost.readthedocs.io/en/stable/parameter.html"
+
+# XGBoost Parameter Reference
+# Complete machine-readable specification of XGBoost parameters
+
+parameters:
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # GENERAL PARAMETERS
+  # ═══════════════════════════════════════════════════════════════════
+  
+  general:
+    booster:
+      type: string
+      default: "gbtree"
+      options: ["gbtree", "gblinear", "dart"]
+      description: "Which booster to use (tree, linear, or DART)"
+      
+    device:
+      type: string
+      default: "cpu"
+      options: ["cpu", "cuda", "cuda:0", "cuda:1"]
+      description: "Device to run on (replaces old gpu_id)"
+      
+    verbosity:
+      type: integer
+      default: 1
+      range: "[0, 3]"
+      description: "Verbosity level (0=silent, 1=warning, 2=info, 3=debug)"
+      
+    nthread:
+      type: integer
+      default: -1
+      description: "Number of parallel threads (-1 = use all cores)"
+      
+    disable_default_eval_metric:
+      type: boolean
+      default: false
+      description: "Disable default evaluation metric"
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # TREE BOOSTER PARAMETERS
+  # ═══════════════════════════════════════════════════════════════════
+  
+  tree_booster:
+    
+    # Learning rate
+    eta:
+      aliases: ["learning_rate"]
+      type: float
+      default: 0.3
+      range: "[0, 1]"
+      description: "Step size shrinkage to prevent overfitting"
+      tuning_range: "[0.01, 0.3]"
+      
+    # Tree structure
+    max_depth:
+      type: integer
+      default: 6
+      range: "[0, ∞)"
+      description: "Maximum depth of tree (0 = no limit, use max_leaves)"
+      tuning_range: "[3, 10]"
+      
+    max_leaves:
+      type: integer
+      default: 0
+      range: "[0, ∞)"
+      description: "Maximum number of leaves (0 = no limit)"
+      
+    grow_policy:
+      type: string
+      default: "depthwise"
+      options: ["depthwise", "lossguide"]
+      description: "Tree growing policy (depthwise=level-wise, lossguide=leaf-wise)"
+      
+    # Split constraints
+    min_child_weight:
+      type: float
+      default: 1
+      range: "[0, ∞)"
+      description: "Minimum sum of instance weights (hessian) in a child"
+      tuning_range: "[1, 10]"
+      
+    gamma:
+      aliases: ["min_split_loss"]
+      type: float
+      default: 0
+      range: "[0, ∞)"
+      description: "Minimum loss reduction required for split"
+      tuning_range: "[0, 5]"
+      
+    max_delta_step:
+      type: float
+      default: 0
+      range: "[0, ∞)"
+      description: "Maximum delta step for leaf weight (0 = no constraint)"
+      
+    # Sampling
+    subsample:
+      type: float
+      default: 1.0
+      range: "(0, 1]"
+      description: "Subsample ratio of training instances per tree"
+      tuning_range: "[0.5, 1.0]"
+      
+    sampling_method:
+      type: string
+      default: "uniform"
+      options: ["uniform", "gradient_based"]
+      description: "Sampling method for subsample"
+      
+    colsample_bytree:
+      type: float
+      default: 1.0
+      range: "(0, 1]"
+      description: "Subsample ratio of columns when constructing each tree"
+      tuning_range: "[0.5, 1.0]"
+      
+    colsample_bylevel:
+      type: float
+      default: 1.0
+      range: "(0, 1]"
+      description: "Subsample ratio of columns for each level"
+      
+    colsample_bynode:
+      type: float
+      default: 1.0
+      range: "(0, 1]"
+      description: "Subsample ratio of columns for each split"
+      
+    # Regularization
+    lambda:
+      aliases: ["reg_lambda"]
+      type: float
+      default: 1
+      range: "[0, ∞)"
+      description: "L2 regularization term on weights"
+      tuning_range: "[0.1, 10.0]"
+      
+    alpha:
+      aliases: ["reg_alpha"]
+      type: float
+      default: 0
+      range: "[0, ∞)"
+      description: "L1 regularization term on weights"
+      tuning_range: "[0, 1.0]"
+      
+    # Tree construction
+    tree_method:
+      type: string
+      default: "auto"
+      options: ["auto", "exact", "approx", "hist"]
+      description: "Tree construction algorithm"
+      recommended: "hist"
+      notes: "gpu_hist is deprecated, use tree_method='hist' with device='cuda'"
+      
+    sketch_eps:
+      type: float
+      default: 0.03
+      range: "(0, 1)"
+      description: "Approximation accuracy for approx tree_method"
+      
+    max_bin:
+      type: integer
+      default: 256
+      range: "[2, ∞)"
+      description: "Maximum number of bins per feature (hist tree_method)"
+      
+    predictor:
+      type: string
+      default: "auto"
+      options: ["auto", "cpu_predictor", "gpu_predictor"]
+      description: "Prediction algorithm"
+      
+    num_parallel_tree:
+      type: integer
+      default: 1
+      range: "[1, ∞)"
+      description: "Number of parallel trees per iteration (for Random Forest)"
+      
+    monotone_constraints:
+      type: string | dict
+      default: null
+      description: "Monotonicity constraints per feature (e.g., '(1,-1,0)' or {0:1, 1:-1})"
+      
+    interaction_constraints:
+      type: string | list
+      default: null
+      description: "Feature interaction constraints"
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # LEARNING TASK PARAMETERS
+  # ═══════════════════════════════════════════════════════════════════
+  
+  learning_task:
+    
+    objective:
+      type: string
+      required: true
+      options:
+        classification:
+          - "binary:logistic"       # Logistic regression for binary classification (output probability)
+          - "binary:logitraw"       # Logistic regression, output score before logistic transformation
+          - "binary:hinge"          # Hinge loss for binary classification (output decision boundary)
+          - "multi:softmax"         # Multiclass classification (output class)
+          - "multi:softprob"        # Multiclass classification (output probability distribution)
+        regression:
+          - "reg:squarederror"      # Regression with squared loss (RMSE)
+          - "reg:squaredlogerror"   # Regression with squared log loss (RMSLE)
+          - "reg:logistic"          # Logistic regression
+          - "reg:pseudohubererror"  # Regression with Pseudo Huber loss
+          - "reg:absoluteerror"     # Regression with absolute loss (MAE) - XGBoost 1.7+
+          - "reg:quantileerror"     # Quantile regression - XGBoost 2.0+
+        ranking:
+          - "rank:pairwise"         # Pairwise ranking
+          - "rank:ndcg"             # NDCG ranking
+          - "rank:map"              # MAP ranking
+        survival:
+          - "survival:cox"          # Cox regression for survival analysis
+          - "survival:aft"          # Accelerated failure time model
+      
+    base_score:
+      type: float
+      default: 0.5
+      description: "Global bias (initial prediction score)"
+      
+    eval_metric:
+      type: string | list
+      default: null
+      description: "Evaluation metric(s) for validation"
+      options:
+        classification:
+          - "auc"          # Area under ROC curve (binary)
+          - "aucpr"        # Area under PR curve (binary)
+          - "error"        # Binary classification error rate
+          - "logloss"      # Negative log-likelihood (binary/multi)
+          - "mlogloss"     # Multiclass logloss
+          - "merror"       # Multiclass classification error rate
+        regression:
+          - "rmse"         # Root mean squared error
+          - "rmsle"        # Root mean squared log error
+          - "mae"          # Mean absolute error
+          - "mape"         # Mean absolute percentage error
+          - "mphe"         # Mean pseudo Huber error
+        ranking:
+          - "ndcg"         # Normalized discounted cumulative gain
+          - "map"          # Mean average precision
+          - "ndcg@n"       # NDCG at position n
+          - "map@n"        # MAP at position n
+      notes: "If list, early stopping uses last metric"
+      
+    seed:
+      aliases: ["random_state"]
+      type: integer
+      default: 0
+      description: "Random seed for reproducibility"
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # TRAINING PARAMETERS
+  # ═══════════════════════════════════════════════════════════════════
+  
+  training:
+    
+    num_boost_round:
+      aliases: ["n_estimators"]
+      type: integer
+      default: 100
+      range: "[1, ∞)"
+      description: "Number of boosting rounds (trees)"
+      
+    early_stopping_rounds:
+      type: integer
+      default: null
+      description: "Stop training if no improvement for N rounds"
+      recommended: "[30, 100]"
+      
+    callbacks:
+      type: list
+      default: null
+      description: "List of callback functions during training"
+      
+    custom_metric:
+      type: function
+      default: null
+      description: "Custom evaluation metric function"
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # DART BOOSTER PARAMETERS (for booster='dart')
+  # ═══════════════════════════════════════════════════════════════════
+  
+  dart:
+    
+    sample_type:
+      type: string
+      default: "uniform"
+      options: ["uniform", "weighted"]
+      description: "Type of sampling algorithm for DART"
+      
+    normalize_type:
+      type: string
+      default: "tree"
+      options: ["tree", "forest"]
+      description: "Type of normalization algorithm for DART"
+      
+    rate_drop:
+      type: float
+      default: 0.0
+      range: "[0, 1]"
+      description: "Dropout rate for DART (fraction of previous trees to drop)"
+      
+    one_drop:
+      type: boolean
+      default: false
+      description: "When true, at least one tree is always dropped"
+      
+    skip_drop:
+      type: float
+      default: 0.0
+      range: "[0, 1]"
+      description: "Probability of skipping dropout"
+  
+  # ═══════════════════════════════════════════════════════════════════
+  # LINEAR BOOSTER PARAMETERS (for booster='gblinear')
+  # ═══════════════════════════════════════════════════════════════════
+  
+  linear:
+    
+    updater:
+      type: string
+      default: "shotgun"
+      options: ["shotgun", "coord_descent"]
+      description: "Algorithm to fit linear model"
+      
+    feature_selector:
+      type: string
+      default: "cyclic"
+      options: ["cyclic", "shuffle", "random", "greedy", "thrifty"]
+      description: "Feature selection method for linear booster"
+      
+    top_k:
+      type: integer
+      default: 0
+      description: "Number of top features to select (0 = no selection)"
+
+# ═══════════════════════════════════════════════════════════════════
+# TYPICAL CONFIGURATIONS
+# ═══════════════════════════════════════════════════════════════════
+
+typical_configurations:
+  
+  default:
+    description: "Default balanced configuration"
+    params:
+      objective: "binary:logistic"
+      eval_metric: "auc"
+      max_depth: 6
+      learning_rate: 0.3
+      tree_method: "hist"
+  
+  production_binary_classification:
+    description: "Production-ready binary classification"
+    params:
+      objective: "binary:logistic"
+      eval_metric: "auc"
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      lambda: 1.0
+      gamma: 0.1
+      tree_method: "hist"
+      early_stopping_rounds: 50
+  
+  high_regularization:
+    description: "Prevent overfitting on small datasets"
+    params:
+      max_depth: 4
+      learning_rate: 0.05
+      subsample: 0.7
+      colsample_bytree: 0.7
+      lambda: 5.0
+      alpha: 0.5
+      gamma: 0.5
+      min_child_weight: 5
+  
+  fast_training:
+    description: "Fast training for large datasets"
+    params:
+      tree_method: "hist"
+      max_bin: 128
+      learning_rate: 0.1
+      subsample: 0.7
+      colsample_bytree: 0.7
+
+# ═══════════════════════════════════════════════════════════════════
+# PARAMETER RELATIONSHIPS
+# ═══════════════════════════════════════════════════════════════════
+
+relationships:
+  
+  - rule: "Lower learning_rate requires higher n_estimators"
+    explanation: "Smaller steps need more iterations to converge"
+    
+  - rule: "Higher max_depth increases overfitting risk"
+    explanation: "Deeper trees capture more complex patterns but may overfit"
+    
+  - rule: "subsample and colsample_bytree act as regularization"
+    explanation: "Sampling introduces randomness, reducing overfitting"
+    
+  - rule: "lambda (L2) and alpha (L1) control weight magnitude"
+    explanation: "Higher values shrink leaf weights toward zero"
+    
+  - rule: "gamma controls tree complexity (structural regularization)"
+    explanation: "Higher gamma requires larger gain for splits"
+    
+  - rule: "tree_method='hist' is fastest for large data"
+    explanation: "Pre-binning reduces computational complexity"
+    
+  - rule: "Use device='cuda' with tree_method='hist' for GPU"
+    explanation: "gpu_hist is deprecated, new API uses device parameter"

@@ -1,0 +1,65 @@
+name: gh-copilot-agentspec
+description: AgentSpec - Spec-Driven Data Engineering for GitHub Copilot CLI (58 agents, 29 commands, 24 KB domains)
+version: 1.0.0
+author: luanmorenommaciel
+license: MIT
+repository: https://github.com/luanmorenommaciel/gh-copilot-agentspec
+
+# Copilot CLI extension metadata
+extension:
+  type: agent-library
+  platform: github-copilot-cli
+  min_copilot_version: "1.0.0"
+
+# AgentSpec metadata
+agentspec:
+  version: "3.0.0"
+  agents: 58
+  commands: 29
+  kb_domains: 24
+  skills: 2
+  cognitive_framework:
+    - kb_first
+    - confidence_scored
+    - escalation_aware
+    - quality_gated
+
+# Categories
+categories:
+  workflow:
+    agents: 6
+    commands: 7
+    description: SDD workflow agents and commands
+  data_engineering:
+    agents: 15
+    commands: 8
+    description: Data engineering specialists
+  architect:
+    agents: 8
+    description: System design architects
+  cloud:
+    agents: 10
+    description: AWS, GCP, and cloud specialists
+  platform:
+    agents: 6
+    description: Microsoft Fabric specialists
+  python:
+    agents: 6
+    description: Python development specialists
+  test:
+    agents: 3
+    description: QA and testing specialists
+  dev:
+    agents: 4
+    description: Developer tools specialists
+
+# Installation instructions
+install:
+  command: gh extension install luanmorenommaciel/gh-copilot-agentspec
+  update: gh extension upgrade gh-copilot-agentspec
+  uninstall: gh extension remove gh-copilot-agentspec
+
+# Quick start
+quickstart: |
+  Install: gh extension install luanmorenommaciel/gh-copilot-agentspec
+  Usage: gh copilot suggest "Use agentspec:brainstorm to explore 'build a realtime analytics platform'"
