@@ -41,7 +41,7 @@ AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow 
 
 ```bash
 # Install the plugin (one-time)
-copilot plugin install arthur1511-bip/agentspec-copilot:plugin-copilot
+copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
 ```
 
 Done. Every Copilot CLI session now has 58 agents, 31 skills, and 24 KB domains. Updates are one command:
@@ -58,7 +58,7 @@ copilot plugin update gh-copilot-agentspec
 copilot plugin install gh-copilot-agentspec@awesome-copilot
 
 # Local testing (clone and install from disk)
-git clone https://github.com/arthur1511-bip/agentspec-copilot.git
+git clone https://github.com/Arthur1511/agentspec-copilot.git
 copilot plugin install ./agentspec-copilot/plugin-copilot
 
 # Build from source then install locally
