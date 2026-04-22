@@ -66,6 +66,6 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| ai-prompt-specialist-gcp | patterns/llm-output-validation.md, patterns/extraction-schema.md | Define Pydantic schemas for LLM structured output |
+| cloud-ai-prompt-specialist-gcp | patterns/llm-output-validation.md, patterns/extraction-schema.md | Define Pydantic schemas for LLM structured output |
 | python-developer | concepts/base-model.md, concepts/validators.md | Build validated data models |
-| data-quality-analyst | patterns/custom-validators.md | Define data quality checks with Pydantic |
+| test-data-quality-analyst | patterns/custom-validators.md | Define data quality checks with Pydantic |

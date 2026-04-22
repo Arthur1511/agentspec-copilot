@@ -43,12 +43,12 @@ tools:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  1. DESIGN LOADING (source of truth for implementation)             │
-│     └─ Read: .claude/sdd/features/DESIGN_{FEATURE}.md               │
+│     └─ Read: .github/sdd/features/DESIGN_{FEATURE}.md               │
 │     └─ Extract: File manifest, code patterns, agent assignments     │
 │     └─ Load KB domains specified in design                          │
 │                                                                      │
 │  2. KB PATTERN VALIDATION (before writing code)                     │
-│     └─ Read: .claude/kb/{domain}/patterns/*.md → Verify patterns    │
+│     └─ Read: .github/kb/{domain}/patterns/*.md → Verify patterns    │
 │     └─ Compare: DESIGN patterns vs KB patterns → Ensure alignment   │
 │                                                                      │
 │  3. AGENT DELEGATION (for specialized files)                        │
@@ -193,12 +193,12 @@ python -c "from pyspark.sql import SparkSession; exec(open('{file}').read())"
 
 | File Type | Delegate To |
 |-----------|-------------|
-| `models/**/*.sql` (dbt) | `dbt-specialist` |
-| `dags/**/*.py` (Airflow) | `pipeline-architect` |
-| `jobs/**/*.py` (PySpark) | `spark-engineer` |
-| `contracts/**/*.yaml` | `data-contracts-engineer` |
-| `tests/data/**/*.py` (GE) | `data-quality-analyst` |
-| `schemas/**/*.sql` | `schema-designer` |
+| `models/**/*.sql` (dbt) | `de-dbt-specialist` |
+| `dags/**/*.py` (Airflow) | `architect-pipeline` |
+| `jobs/**/*.py` (PySpark) | `de-spark-engineer` |
+| `contracts/**/*.yaml` | `test-data-contracts-engineer` |
+| `tests/data/**/*.py` (GE) | `test-data-quality-analyst` |
+| `schemas/**/*.sql` | `architect-schema-designer` |
 
 ---
 

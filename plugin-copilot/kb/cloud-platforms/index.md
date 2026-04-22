@@ -34,5 +34,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| data-platform-engineer | All files | Platform selection, configuration |
-| lakehouse-architect | patterns/cost-optimization.md | Infrastructure planning |
+| architect-data-platform-engineer | All files | Platform selection, configuration |
+| architect-lakehouse | patterns/cost-optimization.md | Infrastructure planning |

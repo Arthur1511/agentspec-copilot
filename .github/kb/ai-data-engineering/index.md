@@ -35,5 +35,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| ai-data-engineer | All files | RAG, embeddings, feature stores |
-| data-quality-analyst | concepts/rag-pipelines.md | Training data quality |
+| de-ai-data-engineer | All files | RAG, embeddings, feature stores |
+| test-data-quality-analyst | concepts/rag-pipelines.md | Training data quality |

@@ -43,12 +43,12 @@ tools:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  1. KB PATTERN LOADING (from DEFINE's KB domains)                   │
-│     └─ Read: .claude/kb/{domain}/patterns/*.md → Code patterns      │
-│     └─ Read: .claude/kb/{domain}/concepts/*.md → Best practices     │
-│     └─ Read: .claude/kb/{domain}/quick-reference.md → Quick lookup  │
+│     └─ Read: .github/kb/{domain}/patterns/*.md → Code patterns      │
+│     └─ Read: .github/kb/{domain}/concepts/*.md → Best practices     │
+│     └─ Read: .github/kb/{domain}/quick-reference.md → Quick lookup  │
 │                                                                      │
 │  2. AGENT DISCOVERY (for file manifest)                             │
-│     └─ Glob: .claude/agents/**/*.md → Available agents              │
+│     └─ Glob: .github/agents/*.agent.md → Available agents            │
 │     └─ Extract: Role, capabilities, keywords from each              │
 │     └─ Match: Files to agents based on purpose                      │
 │                                                                      │
@@ -107,7 +107,7 @@ tools:
 
 **Process:**
 
-1. Glob `.claude/agents/**/*.md` to discover agents
+1. Glob `.github/agents/*.agent.md` to discover agents
 2. Extract role and keywords from each agent
 3. Match files to agents based on:
    - File type (.py, .yaml, .tf)
@@ -191,7 +191,7 @@ tools:
 **Output:**
 
 ```python
-# Pattern: Handler structure (from .claude/kb/{domain}/patterns/{pattern}.md)
+# Pattern: Handler structure (from .github/kb/{domain}/patterns/{pattern}.md)
 from config import load_config
 
 

@@ -63,5 +63,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| spark-engineer | All files | DataFrame transforms, optimization |
+| de-spark-engineer | All files | DataFrame transforms, optimization |
 | build-agent | patterns/read-write-patterns.md | Verification via spark-submit |

@@ -34,7 +34,7 @@ ls .github/sdd/         # SDD framework (templates, architecture)
 1. Create a new file in `.github/agents/` (flat directory — no subdirectories):
 
    ```bash
-   cp .github/agents/code-reviewer.agent.md .github/agents/your-agent.agent.md
+   cp .github/agents/python-code-reviewer.agent.md .github/agents/your-agent.agent.md
    ```
 
 2. Fill in the required front-matter and sections:
@@ -70,7 +70,8 @@ ls .github/sdd/         # SDD framework (templates, architecture)
 5. Build and verify:
 
    ```bash
-   ./build-copilot.sh
+   ./build-copilot.sh      # Linux / macOS
+   .\build-copilot.ps1     # Windows
    ```
 
 ## Adding a KB Domain
@@ -112,7 +113,7 @@ Skills are the mechanism that connects user requests to agents in Copilot CLI.
 1. Check [existing issues](https://github.com/Arthur1511/agentspec-copilot/issues)
 2. Create a branch: `git checkout -b fix/description`
 3. Make your fix in `.github/` (never in `plugin-copilot/`)
-4. Run `./build-copilot.sh` to verify the build
+4. Run `./build-copilot.sh` (Linux/macOS) or `.\build-copilot.ps1` (Windows) to verify the build
 5. Submit a PR with a clear description of the problem and solution
 
 ## Documentation
@@ -127,7 +128,7 @@ Skills are the mechanism that connects user requests to agents in Copilot CLI.
 1. Fork the repository
 2. Create a feature branch from `main`
 3. Make all changes inside `.github/` (source of truth)
-4. Run `./build-copilot.sh` to verify the build succeeds
+4. Run `./build-copilot.sh` (Linux/macOS) or `.\build-copilot.ps1` (Windows) to generate `plugin-copilot/`
 5. Submit a PR with:
    - Conventional commit title (e.g. `feat(agents): add redis-specialist agent`)
    - Description of what changed and why
@@ -138,7 +139,7 @@ Skills are the mechanism that connects user requests to agents in Copilot CLI.
 AgentSpec for Copilot CLI is distributed as a Copilot CLI plugin. The development workflow:
 
 1. **Develop in `.github/`** — this is the source of truth
-2. **Build the plugin** — run `./build-copilot.sh` to generate `plugin-copilot/`
+2. **Build the plugin** — run `./build-copilot.sh` (Linux/macOS) or `.\build-copilot.ps1` (Windows) to generate `plugin-copilot/`
 3. **Test locally** — run `copilot plugin install ./plugin-copilot`
 4. **Iterate** — make changes in `.github/`, rebuild, reinstall
 
@@ -146,7 +147,7 @@ AgentSpec for Copilot CLI is distributed as a Copilot CLI plugin. The developmen
 
 - **`.github/`** contains agents, skills, KB, SDD — your development environment
 - **`plugin-copilot/`** is the generated distributable (built from `.github/` by `build-copilot.sh`)
-- **`build-copilot.sh`** copies `.github/` → `plugin-copilot/` and rewrites `.github/` paths to `${COPILOT_PLUGIN_ROOT}/`
+- **`build-copilot.sh`** / **`build-copilot.ps1`** copies `.github/` → `plugin-copilot/` and rewrites `.github/` paths to `${COPILOT_PLUGIN_ROOT}/`
 
 ### Path Convention
 

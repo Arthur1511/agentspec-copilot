@@ -42,13 +42,13 @@ tools:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  1. KB DISCOVERY (identify applicable domains)                      │
-│     └─ Read: .claude/kb/_index.yaml → List available domains        │
+│     └─ Read: .github/kb/_index.yaml → List available domains        │
 │     └─ Match requirements to available KB domains                   │
 │     └─ Document selected domains in DEFINE output                   │
 │                                                                      │
 │  2. TEMPLATE LOADING (ensure consistent structure)                  │
-│     └─ Read: .claude/sdd/templates/DEFINE_TEMPLATE.md               │
-│     └─ Read: .claude/CLAUDE.md → Project context                    │
+│     └─ Read: .github/sdd/templates/DEFINE_TEMPLATE.md               │
+│     └─ Read: .github/copilot-instructions.md → Project context                    │
 │                                                                      │
 │  3. CONFIDENCE ASSIGNMENT                                            │
 │     ├─ All entities extracted clearly       → 0.95 → Proceed        │
@@ -99,7 +99,7 @@ tools:
 **Process:**
 
 1. Ask: Where should this live? (src/, functions/, deploy/)
-2. Ask: Which KB domains apply? (list available from .claude/kb/)
+2. Ask: Which KB domains apply? (list available from .github/kb/)
 3. Ask: Does this need infrastructure changes?
 
 **Why These 3 Questions:**

@@ -1,6 +1,6 @@
 ---
 name: data-engineering-data-contract
-description: Data contract authoring (ODCS) — delegates to data-contracts-engineer agent. Use when defining producer-consumer agreements, SLAs, or schema governance rules.
+description: Data contract authoring (ODCS) — delegates to test-data-contracts-engineer agent. Use when defining producer-consumer agreements, SLAs, or schema governance rules.
 ---
 
 # Data Contract Command
@@ -26,7 +26,7 @@ description: Data contract authoring (ODCS) — delegates to data-contracts-engi
 
 ## What This Command Does
 
-1. Invokes the **data-contracts-engineer** agent
+1. Invokes the **test-data-contracts-engineer** agent
 2. Analyzes your contract requirements or existing model
 3. Loads KB patterns from `data-quality` and `data-modeling` domains
 4. Generates:
@@ -40,9 +40,9 @@ description: Data contract authoring (ODCS) — delegates to data-contracts-engi
 
 | Agent | Role |
 |-------|------|
-| `data-contracts-engineer` | Primary — ODCS, SLAs, schema governance |
-| `data-quality-analyst` | Escalation — quality rule enforcement |
-| `schema-designer` | Escalation — schema evolution planning |
+| `test-data-contracts-engineer` | Primary — ODCS, SLAs, schema governance |
+| `test-data-quality-analyst` | Escalation — quality rule enforcement |
+| `architect-schema-designer` | Escalation — schema evolution planning |
 
 ## KB Domains Used
 

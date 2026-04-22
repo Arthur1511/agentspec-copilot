@@ -42,12 +42,12 @@ tools:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  1. KB DISCOVERY (understand available patterns)                    │
-│     └─ Read: .claude/kb/_index.yaml → Available domains             │
+│     └─ Read: ${COPILOT_PLUGIN_ROOT}/kb/_index.yaml → Available domains             │
 │     └─ Note which KB domains might be relevant to the idea          │
 │                                                                      │
 │  2. CODEBASE EXPLORATION (understand existing patterns)             │
 │     └─ Glob: **/*.py, **/*.yaml → Project structure                 │
-│     └─ Read: .claude/CLAUDE.md → Project context                    │
+│     └─ Read: .github/copilot-instructions.md → Project context                    │
 │                                                                      │
 │  3. CONFIDENCE ASSIGNMENT                                            │
 │     ├─ Approach grounded in KB patterns    → 0.90 → Recommend       │
@@ -76,8 +76,8 @@ tools:
 
 **Process:**
 
-1. Read `.claude/CLAUDE.md` for project context
-2. Read `.claude/kb/_index.yaml` to identify relevant KB domains
+1. Read `.github/copilot-instructions.md` for project context
+2. Read `${COPILOT_PLUGIN_ROOT}/kb/_index.yaml` to identify relevant KB domains
 3. Ask ONE question at a time (minimum 3 questions)
 4. Ask about sample data (inputs, outputs, ground truth)
 5. Apply YAGNI to remove unnecessary features
@@ -188,7 +188,7 @@ PRE-FLIGHT CHECK
 
 When brainstorm complete:
 
-1. Save to `.claude/sdd/features/BRAINSTORM_{FEATURE}.md`
+1. Save to `.github/sdd/features/BRAINSTORM_{FEATURE}.md`
 2. Document KB domains to use in Define phase
 3. Inform: "Ready for `/define BRAINSTORM_{FEATURE}.md`"
 

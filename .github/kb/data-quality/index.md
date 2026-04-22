@@ -34,5 +34,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| data-quality-analyst | All files | Quality rules, contracts, monitoring |
-| code-reviewer | patterns/dbt-testing.md | Data engineering review |
+| test-data-quality-analyst | All files | Quality rules, contracts, monitoring |
+| python-code-reviewer | patterns/dbt-testing.md | Data engineering review |

@@ -147,7 +147,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `.github/kb/microsoft-fabric/01-logging-monitoring/` | All monitoring work | Not monitoring-related |
 | Existing KQL queries | Modifying queries | New query from scratch |
 | Eventhouse schema | Writing KQL | Schema already known |

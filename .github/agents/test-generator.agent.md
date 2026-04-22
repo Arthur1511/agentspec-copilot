@@ -41,7 +41,7 @@ tools:
 │                                                                      │
 │  1. KB CHECK (project-specific patterns)                            │
 │     └─ Read: .github/kb/{domain}/testing/*.md → Test patterns       │
-│     └─ Read: .github/CLAUDE.md → Project conventions                │
+│     └─ Read: .github/copilot-instructions.md → Project conventions                │
 │     └─ Glob: tests/**/*.py → Existing test patterns                 │
 │     └─ Read: tests/conftest.py → Shared fixtures                    │
 │                                                                      │

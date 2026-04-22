@@ -144,7 +144,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `.github/kb/microsoft-fabric/08-ai-capabilities/` | All AI work | Not AI-related |
 | Existing ML notebooks | Modifying models | Greenfield |
 | Azure OpenAI configuration | API integration | Copilot-only |

@@ -94,13 +94,13 @@ Explicitly NOT included in this feature:
 | Aspect | Value | Notes |
 |--------|-------|-------|
 | **Deployment Location** | {src/ \| functions/ \| gen/ \| deploy/ \| custom path} | {Why this location} |
-| **KB Domains** | {List domains from .claude/kb/ relevant to this feature} | {Which patterns to consult} |
+| **KB Domains** | {List domains from ${COPILOT_PLUGIN_ROOT}/kb/ relevant to this feature} | {Which patterns to consult} |
 | **IaC Impact** | {New resources \| Modify existing \| None \| TBD} | {Infrastructure changes needed} |
 
 **Why This Matters:**
 
 - **Location** → Design phase uses correct project structure, prevents misplaced files
-- **KB Domains** → Design phase pulls correct patterns from `.claude/kb/`
+- **KB Domains** → Design phase pulls correct patterns from `${COPILOT_PLUGIN_ROOT}/kb/`
 - **IaC Impact** → Triggers infrastructure planning, avoids "works locally" failures
 
 ---
@@ -186,4 +186,4 @@ Assumptions that if wrong could invalidate the design:
 
 ## Next Step
 
-**Ready for:** `/design .claude/sdd/features/DEFINE_{FEATURE_NAME}.md`
+**Ready for:** `/design .github/sdd/features/DEFINE_{FEATURE_NAME}.md`

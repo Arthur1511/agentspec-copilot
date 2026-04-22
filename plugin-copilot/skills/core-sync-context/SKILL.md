@@ -1,11 +1,11 @@
 ---
 name: core-sync-context
-description: Sync project context to CLAUDE.md by analyzing codebase patterns and conventions. Use after adding agents, commands, or significant architecture changes.
+description: Sync project context to copilot-instructions.md by analyzing codebase patterns and conventions. Use after adding agents, commands, or significant architecture changes.
 ---
 
 # Sync Context Command
 
-Analyzes codebase and intelligently updates `CLAUDE.md` with current project context.
+Analyzes codebase and intelligently updates `copilot-instructions.md` with current project context.
 
 ## Usage
 
@@ -21,7 +21,7 @@ Analyzes codebase and intelligently updates `CLAUDE.md` with current project con
 
 1. **Analyzes** current codebase structure
 2. **Extracts** patterns, conventions, and architecture
-3. **Merges** with existing CLAUDE.md content
+3. **Merges** with existing copilot-instructions.md content
 4. **Preserves** manual customizations
 5. **Updates** sections that need refresh
 
@@ -60,17 +60,17 @@ Grep("@lambda_handler")      # Lambda patterns
 
 ```text
 # List available agents
-Glob("${COPILOT_PLUGIN_ROOT}/agents/**/*.md")
+Glob("${COPILOT_PLUGIN_ROOT}/agents/*.agent.md")
 
-# Categorize by folder
-- workflow/       → SDD pipeline agents (brainstorm, define, design, build, ship, iterate)
-- architect/      → System design (schema, pipeline, lakehouse, genai, planner)
-- cloud/          → AWS, GCP, CI/CD, deployment agents
-- platform/       → Microsoft Fabric specialists
-- python/         → Code review, clean, document, prompt engineering
-- test/           → Testing, data quality, data contracts
-- data-engineering/ → Spark, dbt, Airflow, Lakeflow, streaming, SQL
-- dev/            → Codebase explorer, meeting analyst, prompt crafter
+# Categorize by name prefix
+- workflow-*    → SDD pipeline agents (brainstorm, define, design, build, ship, iterate)
+- architect-*   → System design (schema, pipeline, lakehouse, genai, the-planner)
+- cloud-*       → AWS, GCP, CI/CD, deployment agents
+- fabric-*      → Microsoft Fabric specialists
+- python-*      → Code review, clean, document, prompt engineering
+- test-*        → Testing, data quality, data contracts
+- de-*          → Data engineering: Spark, dbt, Airflow, Lakeflow, streaming, SQL
+- dev-*         → Codebase explorer, meeting analyst, prompt crafter
 ```
 
 ### Step 4: Merge Updates
@@ -92,9 +92,9 @@ Glob("${COPILOT_PLUGIN_ROOT}/agents/**/*.md")
 
 ---
 
-## CLAUDE.md Template
+## copilot-instructions.md Template
 
-Generated CLAUDE.md follows this structure:
+Generated copilot-instructions.md follows this structure:
 
 ```markdown
 # {Project Name}
@@ -130,9 +130,9 @@ Generated CLAUDE.md follows this structure:
 ├── tests/
 ├── .github/
 │   ├── agents/
-│   ├── commands/
-│   ├── sdd/
 │   ├── kb/
+│   ├── sdd/
+│   ├── skills/
 │   └── storage/
 ```
 
@@ -147,7 +147,7 @@ Generated CLAUDE.md follows this structure:
 | Category | Agents | Use When |
 | -------- | ------ | -------- |
 | Workflow | brainstorm-agent, define-agent, ... | Building features with SDD |
-| Code Quality | code-reviewer, test-generator, ... | Improving code |
+| Code Quality | python-code-reviewer, test-generator, ... | Improving code |
 | {category} | {agents} | {trigger} |
 
 ---
@@ -245,7 +245,7 @@ Generated CLAUDE.md follows this structure:
 ## Execution Flow
 
 ```text
-1. Read existing CLAUDE.md
+1. Read existing copilot-instructions.md
    │
    ▼
 2. Parse into sections
@@ -270,7 +270,7 @@ Generated CLAUDE.md follows this structure:
 6. Validate (dry-run or save)
    │
    ▼
-7. Write updated CLAUDE.md
+7. Write updated copilot-instructions.md
 ```
 
 ---
@@ -278,7 +278,7 @@ Generated CLAUDE.md follows this structure:
 ## Example Output
 
 ```text
-UPDATE CLAUDE.MD
+UPDATE copilot-instructions.md
 ━━━━━━━━━━━━━━━━
 
 Analyzing codebase...
@@ -301,7 +301,7 @@ Section updates:
 • Project Context: PRESERVED (manual content)
 
 ━━━━━━━━━━━━━━━━
-CLAUDE.md updated successfully
+copilot-instructions.md updated successfully
 ```
 
 ---
@@ -339,9 +339,9 @@ After running, manually update:
 
 ```bash
 # Review changes before committing
-git diff CLAUDE.md
+git diff copilot-instructions.md
 
 # Commit with context
-git add CLAUDE.md
-git commit -m "chore: update CLAUDE.md with latest project structure"
+git add copilot-instructions.md
+git commit -m "chore: update copilot-instructions.md with latest project structure"
 ```

@@ -64,5 +64,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| genai-architect | patterns/agentic-workflow.md, patterns/chatbot-architecture.md | Design multi-agent and chatbot systems |
-| genai-architect | patterns/rag-pipeline.md, concepts/rag-architecture.md | Build RAG pipelines with evaluation |
+| architect-genai | patterns/agentic-workflow.md, patterns/chatbot-architecture.md | Design multi-agent and chatbot systems |
+| architect-genai | patterns/rag-pipeline.md, concepts/rag-architecture.md | Build RAG pipelines with evaluation |

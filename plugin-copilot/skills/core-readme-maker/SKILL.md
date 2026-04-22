@@ -21,9 +21,9 @@ Generates a professional README.md by combining codebase exploration with docume
 
 ## What It Does
 
-1. **Explores** codebase using codebase-explorer patterns
+1. **Explores** codebase using dev-codebase-explorer patterns
 2. **Analyzes** project structure, tech stack, and patterns
-3. **Generates** README.md following code-documenter standards
+3. **Generates** README.md following python-code-documenter standards
 4. **Validates** all examples and links before saving
 
 ---
@@ -35,7 +35,7 @@ Generates a professional README.md by combining codebase exploration with docume
 │  README-MAKER WORKFLOW                                       │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Phase 1: EXPLORE (codebase-explorer patterns)              │
+│  Phase 1: EXPLORE (dev-codebase-explorer patterns)              │
 │  ├─ Scan root structure (ls, package files, configs)        │
 │  ├─ Map source code (Glob patterns by language)             │
 │  ├─ Identify tech stack and frameworks                      │
@@ -49,7 +49,7 @@ Generates a professional README.md by combining codebase exploration with docume
 │  ├─ Find installation/setup commands                        │
 │  └─ Identify environment variables                          │
 │                                                             │
-│  Phase 3: GENERATE (code-documenter patterns)               │
+│  Phase 3: GENERATE (python-code-documenter patterns)               │
 │  ├─ Create compelling project description                   │
 │  ├─ Build Quick Start with tested commands                  │
 │  ├─ Document features with examples                         │
@@ -338,7 +338,7 @@ task-runner run --workers 4 --output results/
 ```bash
 # Full documentation workflow
 /readme-maker                    # Generate README
-/sync-context                    # Update CLAUDE.md
+/sync-context                    # Update copilot-instructions.md
 /memory "Generated docs"         # Save what was done
 ```
 
@@ -350,8 +350,8 @@ This command leverages:
 
 | Agent | Purpose |
 | ----- | ------- |
-| **codebase-explorer** | Comprehensive codebase analysis |
-| **code-documenter** | Documentation generation patterns |
+| **dev-codebase-explorer** | Comprehensive codebase analysis |
+| **python-code-documenter** | Documentation generation patterns |
 
 The command combines:
 - Explorer's systematic analysis workflow

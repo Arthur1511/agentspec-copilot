@@ -1,6 +1,6 @@
 ---
 name: data-engineering-lakehouse
-description: Table format and catalog guidance — delegates to lakehouse-architect agent. Use when working with Iceberg, Delta Lake, catalogs, or migrating from legacy table formats.
+description: Table format and catalog guidance — delegates to architect-lakehouse agent. Use when working with Iceberg, Delta Lake, catalogs, or migrating from legacy table formats.
 ---
 
 # Lakehouse Command
@@ -26,7 +26,7 @@ description: Table format and catalog guidance — delegates to lakehouse-archit
 
 ## What This Command Does
 
-1. Invokes the **lakehouse-architect** agent
+1. Invokes the **architect-lakehouse** agent
 2. Analyzes your table format or catalog requirements
 3. Loads KB patterns from `lakehouse` and `cloud-platforms` domains
 4. Generates:
@@ -39,9 +39,9 @@ description: Table format and catalog guidance — delegates to lakehouse-archit
 
 | Agent | Role |
 |-------|------|
-| `lakehouse-architect` | Primary — Iceberg, Delta, catalog governance |
-| `data-platform-engineer` | Escalation — when infra provisioning is needed |
-| `spark-engineer` | Escalation — when Spark read/write optimization is needed |
+| `architect-lakehouse` | Primary — Iceberg, Delta, catalog governance |
+| `architect-data-platform-engineer` | Escalation — when infra provisioning is needed |
+| `de-spark-engineer` | Escalation — when Spark read/write optimization is needed |
 
 ## KB Domains Used
 

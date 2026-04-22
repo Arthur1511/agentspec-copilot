@@ -41,10 +41,10 @@ tools:
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  1. ARTIFACT VERIFICATION (confirm completeness)                    │
-│     └─ Read: .claude/sdd/features/DEFINE_{FEATURE}.md               │
-│     └─ Read: .claude/sdd/features/DESIGN_{FEATURE}.md               │
-│     └─ Read: .claude/sdd/reports/BUILD_REPORT_{FEATURE}.md          │
-│     └─ Optional: .claude/sdd/features/BRAINSTORM_{FEATURE}.md       │
+│     └─ Read: .github/sdd/features/DEFINE_{FEATURE}.md               │
+│     └─ Read: .github/sdd/features/DESIGN_{FEATURE}.md               │
+│     └─ Read: .github/sdd/reports/BUILD_REPORT_{FEATURE}.md          │
+│     └─ Optional: .github/sdd/features/BRAINSTORM_{FEATURE}.md       │
 │                                                                      │
 │  2. BUILD REPORT VALIDATION                                          │
 │     └─ All tasks completed?                                         │
@@ -101,7 +101,7 @@ PRE-SHIP VERIFICATION
 
 **Process:**
 
-1. Create archive directory: `.claude/sdd/archive/{FEATURE}/`
+1. Create archive directory: `.github/sdd/archive/{FEATURE}/`
 2. Copy all artifacts to archive
 3. Update status in archived documents to "Shipped"
 4. Remove from features/ and reports/
@@ -109,7 +109,7 @@ PRE-SHIP VERIFICATION
 **Archive Structure:**
 
 ```text
-.claude/sdd/archive/{FEATURE}/
+.github/sdd/archive/{FEATURE}/
 ├── BRAINSTORM_{FEATURE}.md  (if exists)
 ├── DEFINE_{FEATURE}.md
 ├── DESIGN_{FEATURE}.md

@@ -66,42 +66,42 @@ Some domains extend this with additional directories:
 
 | Domain | Files | Description | Used By |
 |--------|------:|-------------|---------|
-| dbt | 12 | Fusion Engine, Mesh, Semantic Layer, models, macros, tests | dbt-specialist, code-reviewer, sql-optimizer, test-generator, data-quality-analyst, pipeline-architect |
-| spark | 11 | PySpark, Spark SQL, DataFrames, Real-Time Mode, Spark Connect | spark-engineer, spark-specialist, spark-streaming-architect, spark-troubleshooter, spark-performance-analyzer, lakehouse-architect, lakeflow-architect |
-| airflow | 10 | Airflow 3.x TaskFlow, Dagster, Prefect comparison, DAG design | airflow-specialist, pipeline-architect |
-| sql-patterns | 9 | Cross-dialect SQL: window functions, CTEs, deduplication | code-reviewer, sql-optimizer, spark-engineer, spark-specialist, spark-troubleshooter, streaming-engineer, airflow-specialist, schema-designer |
-| streaming | 10 | Flink, Kafka, Spark Streaming, RisingWave, Materialize, CDC | streaming-engineer, spark-streaming-architect, ai-data-engineer |
-| data-modeling | 10 | Dimensional modeling, Data Vault, SCD types, schema evolution | schema-designer, data-platform-engineer, medallion-architect, supabase-specialist, data-contracts-engineer, data-quality-analyst, sql-optimizer |
-| data-quality | 10 | Soda, Great Expectations, dbt tests, ODCS, Monte Carlo | code-reviewer, data-quality-analyst, data-contracts-engineer, test-generator, ai-data-engineer, ai-data-engineer-cloud, ai-data-engineer-gcp, gcp-data-architect, aws-data-architect, medallion-architect, lakeflow-expert, lakeflow-pipeline-builder, lakeflow-specialist, pipeline-architect |
+| dbt | 12 | Fusion Engine, Mesh, Semantic Layer, models, macros, tests | de-dbt-specialist, python-code-reviewer, de-sql-optimizer, test-generator, test-data-quality-analyst, architect-pipeline |
+| spark | 11 | PySpark, Spark SQL, DataFrames, Real-Time Mode, Spark Connect | de-spark-engineer, de-spark-specialist, de-spark-streaming-architect, de-spark-troubleshooter, de-spark-performance-analyzer, architect-lakehouse, de-lakeflow-architect |
+| airflow | 10 | Airflow 3.x TaskFlow, Dagster, Prefect comparison, DAG design | de-airflow-specialist, architect-pipeline |
+| sql-patterns | 9 | Cross-dialect SQL: window functions, CTEs, deduplication | python-code-reviewer, de-sql-optimizer, de-spark-engineer, de-spark-specialist, de-spark-troubleshooter, de-streaming-engineer, de-airflow-specialist, architect-schema-designer |
+| streaming | 10 | Flink, Kafka, Spark Streaming, RisingWave, Materialize, CDC | de-streaming-engineer, de-spark-streaming-architect, de-ai-data-engineer |
+| data-modeling | 10 | Dimensional modeling, Data Vault, SCD types, schema evolution | architect-schema-designer, architect-data-platform-engineer, architect-medallion, cloud-supabase-specialist, test-data-contracts-engineer, test-data-quality-analyst, de-sql-optimizer |
+| data-quality | 10 | Soda, Great Expectations, dbt tests, ODCS, Monte Carlo | python-code-reviewer, test-data-quality-analyst, test-data-contracts-engineer, test-generator, de-ai-data-engineer, cloud-ai-data-engineer-cloud, cloud-ai-data-engineer-gcp, cloud-gcp-data-architect, cloud-aws-data-architect, architect-medallion, de-lakeflow-expert, de-lakeflow-pipeline-builder, de-lakeflow-specialist, architect-pipeline |
 
 ### Infrastructure and Platforms
 
 | Domain | Files | Description | Used By |
 |--------|------:|-------------|---------|
-| lakehouse | 10 | Iceberg v3, Delta Lake 4.1, DuckLake, Unity, Gravitino | lakehouse-architect, data-platform-engineer, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, lakeflow-specialist, spark-streaming-architect, spark-performance-analyzer |
-| medallion | 10 | Bronze/Silver/Gold layer design, quality progression | medallion-architect, lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder |
-| cloud-platforms | 10 | Snowflake Cortex, Databricks LakeFlow, BigQuery AI | data-platform-engineer, ai-data-engineer-cloud, ai-data-engineer-gcp, gcp-data-architect, spark-specialist, spark-performance-analyzer |
-| aws | 20 | Lambda, S3, Glue, SAM deployment, IAM, Layers | aws-deployer, aws-lambda-architect, aws-data-architect, lambda-builder, ci-cd-specialist, ai-data-engineer-cloud |
-| gcp | 13 | Cloud Run, Pub/Sub, GCS, BigQuery, IAM, Secret Manager | ai-data-engineer-gcp, ai-prompt-specialist-gcp, gcp-data-architect, ai-data-engineer-cloud |
+| lakehouse | 10 | Iceberg v3, Delta Lake 4.1, DuckLake, Unity, Gravitino | architect-lakehouse, architect-data-platform-engineer, de-lakeflow-architect, de-lakeflow-expert, de-lakeflow-pipeline-builder, de-lakeflow-specialist, de-spark-streaming-architect, de-spark-performance-analyzer |
+| medallion | 10 | Bronze/Silver/Gold layer design, quality progression | architect-medallion, de-lakeflow-architect, de-lakeflow-expert, de-lakeflow-pipeline-builder |
+| cloud-platforms | 10 | Snowflake Cortex, Databricks LakeFlow, BigQuery AI | architect-data-platform-engineer, cloud-ai-data-engineer-cloud, cloud-ai-data-engineer-gcp, cloud-gcp-data-architect, de-spark-specialist, de-spark-performance-analyzer |
+| aws | 20 | Lambda, S3, Glue, SAM deployment, IAM, Layers | cloud-aws-deployer, cloud-aws-lambda-architect, cloud-aws-data-architect, cloud-lambda-builder, cloud-ci-cd-specialist, cloud-ai-data-engineer-cloud |
+| gcp | 13 | Cloud Run, Pub/Sub, GCS, BigQuery, IAM, Secret Manager | cloud-ai-data-engineer-gcp, cloud-ai-prompt-specialist-gcp, cloud-gcp-data-architect, cloud-ai-data-engineer-cloud |
 | microsoft-fabric | 53 | Lakehouse, Warehouse, Pipelines, KQL, CI/CD, AI, Security | fabric-architect, fabric-pipeline-developer, fabric-logging-specialist, fabric-cicd-specialist, fabric-security-specialist, fabric-ai-specialist |
-| lakeflow | 23 | DLT pipelines, materialized views, streaming tables, DABs | lakeflow-architect, lakeflow-expert, lakeflow-pipeline-builder, lakeflow-specialist, ci-cd-specialist |
-| terraform | 14 | Resources, modules, providers, state, GCP/AWS patterns | aws-deployer, aws-lambda-architect, aws-data-architect, ai-data-engineer-cloud, ai-data-engineer-gcp, gcp-data-architect, ci-cd-specialist |
+| lakeflow | 23 | DLT pipelines, materialized views, streaming tables, DABs | de-lakeflow-architect, de-lakeflow-expert, de-lakeflow-pipeline-builder, de-lakeflow-specialist, cloud-ci-cd-specialist |
+| terraform | 14 | Resources, modules, providers, state, GCP/AWS patterns | cloud-aws-deployer, cloud-aws-lambda-architect, cloud-aws-data-architect, cloud-ai-data-engineer-cloud, cloud-ai-data-engineer-gcp, cloud-gcp-data-architect, cloud-ci-cd-specialist |
 
 ### AI and Modern
 
 | Domain | Files | Description | Used By |
 |--------|------:|-------------|---------|
-| genai | 11 | Multi-agent systems, RAG, state machines, tool calling, guardrails | genai-architect, ai-prompt-specialist, llm-specialist, ai-prompt-specialist-gcp, qdrant-specialist |
-| prompt-engineering | 11 | Chain-of-thought, structured extraction, few-shot, system prompts | ai-prompt-specialist, llm-specialist, ai-prompt-specialist-gcp, genai-architect |
-| ai-data-engineering | 12 | RAG pipelines, vector DBs, feature stores, LLMOps, embeddings | ai-data-engineer, supabase-specialist, qdrant-specialist, genai-architect |
+| genai | 11 | Multi-agent systems, RAG, state machines, tool calling, guardrails | architect-genai, python-ai-prompt-specialist, python-llm-specialist, cloud-ai-prompt-specialist-gcp, de-qdrant-specialist |
+| prompt-engineering | 11 | Chain-of-thought, structured extraction, few-shot, system prompts | python-ai-prompt-specialist, python-llm-specialist, cloud-ai-prompt-specialist-gcp, architect-genai |
+| ai-data-engineering | 12 | RAG pipelines, vector DBs, feature stores, LLMOps, embeddings | de-ai-data-engineer, cloud-supabase-specialist, de-qdrant-specialist, architect-genai |
 | modern-stack | 10 | DuckDB, Polars, SQLMesh, Malloy, local-first analytics | (general use) |
 
 ### Development Foundations
 
 | Domain | Files | Description | Used By |
 |--------|------:|-------------|---------|
-| python | 10 | Dataclasses, type hints, generators, context managers | python-developer, code-cleaner, code-documenter |
-| pydantic | 10 | BaseModel, validators, LLM output validation, extraction schemas | python-developer, ai-prompt-specialist, llm-specialist, ai-prompt-specialist-gcp |
+| python | 10 | Dataclasses, type hints, generators, context managers | python-developer, python-code-cleaner, python-code-documenter |
+| pydantic | 10 | BaseModel, validators, LLM output validation, extraction schemas | python-developer, python-ai-prompt-specialist, python-llm-specialist, cloud-ai-prompt-specialist-gcp |
 | testing | 10 | pytest, fixtures, mocking, parametrize, Spark testing | python-developer, test-generator |
 
 ---
@@ -112,35 +112,35 @@ Each agent declares a `kb_domains` field in its frontmatter that determines whic
 
 ### Agent-to-KB Mapping (by agent group)
 
-**Architect agents** (8 agents in `.claude/agents/architect/`):
+**Architect agents** (8 agents):
 
 | Agent | KB Domains |
 |-------|------------|
-| data-platform-engineer | cloud-platforms, lakehouse, data-modeling |
-| genai-architect | genai, prompt-engineering, ai-data-engineering |
-| kb-architect | (none -- operates on KB structure itself) |
-| lakehouse-architect | lakehouse, spark, data-modeling |
-| medallion-architect | medallion, data-modeling, lakehouse, data-quality |
-| pipeline-architect | airflow, data-quality, dbt |
-| schema-designer | data-modeling, sql-patterns, data-quality |
-| the-planner | (none -- strategic planning) |
+| architect-data-platform-engineer | cloud-platforms, lakehouse, data-modeling |
+| architect-genai | genai, prompt-engineering, ai-data-engineering |
+| architect-kb | (none -- operates on KB structure itself) |
+| architect-lakehouse | lakehouse, spark, data-modeling |
+| architect-medallion | medallion, data-modeling, lakehouse, data-quality |
+| architect-pipeline | airflow, data-quality, dbt |
+| architect-schema-designer | data-modeling, sql-patterns, data-quality |
+| architect-the-planner | (none -- strategic planning) |
 
-**Cloud agents** (10 agents in `.claude/agents/cloud/`):
+**Cloud agents** (10 agents):
 
 | Agent | KB Domains |
 |-------|------------|
-| ai-data-engineer-cloud | gcp, aws, terraform, data-quality, cloud-platforms |
-| ai-data-engineer-gcp | gcp, terraform, cloud-platforms, data-quality |
-| ai-prompt-specialist-gcp | prompt-engineering, genai, pydantic, gcp |
-| aws-data-architect | aws, terraform, data-quality |
-| aws-deployer | aws, terraform |
-| aws-lambda-architect | aws, terraform |
-| ci-cd-specialist | terraform, aws, lakeflow |
-| gcp-data-architect | gcp, terraform, cloud-platforms, data-quality |
-| lambda-builder | aws, python, testing |
-| supabase-specialist | ai-data-engineering, data-modeling |
+| cloud-ai-data-engineer-cloud | gcp, aws, terraform, data-quality, cloud-platforms |
+| cloud-ai-data-engineer-gcp | gcp, terraform, cloud-platforms, data-quality |
+| cloud-ai-prompt-specialist-gcp | prompt-engineering, genai, pydantic, gcp |
+| cloud-aws-data-architect | aws, terraform, data-quality |
+| cloud-aws-deployer | aws, terraform |
+| cloud-aws-lambda-architect | aws, terraform |
+| cloud-ci-cd-specialist | terraform, aws, lakeflow |
+| cloud-gcp-data-architect | gcp, terraform, cloud-platforms, data-quality |
+| cloud-lambda-builder | aws, python, testing |
+| cloud-supabase-specialist | ai-data-engineering, data-modeling |
 
-**Platform agents** (6 agents in `.claude/agents/platform/`):
+**Platform agents** (6 agents):
 
 | Agent | KB Domains |
 |-------|------------|
@@ -151,43 +151,43 @@ Each agent declares a `kb_domains` field in its frontmatter that determines whic
 | fabric-pipeline-developer | microsoft-fabric |
 | fabric-security-specialist | microsoft-fabric |
 
-**Data engineering agents** (15 agents in `.claude/agents/data-engineering/`):
+**Data engineering agents** (15 agents):
 
 | Agent | KB Domains |
 |-------|------------|
-| ai-data-engineer | ai-data-engineering, data-quality, streaming |
-| airflow-specialist | airflow, sql-patterns, data-quality |
-| dbt-specialist | dbt, data-quality, sql-patterns |
-| lakeflow-architect | lakeflow, lakehouse, spark, medallion |
-| lakeflow-expert | lakeflow, lakehouse, data-quality, medallion |
-| lakeflow-pipeline-builder | lakeflow, lakehouse, data-quality, medallion |
-| lakeflow-specialist | lakeflow, lakehouse, spark, data-quality |
-| qdrant-specialist | ai-data-engineering, genai |
-| spark-engineer | spark, sql-patterns, streaming |
-| spark-performance-analyzer | spark, cloud-platforms, lakehouse |
-| spark-specialist | spark, sql-patterns, cloud-platforms |
-| spark-streaming-architect | spark, streaming, lakehouse |
-| spark-troubleshooter | spark, sql-patterns |
-| sql-optimizer | sql-patterns, data-modeling, dbt |
-| streaming-engineer | streaming, spark, sql-patterns |
+| de-ai-data-engineer | ai-data-engineering, data-quality, streaming |
+| de-airflow-specialist | airflow, sql-patterns, data-quality |
+| de-dbt-specialist | dbt, data-quality, sql-patterns |
+| de-lakeflow-architect | lakeflow, lakehouse, spark, medallion |
+| de-lakeflow-expert | lakeflow, lakehouse, data-quality, medallion |
+| de-lakeflow-pipeline-builder | lakeflow, lakehouse, data-quality, medallion |
+| de-lakeflow-specialist | lakeflow, lakehouse, spark, data-quality |
+| de-qdrant-specialist | ai-data-engineering, genai |
+| de-spark-engineer | spark, sql-patterns, streaming |
+| de-spark-performance-analyzer | spark, cloud-platforms, lakehouse |
+| de-spark-specialist | spark, sql-patterns, cloud-platforms |
+| de-spark-streaming-architect | spark, streaming, lakehouse |
+| de-spark-troubleshooter | spark, sql-patterns |
+| de-sql-optimizer | sql-patterns, data-modeling, dbt |
+| de-streaming-engineer | streaming, spark, sql-patterns |
 
-**Python agents** (6 agents in `.claude/agents/python/`):
+**Python agents** (6 agents):
 
 | Agent | KB Domains |
 |-------|------------|
-| ai-prompt-specialist | prompt-engineering, pydantic, genai |
-| code-cleaner | python |
-| code-documenter | python |
-| code-reviewer | data-quality, sql-patterns, dbt |
-| llm-specialist | prompt-engineering, pydantic, genai |
+| python-ai-prompt-specialist | prompt-engineering, pydantic, genai |
+| python-code-cleaner | python |
+| python-code-documenter | python |
+| python-code-reviewer | data-quality, sql-patterns, dbt |
+| python-llm-specialist | prompt-engineering, pydantic, genai |
 | python-developer | python, pydantic, testing |
 
-**Test agents** (3 agents in `.claude/agents/test/`):
+**Test agents** (3 agents):
 
 | Agent | KB Domains |
 |-------|------------|
-| data-contracts-engineer | data-quality, data-modeling |
-| data-quality-analyst | data-quality, dbt, data-modeling |
+| test-data-contracts-engineer | data-quality, data-modeling |
+| test-data-quality-analyst | data-quality, dbt, data-modeling |
 | test-generator | data-quality, dbt, testing |
 
 **Dev and Workflow agents** (10 agents) do not use KB domains directly.
@@ -206,7 +206,7 @@ KB domains specified   ->  Agents pull patterns   ->  Agents consult KB
 in requirements            from matched domains       during implementation
 
 Example:                   Example:                   Example:
-kb_domains:                spark-engineer reads        Reads patterns/
+kb_domains:                de-spark-engineer reads        Reads patterns/
   - spark                  spark/index.md              delta-integration.md
   - lakehouse              for relevant concepts       for working code
 ```
@@ -242,16 +242,16 @@ This scaffolds the full domain structure, copies templates, and registers the do
 1. Create the directory structure:
 
 ```bash
-mkdir -p .claude/kb/{domain}/{concepts,patterns}
+mkdir -p .github/kb/{domain}/{concepts,patterns}
 ```
 
 2. Copy templates from `_templates/`:
 
 ```bash
-cp .claude/kb/_templates/index.md.template .claude/kb/{domain}/index.md
-cp .claude/kb/_templates/quick-reference.md.template .claude/kb/{domain}/quick-reference.md
-cp .claude/kb/_templates/concept.md.template .claude/kb/{domain}/concepts/{name}.md
-cp .claude/kb/_templates/pattern.md.template .claude/kb/{domain}/patterns/{name}.md
+cp .github/kb/_templates/index.md.template .github/kb/{domain}/index.md
+cp .github/kb/_templates/quick-reference.md.template .github/kb/{domain}/quick-reference.md
+cp .github/kb/_templates/concept.md.template .github/kb/{domain}/concepts/{name}.md
+cp .github/kb/_templates/pattern.md.template .github/kb/{domain}/patterns/{name}.md
 ```
 
 3. Fill in domain-specific content with working code examples.
@@ -277,7 +277,7 @@ cp .claude/kb/_templates/pattern.md.template .claude/kb/{domain}/patterns/{name}
 
 ## Registry Reference
 
-The machine-readable registry lives at `.claude/kb/_index.yaml`. It defines:
+The machine-readable registry lives at `.github/kb/_index.yaml`. It defines:
 
 - **version** -- Schema version of the index format
 - **limits** -- File size limits (single source of truth)
@@ -286,7 +286,7 @@ The machine-readable registry lives at `.claude/kb/_index.yaml`. It defines:
 - **domains** -- Complete registry of all 23 domains with:
   - `name` -- Domain identifier
   - `description` -- One-line summary
-  - `path` -- Directory path relative to `.claude/kb/`
+  - `path` -- Directory path relative to `.github/kb/`
   - `mcp_validated` -- Date of last MCP validation
   - `entry_points` -- Primary files for agent resolution (`index`, `quick_reference`)
   - `concepts` -- List of concept files with confidence scores

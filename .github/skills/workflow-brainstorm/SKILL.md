@@ -63,7 +63,7 @@ The `/brainstorm` command explores ideas through dialogue before capturing forma
 ### Step 1: Gather Context
 
 ```markdown
-Read(CLAUDE.md) or Read(.github/copilot-instructions.md)
+Read(.github/copilot-instructions.md) or Read(CLAUDE.md)
 Read(.github/sdd/templates/BRAINSTORM_TEMPLATE.md)
 Explore project structure, recent commits, existing patterns
 ```

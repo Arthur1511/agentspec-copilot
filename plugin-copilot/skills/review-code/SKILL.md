@@ -114,7 +114,7 @@ SEVERITY MAPPING
 
 ### Step 3: Run Claude Deep Analysis
 
-Use the code-reviewer agent capabilities:
+Use the python-code-reviewer agent capabilities:
 
 **Focus Areas:**
 
@@ -390,6 +390,6 @@ Comparing: HEAD vs develop
 
 ## Related
 
-- Agent: `${COPILOT_PLUGIN_ROOT}/agents/code-reviewer.agent.md`
+- Agent: `${COPILOT_PLUGIN_ROOT}/agents/python-code-reviewer.agent.md`
 - Config: `.coderabbit.yaml` (optional, create if needed)
 - Create PR: `.github/commands/workflow/create-pr.md`

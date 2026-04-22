@@ -145,7 +145,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `${COPILOT_PLUGIN_ROOT}/kb/microsoft-fabric/` | All Fabric work | Not Fabric-related |
 | Existing architecture docs | Modifying existing design | Greenfield |
 | Capacity/SKU requirements | Sizing decisions | Pattern-only questions |

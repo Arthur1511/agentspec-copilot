@@ -65,6 +65,6 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| medallion-architect | All concepts + layer-transitions | Designing lakehouse layer architecture |
+| architect-medallion | All concepts + layer-transitions | Designing lakehouse layer architecture |
 | data-quality-engineer | data-quality-gates, silver-layer | Implementing quality checks and validation |
 | lakehouse-engineer | incremental-loading, schema-evolution | Building production ETL pipelines |

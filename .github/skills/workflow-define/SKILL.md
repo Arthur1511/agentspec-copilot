@@ -58,7 +58,7 @@ The `/define` command combines Intake + PRD + Refine into a single, iterative ph
 
 ```markdown
 Read(.github/sdd/templates/DEFINE_TEMPLATE.md)
-Read(CLAUDE.md)
+Read(.github/copilot-instructions.md)
 
 # If file provided:
 Read(<input-file>)

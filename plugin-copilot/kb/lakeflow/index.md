@@ -104,6 +104,6 @@ Gold:   FAIL  -> Strict validation
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| lakeflow-architect | patterns/, concepts/ | Pipeline design |
-| lakeflow-expert | All files | Comprehensive guidance |
-| lakeflow-pipeline-builder | patterns/bronze-*, patterns/silver-*, patterns/gold-*, patterns/dabs-* | Actual pipeline implementation |
+| de-lakeflow-architect | patterns/, concepts/ | Pipeline design |
+| de-lakeflow-expert | All files | Comprehensive guidance |
+| de-lakeflow-pipeline-builder | patterns/bronze-*, patterns/silver-*, patterns/gold-*, patterns/dabs-* | Actual pipeline implementation |

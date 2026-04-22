@@ -34,5 +34,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| data-platform-engineer | All files | Tool selection, local-first patterns |
-| sql-optimizer | patterns/duckdb-patterns.md | DuckDB SQL optimization |
+| architect-data-platform-engineer | All files | Tool selection, local-first patterns |
+| de-sql-optimizer | patterns/duckdb-patterns.md | DuckDB SQL optimization |

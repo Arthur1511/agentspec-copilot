@@ -65,4 +65,4 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| ai-prompt-specialist | patterns/document-extraction.md, patterns/prompt-template.md | Design extraction and structured output prompts |
+| python-ai-prompt-specialist | patterns/document-extraction.md, patterns/prompt-template.md | Design extraction and structured output prompts |

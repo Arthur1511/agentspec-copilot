@@ -9,7 +9,7 @@ source: "patterns/extraction-schema.md"
 
 description: >
   Pydantic model specification for extracting structured invoice data
-  from unstructured documents via LLM. Used by ai-prompt-specialist-gcp
+  from unstructured documents via LLM. Used by cloud-ai-prompt-specialist-gcp
   agent for document processing pipelines.
 
 model:

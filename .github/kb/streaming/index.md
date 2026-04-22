@@ -44,5 +44,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| streaming-engineer | All files | Stream pipeline design |
-| pipeline-architect | patterns/cdc-patterns.md | CDC pipeline orchestration |
+| de-streaming-engineer | All files | Stream pipeline design |
+| architect-pipeline | patterns/cdc-patterns.md | CDC pipeline orchestration |

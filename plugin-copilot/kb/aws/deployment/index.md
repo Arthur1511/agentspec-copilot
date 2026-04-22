@@ -60,4 +60,4 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| aws-deployer | patterns/sam-deploy.md, concepts/environments.md | Build, test, and deploy Lambda functions to AWS |
+| cloud-aws-deployer | patterns/sam-deploy.md, concepts/environments.md | Build, test, and deploy Lambda functions to AWS |

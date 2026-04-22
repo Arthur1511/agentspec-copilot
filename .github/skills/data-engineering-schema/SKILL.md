@@ -1,6 +1,6 @@
 ---
 name: data-engineering-schema
-description: Interactive schema design — delegates to schema-designer agent. Use when designing star schemas, Data Vault models, SCD strategies, or DDL for any target platform.
+description: Interactive schema design — delegates to architect-schema-designer agent. Use when designing star schemas, Data Vault models, SCD strategies, or DDL for any target platform.
 ---
 
 # Schema Command
@@ -26,7 +26,7 @@ description: Interactive schema design — delegates to schema-designer agent. U
 
 ## What This Command Does
 
-1. Invokes the **schema-designer** agent
+1. Invokes the **architect-schema-designer** agent
 2. Analyzes your modeling requirements
 3. Loads KB patterns from `data-modeling` and `sql-patterns` domains
 4. Generates:
@@ -39,9 +39,9 @@ description: Interactive schema design — delegates to schema-designer agent. U
 
 | Agent | Role |
 |-------|------|
-| `schema-designer` | Primary — dimensional modeling, SCD, Data Vault |
-| `dbt-specialist` | Escalation — when models need dbt implementation |
-| `sql-optimizer` | Escalation — when index strategy is needed |
+| `architect-schema-designer` | Primary — dimensional modeling, SCD, Data Vault |
+| `de-dbt-specialist` | Escalation — when models need dbt implementation |
+| `de-sql-optimizer` | Escalation — when index strategy is needed |
 
 ## KB Domains Used
 

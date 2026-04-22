@@ -1,14 +1,14 @@
 {
-  "name": "gh-copilot-agentspec",
+  "name": "agentspec",
   "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 31 skills",
   "version": "1.0.0",
   "author": {
-    "name": "Luan Moreno",
-    "url": "https://github.com/luanmorenommaciel"
+    "name": "Arthur Pinto",
+    "url": "https://github.com/Arthur1511"
   },
   "license": "MIT",
-  "repository": "https://github.com/luanmorenommaciel/gh-copilot-agentspec",
-  "homepage": "https://github.com/luanmorenommaciel/gh-copilot-agentspec",
+  "repository": "https://github.com/Arthur1511/agentspec-copilot",
+  "homepage": "https://github.com/Arthur1511/agentspec-copilot",
   "keywords": [
     "data-engineering",
     "sdd",

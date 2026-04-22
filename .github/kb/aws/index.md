@@ -8,8 +8,8 @@
 
 | Domain | Path | Purpose | Agents |
 |--------|------|---------|--------|
-| [Lambda](lambda/index.md) | `aws/lambda/` | Serverless functions, SAM templates, S3 triggers, IAM policies | lambda-builder, aws-lambda-architect |
-| [Deployment](deployment/index.md) | `aws/deployment/` | SAM CLI, AWS CLI, deploy workflows, local testing | aws-deployer |
+| [Lambda](lambda/index.md) | `aws/lambda/` | Serverless functions, SAM templates, S3 triggers, IAM policies | cloud-lambda-builder, cloud-aws-lambda-architect |
+| [Deployment](deployment/index.md) | `aws/deployment/` | SAM CLI, AWS CLI, deploy workflows, local testing | cloud-aws-deployer |
 
 ## AWS Data Services Overview (2025-2026)
 
