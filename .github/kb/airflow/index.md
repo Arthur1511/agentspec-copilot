@@ -60,5 +60,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| pipeline-architect | All files | DAG creation, orchestration design |
+| architect-pipeline | All files | DAG creation, orchestration design |
 | build-agent | patterns/error-handling.md | Pipeline verification |

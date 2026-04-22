@@ -66,5 +66,5 @@
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
 | python-developer | All files | Write clean, idiomatic Python 3.11-3.14 code |
-| code-reviewer | patterns/clean-architecture.md, specs/python-standards.yaml | Review code quality |
+| python-code-reviewer | patterns/clean-architecture.md, specs/python-standards.yaml | Review code quality |
 | test-generator | patterns/error-handling.md, concepts/dataclasses.md | Generate typed test fixtures |

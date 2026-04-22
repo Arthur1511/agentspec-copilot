@@ -202,7 +202,7 @@
 
 ## Next Step
 
-**If Complete:** `/ship .claude/sdd/features/DEFINE_{FEATURE_NAME}.md`
+**If Complete:** `/ship .github/sdd/features/DEFINE_{FEATURE_NAME}.md`
 
 **If Blocked:** Resolve blockers, then `/build` to resume
 

@@ -1,6 +1,6 @@
 ---
 name: data-engineering-data-quality
-description: Data quality rules generation — delegates to data-quality-analyst agent. Use when generating Great Expectations suites, dbt tests, or SQL quality assertions for your data models.
+description: Data quality rules generation — delegates to test-data-quality-analyst agent. Use when generating Great Expectations suites, dbt tests, or SQL quality assertions for your data models.
 ---
 
 # Data Quality Command
@@ -25,7 +25,7 @@ description: Data quality rules generation — delegates to data-quality-analyst
 
 ## What This Command Does
 
-1. Invokes the **data-quality-analyst** agent
+1. Invokes the **test-data-quality-analyst** agent
 2. Reads model SQL or description to understand schema and business rules
 3. Loads KB patterns from `data-quality` and `dbt` domains
 4. Generates:
@@ -38,9 +38,9 @@ description: Data quality rules generation — delegates to data-quality-analyst
 
 | Agent | Role |
 |-------|------|
-| `data-quality-analyst` | Primary — GE suites, quality rules, observability |
-| `dbt-specialist` | Escalation — when tests need dbt YAML format |
-| `data-contracts-engineer` | Escalation — when SLAs need formal contracts |
+| `test-data-quality-analyst` | Primary — GE suites, quality rules, observability |
+| `de-dbt-specialist` | Escalation — when tests need dbt YAML format |
+| `test-data-contracts-engineer` | Escalation — when SLAs need formal contracts |
 
 ## KB Domains Used
 

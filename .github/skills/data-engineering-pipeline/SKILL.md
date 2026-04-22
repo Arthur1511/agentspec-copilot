@@ -1,6 +1,6 @@
 ---
 name: data-engineering-pipeline
-description: DAG/pipeline scaffolding — delegates to pipeline-architect agent. Use when scaffolding Airflow or Dagster pipelines with best-practice patterns.
+description: DAG/pipeline scaffolding — delegates to architect-pipeline agent. Use when scaffolding Airflow or Dagster pipelines with best-practice patterns.
 ---
 
 # Pipeline Command
@@ -25,7 +25,7 @@ description: DAG/pipeline scaffolding — delegates to pipeline-architect agent.
 
 ## What This Command Does
 
-1. Invokes the **pipeline-architect** agent
+1. Invokes the **architect-pipeline** agent
 2. Analyzes your description or requirements file
 3. Loads KB patterns from `airflow` and `dbt` domains
 4. Generates:
@@ -38,9 +38,9 @@ description: DAG/pipeline scaffolding — delegates to pipeline-architect agent.
 
 | Agent | Role |
 |-------|------|
-| `pipeline-architect` | Primary — DAG design, task orchestration |
-| `spark-engineer` | Escalation — when pipeline includes Spark jobs |
-| `dbt-specialist` | Escalation — when pipeline includes dbt models |
+| `architect-pipeline` | Primary — DAG design, task orchestration |
+| `de-spark-engineer` | Escalation — when pipeline includes Spark jobs |
+| `de-dbt-specialist` | Escalation — when pipeline includes dbt models |
 
 ## KB Domains Used
 

@@ -150,7 +150,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `${COPILOT_PLUGIN_ROOT}/kb/microsoft-fabric/07-cicd-automation/` | All CI/CD work | Not deployment-related |
 | Existing deployment pipelines | Pipeline consistency | Greenfield |
 | Workspace configuration | Environment setup | Pipeline-only changes |

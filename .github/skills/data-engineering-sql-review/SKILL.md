@@ -1,6 +1,6 @@
 ---
 name: data-engineering-sql-review
-description: SQL-specific code review — delegates to sql-optimizer + code-reviewer agents. Use when reviewing SQL for anti-patterns, performance issues, or cross-dialect correctness.
+description: SQL-specific code review — delegates to de-sql-optimizer + python-code-reviewer agents. Use when reviewing SQL for anti-patterns, performance issues, or cross-dialect correctness.
 ---
 
 # SQL Review Command
@@ -25,8 +25,8 @@ description: SQL-specific code review — delegates to sql-optimizer + code-revi
 
 ## What This Command Does
 
-1. Invokes the **code-reviewer** agent with DE capability enabled
-2. Escalates SQL optimization questions to **sql-optimizer** agent
+1. Invokes the **python-code-reviewer** agent with DE capability enabled
+2. Escalates SQL optimization questions to **de-sql-optimizer** agent
 3. Loads KB patterns from `sql-patterns`, `data-quality`, and `dbt` domains
 4. Reviews for:
    - SQL anti-patterns (`SELECT *`, implicit coercion, missing partition filters)
@@ -39,9 +39,9 @@ description: SQL-specific code review — delegates to sql-optimizer + code-revi
 
 | Agent | Role |
 |-------|------|
-| `code-reviewer` | Primary — DE review capability (anti-patterns, PII, tests) |
-| `sql-optimizer` | Escalation — query plan analysis, window functions |
-| `dbt-specialist` | Escalation — dbt-specific patterns and macros |
+| `python-code-reviewer` | Primary — DE review capability (anti-patterns, PII, tests) |
+| `de-sql-optimizer` | Escalation — query plan analysis, window functions |
+| `de-dbt-specialist` | Escalation — dbt-specific patterns and macros |
 
 ## KB Domains Used
 

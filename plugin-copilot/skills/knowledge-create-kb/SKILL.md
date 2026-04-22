@@ -18,7 +18,7 @@ description: Create a complete KB domain from scratch with MCP validation. Use w
 ## What Happens
 
 1. **Validates prerequisites** — checks `_templates/` and `_index.yaml` exist
-2. **Invokes kb-architect agent** — executes full workflow
+2. **Invokes architect-kb agent** — executes full workflow
 3. **Reports completion** — shows score and files created
 
 ## Options
@@ -30,7 +30,7 @@ description: Create a complete KB domain from scratch with MCP validation. Use w
 
 ## See Also
 
-- **Agent**: `${COPILOT_PLUGIN_ROOT}/agents/kb-architect.agent.md`
+- **Agent**: `${COPILOT_PLUGIN_ROOT}/agents/architect-kb.agent.md`
 - **Example**: `${COPILOT_PLUGIN_ROOT}/kb/{domain}/`
 - **Templates**: `${COPILOT_PLUGIN_ROOT}/kb/_templates/`
 - **Registry**: `${COPILOT_PLUGIN_ROOT}/kb/_index.yaml`

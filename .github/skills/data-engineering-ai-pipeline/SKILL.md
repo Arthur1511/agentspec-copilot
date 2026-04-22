@@ -1,6 +1,6 @@
 ---
 name: data-engineering-ai-pipeline
-description: RAG/embedding pipeline scaffolding — delegates to ai-data-engineer agent. Use when building RAG pipelines, embedding workflows, feature stores, or text-to-SQL systems.
+description: RAG/embedding pipeline scaffolding — delegates to de-ai-data-engineer agent. Use when building RAG pipelines, embedding workflows, feature stores, or text-to-SQL systems.
 ---
 
 # AI Pipeline Command
@@ -26,7 +26,7 @@ description: RAG/embedding pipeline scaffolding — delegates to ai-data-enginee
 
 ## What This Command Does
 
-1. Invokes the **ai-data-engineer** agent
+1. Invokes the **de-ai-data-engineer** agent
 2. Analyzes your AI/ML data requirements
 3. Loads KB patterns from `ai-data-engineering` and `streaming` domains
 4. Generates:
@@ -40,9 +40,9 @@ description: RAG/embedding pipeline scaffolding — delegates to ai-data-enginee
 
 | Agent | Role |
 |-------|------|
-| `ai-data-engineer` | Primary — RAG, embeddings, vector DBs, features |
-| `streaming-engineer` | Escalation — real-time embedding pipelines |
-| `data-quality-analyst` | Escalation — embedding quality metrics |
+| `de-ai-data-engineer` | Primary — RAG, embeddings, vector DBs, features |
+| `de-streaming-engineer` | Escalation — real-time embedding pipelines |
+| `test-data-quality-analyst` | Escalation — embedding quality metrics |
 
 ## KB Domains Used
 

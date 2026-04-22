@@ -58,5 +58,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| schema-designer | All files | Schema creation, modeling decisions |
+| architect-schema-designer | All files | Schema creation, modeling decisions |
 | define-agent | concepts/dimensional-modeling.md | Requirements extraction |

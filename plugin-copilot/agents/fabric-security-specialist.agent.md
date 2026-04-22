@@ -164,7 +164,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `${COPILOT_PLUGIN_ROOT}/kb/microsoft-fabric/06-governance-security/` | All security tasks | Not security-related |
 | `${COPILOT_PLUGIN_ROOT}/kb/microsoft-fabric/04-data-warehouse/` | RLS/CLS/DDM in warehouse | Lakehouse-only task |
 | `${COPILOT_PLUGIN_ROOT}/kb/microsoft-fabric/05-apis-sdks/` | Service Principal auth | No API/automation involved |

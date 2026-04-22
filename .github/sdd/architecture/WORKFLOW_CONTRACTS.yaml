@@ -452,12 +452,12 @@ build:
   data_engineering_delegation:
     description: "When DESIGN contains pipeline architecture, Build delegates to DE agents"
     agent_map:
-      dbt_models: "dbt-specialist"
-      airflow_dags: "pipeline-architect"
-      spark_jobs: "spark-engineer"
-      data_contracts: "data-contracts-engineer"
-      quality_checks: "data-quality-analyst"
-      schema_design: "schema-designer"
+      dbt_models: "de-dbt-specialist"
+      airflow_dags: "architect-pipeline"
+      spark_jobs: "de-spark-engineer"
+      data_contracts: "test-data-contracts-engineer"
+      quality_checks: "test-data-quality-analyst"
+      schema_design: "architect-schema-designer"
     de_verification:
       - "dbt build --select {model}"
       - "sqlfluff lint {file} --dialect {dialect}"

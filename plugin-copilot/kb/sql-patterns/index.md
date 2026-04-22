@@ -43,6 +43,6 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| sql-optimizer | All files | Query optimization, dialect translation |
-| code-reviewer | patterns/cross-dialect.md | SQL review |
-| dbt-specialist | patterns/deduplication.md | Model SQL patterns |
+| de-sql-optimizer | All files | Query optimization, dialect translation |
+| python-code-reviewer | patterns/cross-dialect.md | SQL review |
+| de-dbt-specialist | patterns/deduplication.md | Model SQL patterns |

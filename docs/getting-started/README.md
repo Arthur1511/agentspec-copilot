@@ -104,7 +104,7 @@ Output: `DESIGN_ORDERS_PIPELINE.md` with:
 
 - Architecture diagram with DAG structure
 - Partition strategy and incremental approach
-- File manifest with agent assignments (@dbt-specialist, @airflow-specialist, @spark-engineer)
+- File manifest with agent assignments (@de-dbt-specialist, @de-airflow-specialist, @de-spark-engineer)
 - Schema evolution plan
 - Data quality gates
 
@@ -116,7 +116,7 @@ Execute the implementation with agent delegation:
 claude> /build ORDERS_PIPELINE
 ```
 
-AgentSpec delegates dbt models to `@dbt-specialist`, DAGs to `@airflow-specialist`, Spark jobs to `@spark-engineer`, and quality checks to `@data-quality-analyst`. Verification includes `dbt build`, `sqlfluff lint`, and data quality assertions. Output: `BUILD_REPORT_ORDERS_PIPELINE.md`
+AgentSpec delegates dbt models to `@de-dbt-specialist`, DAGs to `@de-airflow-specialist`, Spark jobs to `@de-spark-engineer`, and quality checks to `@test-data-quality-analyst`. Verification includes `dbt build`, `sqlfluff lint`, and data quality assertions. Output: `BUILD_REPORT_ORDERS_PIPELINE.md`
 
 ### Step 5: Ship
 

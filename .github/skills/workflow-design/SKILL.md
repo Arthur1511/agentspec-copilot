@@ -56,7 +56,7 @@ The `/design` command combines Plan + Spec + ADRs into a single document with ar
 ```markdown
 Read(.github/sdd/features/DEFINE_{FEATURE}.md)
 Read(.github/sdd/templates/DESIGN_TEMPLATE.md)
-Read(CLAUDE.md)
+Read(.github/copilot-instructions.md)
 
 # Explore codebase for patterns:
 Glob(**/*.py) | head -20

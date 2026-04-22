@@ -22,7 +22,7 @@ description: Analyze meeting transcripts — extract decisions, action items, an
 
 ## What It Does
 
-1. Invokes the **meeting-analyst** agent
+1. Invokes the **dev-meeting-analyst** agent
 2. Reads meeting transcript (notes, recording summary, or raw text)
 3. Extracts:
    - Decisions made (with who decided and context)
@@ -54,4 +54,4 @@ description: Analyze meeting transcripts — extract decisions, action items, an
 
 ## Integration with SDD
 
-Use `--output define` to generate a DEFINE document from meeting notes — the meeting-analyst extracts requirements and feeds them into the define-agent.
+Use `--output define` to generate a DEFINE document from meeting notes — the dev-meeting-analyst extracts requirements and feeds them into the define-agent.

@@ -1,6 +1,6 @@
 ---
 name: data-engineering-migrate
-description: Legacy ETL migration — delegates to dbt-specialist and spark-engineer agents. Use when converting stored procedures, SSIS packages, or Informatica workflows to modern stack.
+description: Legacy ETL migration — delegates to de-dbt-specialist and de-spark-engineer agents. Use when converting stored procedures, SSIS packages, or Informatica workflows to modern stack.
 ---
 
 # Migrate Command
@@ -39,10 +39,10 @@ description: Legacy ETL migration — delegates to dbt-specialist and spark-engi
 
 | Agent | Role |
 |-------|------|
-| `dbt-specialist` | Primary — stored proc → dbt model conversion |
-| `spark-engineer` | Primary — heavy ETL → PySpark conversion |
-| `pipeline-architect` | Escalation — orchestration migration |
-| `sql-optimizer` | Escalation — query optimization during migration |
+| `de-dbt-specialist` | Primary — stored proc → dbt model conversion |
+| `de-spark-engineer` | Primary — heavy ETL → PySpark conversion |
+| `architect-pipeline` | Escalation — orchestration migration |
+| `de-sql-optimizer` | Escalation — query optimization during migration |
 
 ## KB Domains Used
 

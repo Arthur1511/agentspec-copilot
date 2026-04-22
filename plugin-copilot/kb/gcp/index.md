@@ -81,5 +81,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| ai-data-engineer-gcp | All concepts + patterns | Building serverless data pipelines |
-| ai-prompt-specialist-gcp | concepts/cloud-run.md, concepts/iam.md | Deploying LLM services on GCP |
+| cloud-ai-data-engineer-gcp | All concepts + patterns | Building serverless data pipelines |
+| cloud-ai-prompt-specialist-gcp | concepts/cloud-run.md, concepts/iam.md | Deploying LLM services on GCP |

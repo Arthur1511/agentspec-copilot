@@ -88,7 +88,7 @@
 
 ## Agent Assignment Rationale
 
-> Agents discovered from `.claude/agents/` - Build phase invokes matched specialists.
+> Agents discovered from `${COPILOT_PLUGIN_ROOT}/agents/` - Build phase invokes matched specialists.
 
 | Agent | Files Assigned | Why This Agent |
 |-------|----------------|----------------|
@@ -98,7 +98,7 @@
 | (general) | {if any} | {No specialist found - Build handles directly} |
 
 **Agent Discovery:**
-- Scanned: `.claude/agents/**/*.md`
+- Scanned: `${COPILOT_PLUGIN_ROOT}/agents/*.agent.md`
 - Matched by: File type, purpose keywords, path patterns, KB domains
 
 ---
@@ -254,4 +254,4 @@
 
 ## Next Step
 
-**Ready for:** `/build .claude/sdd/features/DESIGN_{FEATURE_NAME}.md`
+**Ready for:** `/build .github/sdd/features/DESIGN_{FEATURE_NAME}.md`

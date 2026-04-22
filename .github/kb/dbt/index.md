@@ -61,6 +61,6 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| dbt-specialist | All files | Model creation, macro dev, test strategy |
-| data-quality-analyst | patterns/generic-tests.md | Test generation for dbt models |
+| de-dbt-specialist | All files | Model creation, macro dev, test strategy |
+| test-data-quality-analyst | patterns/generic-tests.md | Test generation for dbt models |
 | build-agent | patterns/incremental-model.md | Verification via dbt build |

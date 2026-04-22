@@ -26,7 +26,7 @@ Step-by-step walkthroughs for common AgentSpec workflows.
 
 ### Build a dbt Staging + Mart Layer
 
-**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `build-agent`, `dbt-specialist`
+**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `build-agent`, `de-dbt-specialist`
 
 Use the full SDD workflow to produce a production-ready incremental staging model.
 
@@ -44,7 +44,7 @@ claude> /define "dbt staging model for raw_orders with incremental refresh"
 claude> /design STG_ORDERS
 ```
 
-`design-agent` produces a file manifest that maps `models/staging/stg_orders.sql` and `models/marts/mart_revenue.sql` to `@dbt-specialist`, along with schema contract and incremental strategy selection (merge on `order_id`).
+`design-agent` produces a file manifest that maps `models/staging/stg_orders.sql` and `models/marts/mart_revenue.sql` to `@de-dbt-specialist`, along with schema contract and incremental strategy selection (merge on `order_id`).
 
 **Step 3 — Build**
 
@@ -52,7 +52,7 @@ claude> /design STG_ORDERS
 claude> /build STG_ORDERS
 ```
 
-`build-agent` reads the manifest, delegates `stg_orders.sql` to `dbt-specialist`, and writes the files. Example output for the staging model:
+`build-agent` reads the manifest, delegates `stg_orders.sql` to `de-dbt-specialist`, and writes the files. Example output for the staging model:
 
 ```sql
 -- models/staging/stg_orders.sql
@@ -99,7 +99,7 @@ claude> /ship STG_ORDERS
 
 ### Design a Star Schema with /schema
 
-**Time:** 10 min | **Agent:** `schema-designer`
+**Time:** 10 min | **Agent:** `architect-schema-designer`
 
 Skip the SDD workflow when you just need a dimensional model fast.
 
@@ -109,9 +109,9 @@ Skip the SDD workflow when you just need a dimensional model fast.
 claude> /schema "Star schema for e-commerce: orders, customers, products"
 ```
 
-**Step 2 — schema-designer produces the model**
+**Step 2 — architect-schema-designer produces the model**
 
-`schema-designer` identifies the grain, creates dimension and fact tables, and outputs DDL for your target platform. Example output:
+`architect-schema-designer` identifies the grain, creates dimension and fact tables, and outputs DDL for your target platform. Example output:
 
 ```
 Grain: one row per order line item
@@ -136,13 +136,13 @@ claude> "Add SCD Type 2 to dim_customers to track address changes"
 claude> "Generate BigQuery DDL for all tables"
 ```
 
-`schema-designer` handles SCD Type 2 surrogate key patterns, effective dates, and current-row flags without leaving the conversation.
+`architect-schema-designer` handles SCD Type 2 surrogate key patterns, effective dates, and current-row flags without leaving the conversation.
 
 ---
 
 ### Add Data Quality with Great Expectations
 
-**Time:** 10 min | **Agent:** `data-quality-analyst`
+**Time:** 10 min | **Agent:** `test-data-quality-analyst`
 
 **Step 1 — Point at a model file**
 
@@ -150,7 +150,7 @@ claude> "Generate BigQuery DDL for all tables"
 claude> /data-quality models/staging/stg_orders.sql
 ```
 
-**Step 2 — data-quality-analyst generates the suite**
+**Step 2 — test-data-quality-analyst generates the suite**
 
 The agent reads the model's column definitions and business rules, then produces two artifacts.
 
@@ -212,7 +212,7 @@ claude> /data-quality "Quality checks for customer dimension with SCD Type 2"
 
 ### Build a PySpark Processing Job
 
-**Time:** 15 min | **Agents:** `define-agent`, `build-agent`, `spark-engineer`
+**Time:** 15 min | **Agents:** `define-agent`, `build-agent`, `de-spark-engineer`
 
 **Step 1 — Define the job**
 
@@ -228,7 +228,7 @@ claude> /define "PySpark job to deduplicate and SCD merge customer events"
 claude> /build CUSTOMER_EVENTS
 ```
 
-`build-agent` delegates to `spark-engineer`, which produces a structured job:
+`build-agent` delegates to `de-spark-engineer`, which produces a structured job:
 
 ```
 jobs/
@@ -240,7 +240,7 @@ jobs/
       test_transforms.py
 ```
 
-`spark-engineer` applies KB patterns: window-based deduplication with `row_number()`, Delta `MERGE INTO` for SCD Type 2, and partition pruning on `event_date`.
+`de-spark-engineer` applies KB patterns: window-based deduplication with `row_number()`, Delta `MERGE INTO` for SCD Type 2, and partition pruning on `event_date`.
 
 **Step 3 — Run and verify**
 
@@ -254,7 +254,7 @@ spark-submit --master local[4] jobs/customer_events/job.py \
 
 ### Create a Kafka Streaming Pipeline
 
-**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `streaming-engineer`, `spark-streaming-architect`
+**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `de-streaming-engineer`, `de-spark-streaming-architect`
 
 **Step 1 — Define the pipeline**
 
@@ -272,8 +272,8 @@ claude> /design ORDER_STREAM
 
 `design-agent` creates the architecture document and assigns:
 
-- `streaming-engineer` — Kafka consumer, schema registry integration, DLQ handling
-- `spark-streaming-architect` — Structured Streaming job, watermarking, checkpoint config
+- `de-streaming-engineer` — Kafka consumer, schema registry integration, DLQ handling
+- `de-spark-streaming-architect` — Structured Streaming job, watermarking, checkpoint config
 
 The architecture document shows the pipeline topology:
 
@@ -292,13 +292,13 @@ Kafka (orders.created)
 claude> /build ORDER_STREAM
 ```
 
-`build-agent` delegates to both agents. `spark-streaming-architect` produces the Structured Streaming job with checkpoint location, trigger interval, and watermark configuration. `streaming-engineer` produces the Kafka source options and DLQ handler.
+`build-agent` delegates to both agents. `de-spark-streaming-architect` produces the Structured Streaming job with checkpoint location, trigger interval, and watermark configuration. `de-streaming-engineer` produces the Kafka source options and DLQ handler.
 
 ---
 
 ### Build a RAG Pipeline with /ai-pipeline
 
-**Time:** 15 min | **Agents:** `ai-data-engineer`, `qdrant-specialist`
+**Time:** 15 min | **Agents:** `de-ai-data-engineer`, `de-qdrant-specialist`
 
 **Step 1 — Run the command**
 
@@ -306,7 +306,7 @@ claude> /build ORDER_STREAM
 claude> /ai-pipeline "RAG pipeline for internal knowledge base with Qdrant"
 ```
 
-**Step 2 — ai-data-engineer designs the layers**
+**Step 2 — de-ai-data-engineer designs the layers**
 
 The agent structures the pipeline into two layers:
 
@@ -331,7 +331,7 @@ pipeline.py         # end-to-end RAG chain
 
 **Step 3 — Qdrant collection setup**
 
-`qdrant-specialist` handles the collection configuration:
+`de-qdrant-specialist` handles the collection configuration:
 
 ```python
 client.create_collection(
@@ -401,15 +401,15 @@ Each iteration is focused and explicit. `iterate-agent` never silently updates d
 ```yaml
 files:
   - path: models/staging/stg_orders.sql
-    agent: "@dbt-specialist"
+    agent: "@de-dbt-specialist"
     pattern: incremental-model
 
   - path: jobs/customer_events/job.py
-    agent: "@spark-engineer"
+    agent: "@de-spark-engineer"
     pattern: deduplication
 
   - path: models/staging/stg_orders.yml
-    agent: "@dbt-specialist"
+    agent: "@de-dbt-specialist"
     pattern: testing-framework
 
   - path: tests/test_transforms.py
@@ -435,7 +435,7 @@ claude> /build ORDERS_PIPELINE
 
 ### Creating a Knowledge Base Domain
 
-**Time:** 10 min | **Agent:** `kb-architect`
+**Time:** 10 min | **Agent:** `architect-kb`
 
 Use `/create-kb` to scaffold a complete domain with index, quick-reference, concepts, and patterns.
 
@@ -445,7 +445,7 @@ Use `/create-kb` to scaffold a complete domain with index, quick-reference, conc
 claude> /create-kb redis
 ```
 
-**Step 2 — kb-architect scaffolds the domain**
+**Step 2 — architect-kb scaffolds the domain**
 
 The agent validates `.claude/kb/_templates/` and `_index.yaml`, then creates:
 
@@ -464,7 +464,7 @@ The agent validates `.claude/kb/_templates/` and `_index.yaml`, then creates:
 
 **Step 3 — Registry update**
 
-`kb-architect` adds the new domain to `.claude/kb/_index.yaml`:
+`architect-kb` adds the new domain to `.claude/kb/_index.yaml`:
 
 ```yaml
 redis:
@@ -494,7 +494,7 @@ Design a star schema without the full SDD workflow:
 claude> /schema "Star schema for e-commerce: orders, customers, products"
 ```
 
-`schema-designer` creates dimension/fact tables, grain definitions, and DDL for your target platform.
+`architect-schema-designer` creates dimension/fact tables, grain definitions, and DDL for your target platform.
 
 ### Quick Pipeline Scaffold
 
@@ -504,7 +504,7 @@ Scaffold an Airflow DAG:
 claude> /pipeline "Daily orders ETL: Postgres -> staging -> dbt -> Snowflake marts"
 ```
 
-`pipeline-architect` creates DAG code with task dependencies, sensors, and error handling.
+`architect-pipeline` creates DAG code with task dependencies, sensors, and error handling.
 
 ### Data Quality Rules Generation
 
@@ -516,7 +516,7 @@ claude> /data-quality models/staging/stg_orders.sql
 claude> /data-quality "Quality checks for customer dimension with SCD Type 2"
 ```
 
-`data-quality-analyst` generates Great Expectations suites and/or dbt test YAML.
+`test-data-quality-analyst` generates Great Expectations suites and/or dbt test YAML.
 
 ### SQL Review for Anti-Patterns
 
@@ -526,7 +526,7 @@ claude> /sql-review models/marts/
 claude> /sql-review models/staging/stg_orders.sql
 ```
 
-`code-reviewer` (with DE capability) and `sql-optimizer` check for `SELECT *`, missing partition filters, PII exposure, implicit coercion, and more.
+`python-code-reviewer` (with DE capability) and `de-sql-optimizer` check for `SELECT *`, missing partition filters, PII exposure, implicit coercion, and more.
 
 ### Legacy ETL Migration
 

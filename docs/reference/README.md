@@ -20,14 +20,14 @@ Complete catalog of commands, agents, KB domains, templates, and configuration.
 
 | Command | Purpose | Primary Agent |
 |---------|---------|---------------|
-| `/pipeline` | DAG/pipeline scaffolding | pipeline-architect |
-| `/schema` | Interactive schema design | schema-designer |
-| `/data-quality` | Quality rules generation | data-quality-analyst |
-| `/lakehouse` | Table format + catalog guidance | lakehouse-architect |
-| `/sql-review` | SQL-specific code review | code-reviewer + sql-optimizer |
-| `/ai-pipeline` | RAG/embedding scaffolding | ai-data-engineer |
-| `/data-contract` | Contract authoring (ODCS) | data-contracts-engineer |
-| `/migrate` | Legacy ETL migration | dbt-specialist + spark-engineer |
+| `/pipeline` | DAG/pipeline scaffolding | architect-pipeline |
+| `/schema` | Interactive schema design | architect-schema-designer |
+| `/data-quality` | Quality rules generation | test-data-quality-analyst |
+| `/lakehouse` | Table format + catalog guidance | architect-lakehouse |
+| `/sql-review` | SQL-specific code review | python-code-reviewer + de-sql-optimizer |
+| `/ai-pipeline` | RAG/embedding scaffolding | de-ai-data-engineer |
+| `/data-contract` | Contract authoring (ODCS) | test-data-contracts-engineer |
+| `/migrate` | Legacy ETL migration | de-dbt-specialist + de-spark-engineer |
 
 ### Core Commands (4)
 
@@ -35,7 +35,7 @@ Complete catalog of commands, agents, KB domains, templates, and configuration.
 |---------|---------|-------|
 | `/meeting` | Meeting transcript analysis | Transcript text or file path |
 | `/memory` | Save session insights to storage | Optional context note |
-| `/sync-context` | Update CLAUDE.md from codebase | `--section`, `--dry-run` |
+| `/sync-context` | Update `copilot-instructions.md` from codebase | `--section`, `--dry-run` |
 | `/readme-maker` | Generate README.md | `--output`, `--style` |
 
 ### Knowledge Commands (1)
@@ -96,14 +96,14 @@ System-level design and architecture decisions.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `genai-architect` | T1 | Opus | Multi-agent orchestration, agentic workflows, production AI systems |
-| `the-planner` | T2 | Opus | Strategic architecture and comprehensive implementation plans |
-| `kb-architect` | T2 | Sonnet | Knowledge base domain creation and audit |
-| `lakehouse-architect` | T2 | Sonnet | Iceberg, Delta Lake, catalog governance design |
-| `medallion-architect` | T1 | Sonnet | Bronze/Silver/Gold layer design, data quality progression |
-| `pipeline-architect` | T2 | Sonnet | Airflow, Dagster, DAG design patterns |
-| `schema-designer` | T2 | Sonnet | Dimensional modeling, SCD, Data Vault |
-| `data-platform-engineer` | T2 | Sonnet | Snowflake, Databricks, BigQuery, cost optimization |
+| `architect-genai` | T1 | Opus | Multi-agent orchestration, agentic workflows, production AI systems |
+| `architect-the-planner` | T2 | Opus | Strategic architecture and comprehensive implementation plans |
+| `architect-kb` | T2 | Sonnet | Knowledge base domain creation and audit |
+| `architect-lakehouse` | T2 | Sonnet | Iceberg, Delta Lake, catalog governance design |
+| `architect-medallion` | T1 | Sonnet | Bronze/Silver/Gold layer design, data quality progression |
+| `architect-pipeline` | T2 | Sonnet | Airflow, Dagster, DAG design patterns |
+| `architect-schema-designer` | T2 | Sonnet | Dimensional modeling, SCD, Data Vault |
+| `architect-data-platform-engineer` | T2 | Sonnet | Snowflake, Databricks, BigQuery, cost optimization |
 
 ### Cloud Agents (10)
 
@@ -111,16 +111,16 @@ Cloud provider services, deployment, and CI/CD.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `aws-data-architect` | T1 | Sonnet | Lambda, S3, Glue, Redshift, MWAA, serverless pipelines |
-| `aws-deployer` | T3 | Sonnet | SAM, CloudFormation, CI/CD, Terraform for AWS |
-| `aws-lambda-architect` | T3 | Sonnet | SAM templates, least-privilege IAM policies |
-| `lambda-builder` | T3 | Sonnet | Python Lambda handlers, S3-triggered functions |
-| `gcp-data-architect` | T1 | Sonnet | BigQuery, Cloud Run, Pub/Sub, Dataflow, Vertex AI |
-| `ai-data-engineer-gcp` | T2 | Sonnet | GCP serverless architectures, Cloud Functions, BigQuery pipelines |
-| `ai-data-engineer-cloud` | T3 | Sonnet | Cloud architecture optimization, AI/ML pipelines |
-| `ai-prompt-specialist-gcp` | T3 | Sonnet | Google Gemini, Vertex AI, multi-modal document extraction |
-| `ci-cd-specialist` | T3 | Sonnet | Azure DevOps, Terraform, Databricks Asset Bundles |
-| `supabase-specialist` | T3 | Opus | pgvector, RLS, Edge Functions, Auth, Realtime |
+| `cloud-aws-data-architect` | T1 | Sonnet | Lambda, S3, Glue, Redshift, MWAA, serverless pipelines |
+| `cloud-aws-deployer` | T3 | Sonnet | SAM, CloudFormation, CI/CD, Terraform for AWS |
+| `cloud-aws-lambda-architect` | T3 | Sonnet | SAM templates, least-privilege IAM policies |
+| `cloud-lambda-builder` | T3 | Sonnet | Python Lambda handlers, S3-triggered functions |
+| `cloud-gcp-data-architect` | T1 | Sonnet | BigQuery, Cloud Run, Pub/Sub, Dataflow, Vertex AI |
+| `cloud-ai-data-engineer-gcp` | T2 | Sonnet | GCP serverless architectures, Cloud Functions, BigQuery pipelines |
+| `cloud-ai-data-engineer-cloud` | T3 | Sonnet | Cloud architecture optimization, AI/ML pipelines |
+| `cloud-ai-prompt-specialist-gcp` | T3 | Sonnet | Google Gemini, Vertex AI, multi-modal document extraction |
+| `cloud-ci-cd-specialist` | T3 | Sonnet | Azure DevOps, Terraform, Databricks Asset Bundles |
+| `cloud-supabase-specialist` | T3 | Opus | pgvector, RLS, Edge Functions, Auth, Realtime |
 
 ### Platform Agents (6)
 
@@ -142,11 +142,11 @@ Python development, code quality, and prompt engineering.
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
 | `python-developer` | T1 | Sonnet | Python code architecture, dataclasses, type hints |
-| `code-reviewer` | T2 | Sonnet | Review code for quality and security issues |
-| `code-cleaner` | T2 | Sonnet | Clean code, remove redundant comments, apply DRY |
-| `code-documenter` | T2 | Sonnet | Generate documentation, READMEs, API docs |
-| `ai-prompt-specialist` | T1 | Sonnet | Prompt optimization, structured extraction, few-shot |
-| `llm-specialist` | T3 | Opus | Advanced prompt engineering, chain-of-thought, structured output |
+| `python-code-reviewer` | T2 | Sonnet | Review code for quality and security issues |
+| `python-code-cleaner` | T2 | Sonnet | Clean code, remove redundant comments, apply DRY |
+| `python-code-documenter` | T2 | Sonnet | Generate documentation, READMEs, API docs |
+| `python-ai-prompt-specialist` | T1 | Sonnet | Prompt optimization, structured extraction, few-shot |
+| `python-llm-specialist` | T3 | Opus | Advanced prompt engineering, chain-of-thought, structured output |
 
 ### Test Agents (3)
 
@@ -155,8 +155,8 @@ Testing, data quality, and contract validation.
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
 | `test-generator` | T2 | Sonnet | Generate pytest tests with fixtures |
-| `data-quality-analyst` | T2 | Sonnet | Great Expectations, dbt tests, data contracts |
-| `data-contracts-engineer` | T2 | Sonnet | ODCS, SLAs, schema governance |
+| `test-data-quality-analyst` | T2 | Sonnet | Great Expectations, dbt tests, data contracts |
+| `test-data-contracts-engineer` | T2 | Sonnet | ODCS, SLAs, schema governance |
 
 ### Data Engineering Agents (15)
 
@@ -164,21 +164,21 @@ Implementation specialists for data pipelines and processing.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `dbt-specialist` | T2 | Sonnet | dbt models, macros, tests, incremental strategies |
-| `spark-engineer` | T2 | Sonnet | PySpark, Spark SQL, distributed processing |
-| `spark-specialist` | T2 | Opus | Spark architecture, configuration, performance |
-| `spark-troubleshooter` | T1 | Sonnet | Spark debugging — OOM, data skew, shuffle failures |
-| `spark-performance-analyzer` | T1 | Sonnet | Spark tuning — memory, partitions, joins, AQE |
-| `spark-streaming-architect` | T3 | Sonnet | Structured Streaming, Kafka, real-time pipelines |
-| `streaming-engineer` | T2 | Sonnet | Flink, Kafka, Spark Streaming, CDC |
-| `sql-optimizer` | T2 | Sonnet | Query plans, cross-dialect SQL, window functions |
-| `airflow-specialist` | T3 | Sonnet | Apache Airflow 3.0, DAGs, TaskFlow API |
-| `lakeflow-architect` | T3 | Sonnet | Databricks Lakeflow, Medallion architecture |
-| `lakeflow-expert` | T3 | Sonnet | DLT troubleshooting, CDC, SCD Type 2 |
-| `lakeflow-pipeline-builder` | T3 | Sonnet | DLT pipeline creation, quality expectations |
-| `lakeflow-specialist` | T1 | Sonnet | Declarative pipelines, materialized views, streaming tables |
-| `ai-data-engineer` | T2 | Sonnet | RAG pipelines, vector DBs, feature stores |
-| `qdrant-specialist` | T3 | Opus | Qdrant vector database, collection management |
+| `de-dbt-specialist` | T2 | Sonnet | dbt models, macros, tests, incremental strategies |
+| `de-spark-engineer` | T2 | Sonnet | PySpark, Spark SQL, distributed processing |
+| `de-spark-specialist` | T2 | Opus | Spark architecture, configuration, performance |
+| `de-spark-troubleshooter` | T1 | Sonnet | Spark debugging — OOM, data skew, shuffle failures |
+| `de-spark-performance-analyzer` | T1 | Sonnet | Spark tuning — memory, partitions, joins, AQE |
+| `de-spark-streaming-architect` | T3 | Sonnet | Structured Streaming, Kafka, real-time pipelines |
+| `de-streaming-engineer` | T2 | Sonnet | Flink, Kafka, Spark Streaming, CDC |
+| `de-sql-optimizer` | T2 | Sonnet | Query plans, cross-dialect SQL, window functions |
+| `de-airflow-specialist` | T3 | Sonnet | Apache Airflow 3.0, DAGs, TaskFlow API |
+| `de-lakeflow-architect` | T3 | Sonnet | Databricks Lakeflow, Medallion architecture |
+| `de-lakeflow-expert` | T3 | Sonnet | DLT troubleshooting, CDC, SCD Type 2 |
+| `de-lakeflow-pipeline-builder` | T3 | Sonnet | DLT pipeline creation, quality expectations |
+| `de-lakeflow-specialist` | T1 | Sonnet | Declarative pipelines, materialized views, streaming tables |
+| `de-ai-data-engineer` | T2 | Sonnet | RAG pipelines, vector DBs, feature stores |
+| `de-qdrant-specialist` | T3 | Opus | Qdrant vector database, collection management |
 
 ### Dev Agents (4)
 
@@ -186,10 +186,10 @@ Developer tools and productivity.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `prompt-crafter` | T1 | Sonnet | SDD-lite PROMPT.md builder with agent matching |
-| `codebase-explorer` | T2 | Sonnet | Analyze codebase structure with health scoring |
-| `meeting-analyst` | T2 | Sonnet | Extract decisions and action items from meetings |
-| `shell-script-specialist` | T2 | Sonnet | Production-grade Bash scripts, automation, deployment scripts |
+| `dev-prompt-crafter` | T1 | Sonnet | SDD-lite PROMPT.md builder with agent matching |
+| `dev-codebase-explorer` | T2 | Sonnet | Analyze codebase structure with health scoring |
+| `dev-meeting-analyst` | T2 | Sonnet | Extract decisions and action items from meetings |
+| `dev-shell-script-specialist` | T2 | Sonnet | Production-grade Bash scripts, automation, deployment scripts |
 
 ---
 

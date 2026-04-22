@@ -61,7 +61,7 @@ Brainstorm is optional. You can start directly with `/define` if requirements ar
 | **Data Engineering** | 15 | dbt, Spark, Airflow, Flink, Lakeflow, SQL, streaming |
 | **Dev** | 4 | Developer productivity (codebase explorer, prompt crafter, shell scripts) |
 
-During `/build`, the build-agent delegates to DE specialists: dbt models go to `dbt-specialist`, Spark jobs to `spark-engineer`, quality checks to `data-quality-analyst`, pipeline DAGs to `airflow-specialist`, and streaming workloads to `spark-streaming-architect`.
+During `/build`, the build-agent delegates to DE specialists: dbt models go to `de-dbt-specialist`, Spark jobs to `de-spark-engineer`, quality checks to `test-data-quality-analyst`, pipeline DAGs to `de-airflow-specialist`, and streaming workloads to `de-spark-streaming-architect`.
 
 ### 3. Knowledge Base (the memory)
 
@@ -123,6 +123,6 @@ If requirements change mid-stream, use `/iterate` to update any phase document w
 - **Data contracts** in DEFINE prevent schema drift between producer and consumer
 - **Pipeline architecture** in DESIGN captures DAGs, partitions, and incremental strategies
 - **DE quality gates** in BUILD run dbt tests, sqlfluff, and GE suites
-- **Agent matching** is automatic — dbt models go to dbt-specialist, Spark jobs to spark-engineer
+- **Agent matching** is automatic — dbt models go to de-dbt-specialist, Spark jobs to de-spark-engineer
 - **KB domains** have line limits to stay focused and maintainable
 - **Lessons learned** are structured, not freeform — they feed future decisions

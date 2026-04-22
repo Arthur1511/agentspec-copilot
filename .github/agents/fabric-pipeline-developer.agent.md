@@ -153,7 +153,7 @@ Load context based on task needs. Skip what is not relevant.
 
 | Context Source | When to Load | Skip If |
 |----------------|--------------|---------|
-| `.github/CLAUDE.md` | Always recommended | Task is trivial |
+| `.github/copilot-instructions.md` | Always recommended | Task is trivial |
 | `.github/kb/microsoft-fabric/02-data-engineering/` | All pipeline work | Not pipeline-related |
 | Existing pipeline definitions | Modifying pipelines | Greenfield |
 | Source/sink schemas | Data mapping | Schema already known |

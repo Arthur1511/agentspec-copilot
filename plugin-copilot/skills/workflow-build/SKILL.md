@@ -55,7 +55,7 @@ The `/build` command executes the implementation, generating tasks on-the-fly fr
 ```markdown
 Read(.github/sdd/features/DESIGN_{FEATURE}.md)
 Read(.github/sdd/features/DEFINE_{FEATURE}.md)
-Read(CLAUDE.md)
+Read(.github/copilot-instructions.md)
 ```
 
 ### Step 2: Extract Tasks from File Manifest

@@ -47,7 +47,7 @@ copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
 Done. Every Copilot CLI session now has 58 agents, 31 skills, and 24 KB domains. Updates are one command:
 
 ```bash
-copilot plugin update gh-copilot-agentspec
+copilot plugin update agentspec
 ```
 
 <details>
@@ -55,14 +55,15 @@ copilot plugin update gh-copilot-agentspec
 
 ```bash
 # Install from a registered marketplace
-copilot plugin install gh-copilot-agentspec@awesome-copilot
+copilot plugin install agentspec@awesome-copilot
 
 # Local testing (clone and install from disk)
 git clone https://github.com/Arthur1511/agentspec-copilot.git
 copilot plugin install ./agentspec-copilot/plugin-copilot
 
 # Build from source then install locally
-./build-copilot.sh
+./build-copilot.sh          # Linux / macOS
+.\build-copilot.ps1         # Windows (PowerShell)
 copilot plugin install ./plugin-copilot
 ```
 
@@ -75,21 +76,21 @@ copilot plugin install ./plugin-copilot
 ### Build a data pipeline in 5 phases
 
 ```bash
-/gh-copilot-agentspec:workflow-brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
-/gh-copilot-agentspec:workflow-define ORDERS_PIPELINE
-/gh-copilot-agentspec:workflow-design ORDERS_PIPELINE
-/gh-copilot-agentspec:workflow-build ORDERS_PIPELINE
-/gh-copilot-agentspec:workflow-ship ORDERS_PIPELINE
+/agentspec:workflow-brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
+/agentspec:workflow-define ORDERS_PIPELINE
+/agentspec:workflow-design ORDERS_PIPELINE
+/agentspec:workflow-build ORDERS_PIPELINE
+/agentspec:workflow-ship ORDERS_PIPELINE
 ```
 
 ### Or jump straight to what you need
 
 ```bash
-/gh-copilot-agentspec:data-engineering-schema "Star schema for e-commerce analytics"
-/gh-copilot-agentspec:data-engineering-pipeline "Daily orders ETL with Airflow"
-/gh-copilot-agentspec:data-engineering-data-quality models/staging/stg_orders.sql
-/gh-copilot-agentspec:data-engineering-sql-review models/marts/
-/gh-copilot-agentspec:data-engineering-data-contract "Contract between orders team and analytics"
+/agentspec:data-engineering-schema "Star schema for e-commerce analytics"
+/agentspec:data-engineering-pipeline "Daily orders ETL with Airflow"
+/agentspec:data-engineering-data-quality models/staging/stg_orders.sql
+/agentspec:data-engineering-sql-review models/marts/
+/agentspec:data-engineering-data-contract "Contract between orders team and analytics"
 ```
 
 <br/>
@@ -100,14 +101,14 @@ copilot plugin install ./plugin-copilot
 
 | I want to... | Skill | Agent |
 |:--|:--|:--|
-| Design a data pipeline / DAG | `agentspec:pipeline` | `pipeline-architect` |
-| Design a star schema / data model | `agentspec:schema` | `schema-designer` |
-| Add data quality checks | `agentspec:data-quality` | `data-quality-analyst` |
-| Optimize slow SQL | `agentspec:sql-review` | `sql-optimizer` |
-| Choose Iceberg vs Delta Lake | `agentspec:lakehouse` | `lakehouse-architect` |
-| Build a RAG / embedding pipeline | `agentspec:ai-pipeline` | `ai-data-engineer` |
-| Create a data contract | `agentspec:data-contract` | `data-contracts-engineer` |
-| Migrate legacy SSIS / Informatica | `agentspec:migrate` | `dbt-specialist` + `spark-engineer` |
+| Design a data pipeline / DAG | `agentspec:pipeline` | `architect-pipeline` |
+| Design a star schema / data model | `agentspec:schema` | `architect-schema-designer` |
+| Add data quality checks | `agentspec:data-quality` | `test-data-quality-analyst` |
+| Optimize slow SQL | `agentspec:sql-review` | `de-sql-optimizer` |
+| Choose Iceberg vs Delta Lake | `agentspec:lakehouse` | `architect-lakehouse` |
+| Build a RAG / embedding pipeline | `agentspec:ai-pipeline` | `de-ai-data-engineer` |
+| Create a data contract | `agentspec:data-contract` | `test-data-contracts-engineer` |
+| Migrate legacy SSIS / Informatica | `agentspec:migrate` | `de-dbt-specialist` + `de-spark-engineer` |
 
 ### SDD Workflow
 
@@ -158,7 +159,7 @@ copilot plugin install ./plugin-copilot
                     Cascade-aware updates
 ```
 
-**Agent matching:** Your DESIGN doc specifies dbt staging models, a PySpark job, and an Airflow DAG — AgentSpec automatically delegates to `dbt-specialist`, `spark-engineer`, and `pipeline-architect`.
+**Agent matching:** Your DESIGN doc specifies dbt staging models, a PySpark job, and an Airflow DAG — AgentSpec automatically delegates to `de-dbt-specialist`, `de-spark-engineer`, and `architect-pipeline`.
 
 **Requirements changed?** `agentspec:iterate` updates any phase document with automatic cascade detection across all downstream docs.
 
@@ -230,7 +231,8 @@ agentspec-copilot/
 │   ├── skills/              # All 31 skills
 │   └── ...                  # kb, sdd, manifest
 │
-├── build-copilot.sh         # Packages .github/ → plugin-copilot/
+├── build-copilot.sh         # Packages .github/ → plugin-copilot/ (Linux/macOS)
+├── build-copilot.ps1        # Packages .github/ → plugin-copilot/ (Windows)
 ├── assets/                  # Banner and visual assets
 └── docs/                    # Getting started, concepts, tutorials, reference
 ```

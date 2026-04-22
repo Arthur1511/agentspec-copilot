@@ -33,5 +33,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| lakehouse-architect | All files | Format selection, catalog governance |
-| data-platform-engineer | patterns/catalog-setup.md | Infrastructure setup |
+| architect-lakehouse | All files | Format selection, catalog governance |
+| architect-data-platform-engineer | patterns/catalog-setup.md | Infrastructure setup |

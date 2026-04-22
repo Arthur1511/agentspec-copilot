@@ -59,6 +59,6 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| supabase-specialist | All files | Full Supabase development -- auth, database, storage, functions |
-| ai-data-engineer | concepts/pgvector-fundamentals.md, patterns/rag-vector-store.md | RAG pipelines backed by Supabase pgvector |
-| data-quality-analyst | concepts/rls-policies.md | Verifying RLS policies cover all data access paths |
+| cloud-supabase-specialist | All files | Full Supabase development -- auth, database, storage, functions |
+| de-ai-data-engineer | concepts/pgvector-fundamentals.md, patterns/rag-vector-store.md | RAG pipelines backed by Supabase pgvector |
+| test-data-quality-analyst | concepts/rls-policies.md | Verifying RLS policies cover all data access paths |

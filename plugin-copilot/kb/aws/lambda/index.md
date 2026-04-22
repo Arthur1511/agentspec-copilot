@@ -65,5 +65,5 @@
 
 | Agent | Primary Files | Use Case |
 |-------|---------------|----------|
-| lambda-builder | patterns/file-processing.md, patterns/parquet-output.md | Build S3-triggered data processing Lambdas |
-| aws-lambda-architect | concepts/sam-templates.md, concepts/iam-policies.md | Design Lambda architecture and IAM policies |
+| cloud-lambda-builder | patterns/file-processing.md, patterns/parquet-output.md | Build S3-triggered data processing Lambdas |
+| cloud-aws-lambda-architect | concepts/sam-templates.md, concepts/iam-policies.md | Design Lambda architecture and IAM policies |
