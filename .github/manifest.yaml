@@ -1,9 +1,9 @@
-name: gh-copilot-agentspec
-description: AgentSpec - Spec-Driven Data Engineering for GitHub Copilot CLI (58 agents, 29 commands, 24 KB domains)
+name: agentspec
+description: AgentSpec - Spec-Driven Data Engineering for GitHub Copilot CLI (58 agents, 35 skills, 24 KB domains)
 version: 1.0.0
-author: luanmorenommaciel
+author: Arthur1511
 license: MIT
-repository: https://github.com/luanmorenommaciel/gh-copilot-agentspec
+repository: https://github.com/Arthur1511/agentspec-copilot
 
 # Copilot CLI extension metadata
 extension:
@@ -15,9 +15,8 @@ extension:
 agentspec:
   version: "3.0.0"
   agents: 58
-  commands: 29
   kb_domains: 24
-  skills: 2
+  skills: 35
   cognitive_framework:
     - kb_first
     - confidence_scored
@@ -28,11 +27,11 @@ agentspec:
 categories:
   workflow:
     agents: 6
-    commands: 7
+    skills: 7
     description: SDD workflow agents and commands
   data_engineering:
     agents: 15
-    commands: 8
+    skills: 8
     description: Data engineering specialists
   architect:
     agents: 8
@@ -55,11 +54,12 @@ categories:
 
 # Installation instructions
 install:
-  command: gh extension install luanmorenommaciel/gh-copilot-agentspec
-  update: gh extension upgrade gh-copilot-agentspec
-  uninstall: gh extension remove gh-copilot-agentspec
+  command: copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
+  update: copilot plugin update agentspec
+  uninstall: copilot plugin remove agentspec
+  local: copilot plugin install ./plugin-copilot
 
 # Quick start
 quickstart: |
-  Install: gh extension install luanmorenommaciel/gh-copilot-agentspec
-  Usage: gh copilot suggest "Use agentspec:brainstorm to explore 'build a realtime analytics platform'"
+  Install: copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
+  Usage: /agentspec:brainstorm "Daily orders pipeline from Postgres to Snowflake"

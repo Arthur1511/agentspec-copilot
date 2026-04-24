@@ -1,0 +1,620 @@
+{
+  "version": 1,
+  "agent_count": 58,
+  "agents": [
+    {
+      "name": "agentspec:brainstorm-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-brainstorm.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Collaborative exploration specialist for clarifying intent and approach (Phase 0).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "agentspec:build-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-build.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Implementation executor with agent delegation (Phase 3).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "agentspec:define-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-define.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Requirements extraction and validation specialist (Phase 1).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "agentspec:design-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-design.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Architecture and technical specification specialist (Phase 2).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "agentspec:iterate-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-iterate.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Cross-phase document updater with cascade awareness (All Phases).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "agentspec:ship-agent",
+      "category": "workflow",
+      "path": ".github\\agents\\workflow-ship.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Feature archival and lessons learned specialist (Phase 4).",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-data-platform-engineer",
+      "category": "architect",
+      "path": ".github\\agents\\architect-data-platform-engineer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Cloud data platform specialist for Snowflake, Databricks, BigQuery, and infrastructure decisions. Use when comparing platforms, optimizing costs, or provisioning data infrastructure.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-genai",
+      "category": "architect",
+      "path": ".github\\agents\\architect-genai.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "GenAI Systems Architect for multi-agent orchestration, agentic workflows, and production AI systems. Use when designing AI systems, multi-agent architectures, chatbots, or LLM workflows.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-kb",
+      "category": "architect",
+      "path": ".github\\agents\\architect-kb.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Knowledge base architect for creating validated, structured KB domains with MCP-backed content. Use when creating new KB domains, auditing KB health, or adding concepts and patterns.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-lakehouse",
+      "category": "architect",
+      "path": ".github\\agents\\architect-lakehouse.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Open table format and catalog specialist for Iceberg, Delta Lake, and lakehouse governance. Use when working with Iceberg, Delta, catalog setup, or format migration decisions.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-medallion",
+      "category": "architect",
+      "path": ".github\\agents\\architect-medallion.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Medallion Architecture specialist for Bronze/Silver/Gold layer design and data quality progression. Use when designing lakehouse layers or implementing medallion patterns.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-pipeline",
+      "category": "architect",
+      "path": ".github\\agents\\architect-pipeline.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Orchestration specialist for Airflow, Dagster, and pipeline design patterns. Use when creating DAGs, designing pipelines, or selecting orchestrators.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-schema-designer",
+      "category": "architect",
+      "path": ".github\\agents\\architect-schema-designer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Data modeling specialist for dimensional modeling, Data Vault, SCD types, and schema evolution. Use when designing schemas, star schemas, or making modeling decisions.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "architect-the-planner",
+      "category": "architect",
+      "path": ".github\\agents\\architect-the-planner.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Strategic AI architect that creates comprehensive implementation plans and technology roadmaps. Use when planning complex tasks, system design, or architecture decisions requiring deep analysis.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-ai-data-engineer-cloud",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-ai-data-engineer-cloud.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert data engineer for cloud architectures and AI pipelines across AWS and GCP. Use when optimizing data pipelines, refactoring cloud functions, or designing multi-cloud data architectures.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-ai-data-engineer-gcp",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-ai-data-engineer-gcp.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Elite GCP data engineering architect for serverless architectures, AI/ML pipelines, and document processing. Use when building GCP Cloud Functions, BigQuery pipelines, Pub/Sub systems, or Dataflow jobs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-ai-prompt-specialist-gcp",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-ai-prompt-specialist-gcp.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Elite prompt engineering architect for Google Gemini, Vertex AI, and multi-modal document extraction systems. Use when optimizing Gemini prompts, designing document extraction pipelines, or improving multi-modal AI accuracy.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-aws-data-architect",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-aws-data-architect.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "AWS data architecture specialist for Lambda, S3, Glue, Redshift, MWAA, and serverless data pipelines. Use when designing AWS data infrastructure or serverless data processing.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-aws-deployer",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-aws-deployer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Executes AWS CLI and SAM CLI deployment commands with validation for safe Lambda and infrastructure deployments. Use when deploying Lambda functions, testing via CLI, or managing S3 operations.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-aws-lambda-architect",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-aws-lambda-architect.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Creates SAM templates with embedded least-privilege IAM policies for secure Lambda deployments. Use when building Lambda functions, SAM templates, or configuring S3 triggers.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-ci-cd-specialist",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-ci-cd-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "DevOps expert for Azure DevOps, Terraform, and Databricks Asset Bundles with multi-environment deployment pipelines. Use when setting up CI/CD pipelines, configuring Terraform, or deploying with DABs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-gcp-data-architect",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-gcp-data-architect.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Google Cloud data architecture specialist for BigQuery, Cloud Run, Pub/Sub, GCS, Dataflow, and Vertex AI. Use when designing GCP data infrastructure or AI pipelines on Google Cloud.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-lambda-builder",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-lambda-builder.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "AWS Lambda expert for Python serverless file processing with Powertools logging and S3 integration. Use when building Lambda handlers, SAM templates, or S3 event processing code.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "cloud-supabase-specialist",
+      "category": "cloud",
+      "path": ".github\\agents\\cloud-supabase-specialist.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Elite Supabase specialist for pgvector, RLS, Edge Functions, Auth, Realtime, and database design with live MCP instance access. Use when working with Supabase databases, vector storage, authentication, or serverless functions.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-ai-data-engineer",
+      "category": "de",
+      "path": ".github\\agents\\de-ai-data-engineer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "AI data engineering specialist for RAG pipelines, vector databases, feature stores, and LLMOps. Use when building RAG, embedding pipelines, feature engineering, or text-to-SQL systems.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-airflow-specialist",
+      "category": "de",
+      "path": ".github\\agents\\de-airflow-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Apache Airflow 3.0 SME for DAG development, asset-aware scheduling, and event-driven pipelines. Use when building DAGs, configuring TaskFlow API, or implementing data pipeline orchestration.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-dbt-specialist",
+      "category": "de",
+      "path": ".github\\agents\\de-dbt-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "dbt Core and dbt Cloud specialist for model development, testing, macros, and project management. Use when working with dbt models, tests, macros, or project configuration.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-lakeflow-architect",
+      "category": "de",
+      "path": ".github\\agents\\de-lakeflow-architect.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Databricks Lakeflow expert for building Medallion architecture pipelines with DLT, Bronze/Silver/Gold layers, and DABs configuration. Use when designing DLT pipelines, creating streaming tables, or configuring DABs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-lakeflow-expert",
+      "category": "de",
+      "path": ".github\\agents\\de-lakeflow-expert.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Databricks Lakeflow (DLT) SME for pipeline development, CDC, data quality, and production deployment. Use when troubleshooting Lakeflow pipelines or working with DLT operations at production scale.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-lakeflow-pipeline-builder",
+      "category": "de",
+      "path": ".github\\agents\\de-lakeflow-pipeline-builder.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Builds Databricks Lakeflow (DLT) pipelines for Medallion Architecture with Bronze/Silver/Gold tables and DABs deployment. Use when creating DLT notebooks, implementing data quality expectations, or configuring pipeline deployments.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-lakeflow-specialist",
+      "category": "de",
+      "path": ".github\\agents\\de-lakeflow-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Databricks Lakeflow (DLT) specialist for declarative pipelines, materialized views, streaming tables, and expectations. Use when building DLT pipelines or working with Databricks Lakeflow.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-qdrant-specialist",
+      "category": "de",
+      "path": ".github\\agents\\de-qdrant-specialist.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Elite Qdrant vector database specialist for collection management, point operations, payload filtering, search optimization, and RAG pipeline integration. Use when working with Qdrant collections, vector search, metadata filtering, or n8n vector store integration.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-spark-engineer",
+      "category": "de",
+      "path": ".github\\agents\\de-spark-engineer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "PySpark and Spark SQL specialist for distributed data processing at scale, performance tuning, and Delta/Iceberg integration. Use when working with Spark jobs, DataFrames, or performance optimization.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-spark-performance-analyzer",
+      "category": "de",
+      "path": ".github\\agents\\de-spark-performance-analyzer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Spark performance optimization specialist for tuning memory, partitioning, joins, and I/O using AQE and profiling. Use when optimizing Spark job performance or reducing compute costs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-spark-specialist",
+      "category": "de",
+      "path": ".github\\agents\\de-spark-specialist.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Apache Spark SME for performance optimization, architecture design, and troubleshooting at production scale. Use when working with Spark code, data pipelines, or encountering performance issues.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-spark-streaming-architect",
+      "category": "de",
+      "path": ".github\\agents\\de-spark-streaming-architect.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Spark Structured Streaming expert for real-time pipelines, Kafka integration, watermarking, and stream processing. Use when building streaming applications, event processing, or real-time analytics.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-spark-troubleshooter",
+      "category": "de",
+      "path": ".github\\agents\\de-spark-troubleshooter.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Spark debugging specialist for diagnosing OOM errors, data skew, shuffle failures, and job hangs. Use when a Spark job fails, is slow, or produces unexpected results.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-sql-optimizer",
+      "category": "de",
+      "path": ".github\\agents\\de-sql-optimizer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Cross-dialect SQL optimization specialist for query plans, window functions, deduplication, and performance tuning. Use when optimizing slow queries, writing complex SQL, or translating between SQL dialects.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "de-streaming-engineer",
+      "category": "de",
+      "path": ".github\\agents\\de-streaming-engineer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Stream processing specialist for Flink, Kafka, Spark Streaming, RisingWave, and CDC pipelines. Use when building real-time pipelines, CDC, or streaming SQL applications.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "dev-codebase-explorer",
+      "category": "dev",
+      "path": ".github\\agents\\dev-codebase-explorer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Elite codebase analyst delivering Executive Summaries and Deep Dives for unfamiliar repos. Use when exploring unfamiliar codebases, onboarding to a new project, or generating codebase health reports.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "dev-meeting-analyst",
+      "category": "dev",
+      "path": ".github\\agents\\dev-meeting-analyst.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Master communication analyst that transforms meetings, Slack threads, and emails into structured, actionable documentation. Use when analyzing meeting transcripts, consolidating discussions, or creating SSOT docs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "dev-prompt-crafter",
+      "category": "dev",
+      "path": ".github\\agents\\dev-prompt-crafter.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "PROMPT.md builder with SDD-lite phases (EXPLORE, DEFINE, DESIGN, GENERATE) and Agent Matching Engine for structured task execution. Use when needing to structure a task prompt or match agents to specific files and requirements.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "dev-shell-script-specialist",
+      "category": "dev",
+      "path": ".github\\agents\\dev-shell-script-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Elite shell scripting specialist for building production-grade Bash scripts with best practices, error handling, and cross-platform compatibility. Use when creating shell scripts, automating CLI tasks, building deployment scripts, or writing test harnesses.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-ai-specialist",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-ai-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert in Microsoft Fabric AI capabilities including Copilot, ML models, AI Skills, and Azure OpenAI integration. Use when working with Fabric Copilot, ML model deployment, PREDICT functions, or RAG in Fabric.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-architect",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-architect.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Strategic Fabric solution architect for end-to-end architectures using workload selection, Medallion design, and security planning. Use when designing Fabric architectures, selecting workloads, or planning solution designs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-cicd-specialist",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-cicd-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert in Microsoft Fabric CI/CD, Git integration, and deployment pipelines for multi-environment promotion. Use when setting up CI/CD for Fabric workspaces, configuring Git sync, or deploying to production.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-logging-specialist",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-logging-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert in Microsoft Fabric logging, monitoring, KQL queries, and observability using Eventhouse-based centralized logging. Use when setting up monitoring, writing KQL queries, or building observability dashboards in Fabric.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-pipeline-developer",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-pipeline-developer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert in Fabric Data Factory pipelines, orchestration, and ETL workflows including Copy Activity and Dataflow Gen2. Use when building data pipelines, implementing incremental loading with watermarks, or orchestrating ETL in Fabric.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "fabric-security-specialist",
+      "category": "fabric",
+      "path": ".github\\agents\\fabric-security-specialist.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Expert in Microsoft Fabric security, governance, and compliance including RLS, data masking, encryption, and GDPR/HIPAA requirements. Use when implementing row-level security, data masking, permissions, or compliance controls in Fabric.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-ai-prompt-specialist",
+      "category": "python",
+      "path": ".github\\agents\\python-ai-prompt-specialist.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Prompt engineering specialist for LLMs covering extraction, structured output, chain-of-thought, and few-shot techniques. Use when optimizing prompts, designing extraction pipelines, or improving AI output consistency and accuracy.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-code-cleaner",
+      "category": "python",
+      "path": ".github\\agents\\python-code-cleaner.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Python code cleaning specialist for removing noise, applying DRY principles, and modernizing to Python 3.9+ patterns. Use when cleaning, refactoring, or modernizing Python code while preserving business logic and public APIs.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-code-documenter",
+      "category": "python",
+      "path": ".github\\agents\\python-code-documenter.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Documentation specialist for creating comprehensive, production-ready READMEs, API docs, module docs, and docstrings. Use when creating or updating documentation for Python projects, APIs, or code libraries.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-code-reviewer",
+      "category": "python",
+      "path": ".github\\agents\\python-code-reviewer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Expert code review specialist ensuring quality, security, and maintainability with severity-based issue classification. Use proactively after writing or modifying significant code, especially for security-sensitive code.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-developer",
+      "category": "python",
+      "path": ".github\\agents\\python-developer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Python code architect for data engineering systems using clean patterns, dataclasses, type hints, and generators. Use when writing or reviewing Python code for data pipelines and parsers.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "python-llm-specialist",
+      "category": "python",
+      "path": ".github\\agents\\python-llm-specialist.agent.md",
+      "tier": "T2",
+      "model": "opus",
+      "description": "Prompt engineering and LLM optimization expert for structured prompting, chain-of-thought reasoning, and production AI systems. Use when crafting prompts, optimizing AI responses, or implementing advanced extraction techniques.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "test-data-contracts-engineer",
+      "category": "test",
+      "path": ".github\\agents\\test-data-contracts-engineer.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Data contract specialist for ODCS authoring, SLA enforcement, schema governance, and producer-consumer agreements. Use when authoring data contracts, enforcing SLAs, or governing schema changes with breaking change detection.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "test-data-quality-analyst",
+      "category": "test",
+      "path": ".github\\agents\\test-data-quality-analyst.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Data quality specialist for Great Expectations, Soda, dbt tests, data contracts, and observability pipelines. Use when building quality checks, authoring data contracts, or investigating data quality issues.",
+      "kb_domains": [],
+      "escalates_to": []
+    },
+    {
+      "name": "test-generator",
+      "category": "test",
+      "path": ".github\\agents\\test-generator.agent.md",
+      "tier": "T2",
+      "model": "sonnet",
+      "description": "Test automation expert for Python that generates pytest unit tests, integration tests, fixtures, and data quality suites. Use after code is written or when asked to add comprehensive tests.",
+      "kb_domains": [],
+      "escalates_to": []
+    }
+  ],
+  "categories": {
+    "workflow": {
+      "label": "SDD Workflow",
+      "description": "Brainstorm, Define, Design, Build, Ship, Iterate"
+    },
+    "architect": {
+      "label": "Architecture & Design",
+      "description": "System-level design, schemas, pipelines, lakehouse"
+    },
+    "cloud": {
+      "label": "Cloud & Infrastructure",
+      "description": "AWS, GCP, CI/CD, deployment"
+    },
+    "de": {
+      "label": "Data Engineering",
+      "description": "dbt, Spark, SQL, Airflow, streaming, data quality"
+    },
+    "dev": {
+      "label": "Developer Tools",
+      "description": "Codebase exploration, meeting analysis, shell, prompts"
+    },
+    "fabric": {
+      "label": "Microsoft Fabric",
+      "description": "Fabric lakehouse, pipelines, AI, security"
+    },
+    "python": {
+      "label": "Python & Code Quality",
+      "description": "Python dev, review, cleanup, documentation, LLM prompts"
+    },
+    "test": {
+      "label": "Testing & Contracts",
+      "description": "pytest, data quality, ODCS contracts"
+    }
+  }
+}
