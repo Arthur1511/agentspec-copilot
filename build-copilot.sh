@@ -80,10 +80,12 @@ info "Building AgentSpec Copilot CLI plugin from .github/ ..."
 
 info "Cleaning previous build..."
 if [[ -d "${PLUGIN_DIR}" ]]; then
-    # Selectively clean: preserve .claude-plugin/ metadata (like build-plugin.sh)
+    # Selectively clean: preserve plugin-only artifacts not built from source
     find "${PLUGIN_DIR:?}" -mindepth 1 -maxdepth 1 \
         ! -name '.claude-plugin' \
         ! -name 'README.md' \
+        ! -name 'hooks' \
+        ! -name 'scripts' \
         -exec rm -rf {} +
 else
     mkdir -p "${PLUGIN_DIR}"
