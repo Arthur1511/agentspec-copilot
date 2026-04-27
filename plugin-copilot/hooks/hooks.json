@@ -1,14 +1,12 @@
 {
+  "version": 1,
   "hooks": {
-    "SessionStart": [
+    "sessionStart": [
       {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"${COPILOT_PLUGIN_ROOT}/scripts/init-workspace.sh\""
-          }
-        ]
+        "type": "command",
+        "bash": "${COPILOT_PLUGIN_ROOT}/scripts/init-workspace.sh",
+        "powershell": "${COPILOT_PLUGIN_ROOT}/scripts/init-workspace.ps1",
+        "timeoutSec": 30
       }
     ]
   }
