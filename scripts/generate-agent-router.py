@@ -172,7 +172,7 @@ def discover_agents() -> list[AgentSpec]:
         specs.append(AgentSpec(
             name=fm["name"],
             category=category,
-            path=str(rel),
+            path=str(rel).replace("\\", "/"),  # always forward slashes (Windows compat)
             tier=fm.get("tier", "T2"),
             model=normalize_model(fm.get("model", "Claude Sonnet 4.5")),
             description=extract_one_liner(fm.get("description", "")),
