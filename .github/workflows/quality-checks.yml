@@ -61,7 +61,5 @@ jobs:
 
       - name: Run shellcheck (warnings + errors)
         run: |
-          shellcheck -S warning \
-            build-copilot.sh \
-            .github/skills/visual-explainer/scripts/share.sh \
-            plugin-copilot/scripts/init-workspace.sh
+          find . -name "*.sh" -not -path "./.git/*" \
+            | xargs shellcheck -S warning
