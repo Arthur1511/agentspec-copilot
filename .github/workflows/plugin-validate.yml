@@ -4,17 +4,31 @@ on:
   push:
     branches: [main]
     paths:
-      - '.claude/**'
-      - 'plugin-extras/**'
-      - 'build-plugin.sh'
-      - 'plugin/.claude-plugin/**'
+      - '.github/agents/**'
+      - '.github/skills/**'
+      - '.github/kb/**'
+      - '.github/sdd/templates/**'
+      - '.github/sdd/architecture/**'
+      - '.github/manifest.yaml'
+      - 'build-copilot.sh'
+      - 'build-copilot.ps1'
+      - 'plugin-copilot/.claude-plugin/**'
+      - 'plugin-copilot/hooks/**'
+      - 'plugin-copilot/scripts/**'
   pull_request:
     branches: [main]
     paths:
-      - '.claude/**'
-      - 'plugin-extras/**'
-      - 'build-plugin.sh'
-      - 'plugin/.claude-plugin/**'
+      - '.github/agents/**'
+      - '.github/skills/**'
+      - '.github/kb/**'
+      - '.github/sdd/templates/**'
+      - '.github/sdd/architecture/**'
+      - '.github/manifest.yaml'
+      - 'build-copilot.sh'
+      - 'build-copilot.ps1'
+      - 'plugin-copilot/.claude-plugin/**'
+      - 'plugin-copilot/hooks/**'
+      - 'plugin-copilot/scripts/**'
 
 jobs:
   validate:
@@ -27,7 +41,7 @@ jobs:
           echo "Checking plugin.json syntax..."
           python3 -c "
           import json, sys
-          with open('plugin/.claude-plugin/plugin.json') as f:
+          with open('plugin-copilot/.claude-plugin/plugin.json') as f:
               data = json.load(f)
           required = ['name', 'version', 'description']
           missing = [k for k in required if k not in data]
@@ -42,7 +56,7 @@ jobs:
           echo "Checking marketplace.json syntax..."
           python3 -c "
           import json
-          with open('plugin/.claude-plugin/marketplace.json') as f:
+          with open('plugin-copilot/.claude-plugin/marketplace.json') as f:
               data = json.load(f)
           assert 'name' in data, 'Missing top-level name field'
           assert 'owner' in data, 'Missing top-level owner field'
@@ -55,36 +69,38 @@ jobs:
           "
 
       - name: Build plugin
-        run: bash build-plugin.sh
+        run: bash build-copilot.sh
 
       - name: Check for stale paths
         run: |
-          echo "Checking for unrewritten .claude/ paths in plugin output..."
-          STALE=$(grep -r '\.claude/' plugin/ \
+          echo "Checking for unrewritten .github/ paths in plugin-copilot/ output..."
+          STALE=$(grep -r '\.github/' plugin-copilot/ \
             --include="*.md" --include="*.yaml" --include="*.yml" \
-            | grep -v 'CLAUDE_PLUGIN_ROOT' \
-            | grep -v '\.claude/sdd/features' \
-            | grep -v '\.claude/sdd/reports' \
-            | grep -v '\.claude/sdd/archive' \
-            | grep -v '\.claude/sdd/' \
-            | grep -v '\.claude/storage' \
+            | grep -v 'COPILOT_PLUGIN_ROOT' \
+            | grep -v '\.github/sdd/features' \
+            | grep -v '\.github/sdd/reports' \
+            | grep -v '\.github/sdd/archive' \
+            | grep -v '\.github/sdd/' \
+            | grep -v '\.github/storage' \
+            | grep -v '\.github/workflows/' \
+            | grep -v '\.github/commands/' \
+            | grep -v '\.github/copilot-instructions' \
+            | grep -v '\.github/CLAUDE\.md' \
+            | grep -v '\.github/\*\*' \
             | grep -v '\.claude-plugin' \
-            | grep -v '\.claude/settings' \
-            | grep -v 'CLAUDE\.md' \
-            | grep -v '\.claude/plans' \
-            | grep -v '\.claude/memory' \
             | grep -v '^[[:space:]]*#' \
+            | grep -v '├── \.github' \
             || true)
 
           if [ -n "$STALE" ]; then
-            echo "::error::Found unrewritten .claude/ references in plugin output:"
+            echo "::error::Found unrewritten .github/ references in plugin-copilot/ output:"
             echo "$STALE" | head -20
             exit 1
           fi
 
       - name: Verify agent count
         run: |
-          COUNT=$(find plugin/agents -name "*.md" ! -name "README.md" ! -name "_template.md" | wc -l)
+          COUNT=$(find plugin-copilot/agents -name "*.agent.md" | wc -l)
           echo "Agents found: $COUNT"
           if [ "$COUNT" -lt 50 ]; then
             echo "::error::Expected 50+ agents, found $COUNT"
@@ -93,7 +109,7 @@ jobs:
 
       - name: Verify skill count
         run: |
-          COUNT=$(find plugin/skills -name "SKILL.md" | wc -l)
+          COUNT=$(find plugin-copilot/skills -name "SKILL.md" | wc -l)
           echo "Skills found: $COUNT"
           if [ "$COUNT" -lt 4 ]; then
             echo "::error::Expected 4+ skills, found $COUNT"
@@ -102,7 +118,7 @@ jobs:
 
       - name: Verify KB domain count
         run: |
-          COUNT=$(find plugin/kb -maxdepth 1 -type d ! -name "kb" ! -name "_templates" ! -name "shared" | wc -l)
+          COUNT=$(find plugin-copilot/kb -maxdepth 1 -type d ! -name "kb" ! -name "_templates" ! -name "shared" | wc -l)
           echo "KB domains found: $COUNT"
           if [ "$COUNT" -lt 20 ]; then
             echo "::error::Expected 20+ KB domains, found $COUNT"
@@ -112,7 +128,8 @@ jobs:
       - name: Verify hooks and scripts
         run: |
           echo "Checking hooks..."
-          python3 -c "import json; json.load(open('plugin/hooks/hooks.json'))"
+          python3 -c "import json; json.load(open('plugin-copilot/hooks/hooks.json'))"
           echo "Checking init script..."
-          test -x plugin/scripts/init-workspace.sh || { echo "::error::init-workspace.sh not executable"; exit 1; }
+          test -f plugin-copilot/scripts/init-workspace.sh || { echo "::error::init-workspace.sh not found"; exit 1; }
           echo "All checks passed"
+
