@@ -84,7 +84,7 @@ Write-Info "Cleaning previous build..."
 if (Test-Path $PluginDir) {
     # Preserve plugin-only artifacts not built from source
     Get-ChildItem -Path $PluginDir -Force |
-        Where-Object { $_.Name -notin @('.claude-plugin', 'README.md', 'hooks', 'scripts') } |
+        Where-Object { $_.Name -notin @('.claude-plugin', 'README.md', 'hooks', 'scripts', 'plugin.json') } |
         Remove-Item -Recurse -Force
 } else {
     New-Item -ItemType Directory -Path $PluginDir | Out-Null
