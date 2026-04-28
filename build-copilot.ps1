@@ -84,7 +84,7 @@ Write-Info "Cleaning previous build..."
 if (Test-Path $PluginDir) {
     # Preserve plugin-only artifacts not built from source
     Get-ChildItem -Path $PluginDir -Force |
-        Where-Object { $_.Name -notin @('.claude-plugin', 'README.md', 'hooks', 'scripts', 'plugin.json') } |
+        Where-Object { $_.Name -notin @('.claude-plugin', 'README.md', 'scripts', 'plugin.json') } |
         Remove-Item -Recurse -Force
 } else {
     New-Item -ItemType Directory -Path $PluginDir | Out-Null
@@ -110,6 +110,9 @@ Copy-Item (Join-Path $SourceDir 'sdd\architecture') (Join-Path $sddDest 'archite
 
 Write-Info "Copying manifest..."
 Copy-Item (Join-Path $SourceDir 'manifest.yaml') (Join-Path $PluginDir 'manifest.yaml')
+
+Write-Info "Copying hooks..."
+Copy-Item (Join-Path $SourceDir 'hooks') (Join-Path $PluginDir 'hooks') -Recurse
 
 Write-Ok "All components copied"
 

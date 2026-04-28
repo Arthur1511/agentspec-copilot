@@ -5,7 +5,7 @@ description: Sync project context to copilot-instructions.md by analyzing codeba
 
 # Sync Context Command
 
-Analyzes codebase and intelligently updates `copilot-instructions.md` with current project context.
+Analyzes codebase and intelligently updates `.github/copilot-instructions.md` with current project context.
 
 ## Usage
 
@@ -94,7 +94,7 @@ Glob("${COPILOT_PLUGIN_ROOT}/agents/*.agent.md")
 
 ## copilot-instructions.md Template
 
-Generated copilot-instructions.md follows this structure:
+Generated `.github/copilot-instructions.md` follows this structure:
 
 ```markdown
 # {Project Name}
@@ -245,7 +245,7 @@ Generated copilot-instructions.md follows this structure:
 ## Execution Flow
 
 ```text
-1. Read existing copilot-instructions.md
+1. Read existing .github/copilot-instructions.md
    │
    ▼
 2. Parse into sections
@@ -270,7 +270,7 @@ Generated copilot-instructions.md follows this structure:
 6. Validate (dry-run or save)
    │
    ▼
-7. Write updated copilot-instructions.md
+7. Write updated .github/copilot-instructions.md
 ```
 
 ---
@@ -278,7 +278,7 @@ Generated copilot-instructions.md follows this structure:
 ## Example Output
 
 ```text
-UPDATE copilot-instructions.md
+UPDATE .github/copilot-instructions.md
 ━━━━━━━━━━━━━━━━
 
 Analyzing codebase...
@@ -301,7 +301,7 @@ Section updates:
 • Project Context: PRESERVED (manual content)
 
 ━━━━━━━━━━━━━━━━
-copilot-instructions.md updated successfully
+.github/copilot-instructions.md updated successfully
 ```
 
 ---
@@ -339,9 +339,9 @@ After running, manually update:
 
 ```bash
 # Review changes before committing
-git diff copilot-instructions.md
+git diff .github/copilot-instructions.md
 
 # Commit with context
-git add copilot-instructions.md
+git add .github/copilot-instructions.md
 git commit -m "chore: update copilot-instructions.md with latest project structure"
 ```
