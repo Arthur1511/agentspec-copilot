@@ -4,8 +4,8 @@
     "sessionStart": [
       {
         "type": "command",
-        "bash": "${COPILOT_PLUGIN_ROOT}/scripts/init-workspace.sh",
-        "powershell": "${COPILOT_PLUGIN_ROOT}/scripts/init-workspace.ps1",
+        "bash": "{{plugin_data_dir}}/scripts/init-workspace.sh",
+        "powershell": "{{plugin_data_dir}}/scripts/init-workspace.ps1",
         "timeoutSec": 30
       }
     ]

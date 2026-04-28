@@ -1,0 +1,29 @@
+{
+  "name": "agentspec",
+  "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 31 skills",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arthur Pinto",
+    "url": "https://github.com/Arthur1511"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/Arthur1511/agentspec-copilot",
+  "homepage": "https://github.com/Arthur1511/agentspec-copilot",
+  "keywords": [
+    "data-engineering",
+    "sdd",
+    "spec-driven-development",
+    "dbt",
+    "spark",
+    "airflow",
+    "pipeline",
+    "schema-design",
+    "data-quality",
+    "lakehouse",
+    "medallion",
+    "streaming"
+  ],
+  "agents": "agents/",
+  "skills": "skills/",
+  "hooks": "hooks/hooks.json"
+}
