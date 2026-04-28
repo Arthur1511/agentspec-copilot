@@ -84,7 +84,6 @@ if [[ -d "${PLUGIN_DIR}" ]]; then
     find "${PLUGIN_DIR:?}" -mindepth 1 -maxdepth 1 \
         ! -name '.claude-plugin' \
         ! -name 'README.md' \
-        ! -name 'hooks' \
         ! -name 'scripts' \
         -exec rm -rf {} +
 else
@@ -110,6 +109,9 @@ cp -r "${SOURCE_DIR}/sdd/architecture" "${PLUGIN_DIR}/sdd/architecture"
 
 info "Copying manifest..."
 cp "${SOURCE_DIR}/manifest.yaml" "${PLUGIN_DIR}/manifest.yaml"
+
+info "Copying hooks..."
+cp -r "${SOURCE_DIR}/hooks" "${PLUGIN_DIR}/hooks"
 
 ok "All components copied"
 
