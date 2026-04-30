@@ -26,33 +26,33 @@ Step-by-step walkthroughs for common AgentSpec workflows.
 
 ### Build a dbt Staging + Mart Layer
 
-**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `build-agent`, `de-dbt-specialist`
+**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `build-agent`, `dbt-specialist`
 
 Use the full SDD workflow to produce a production-ready incremental staging model.
 
 **Step 1 — Capture requirements**
 
 ```bash
-claude> /define "dbt staging model for raw_orders with incremental refresh"
+/agentspec:workflow-define "dbt staging model for raw_orders with incremental refresh"
 ```
 
-`define-agent` creates `.claude/sdd/features/DEFINE_STG_ORDERS.md` with functional requirements, grain definition, and acceptance criteria. Review it before proceeding.
+`define-agent` creates `.github/sdd/features/DEFINE_STG_ORDERS.md` with functional requirements, grain definition, and acceptance criteria. Review it before proceeding.
 
 **Step 2 — Design the architecture**
 
 ```bash
-claude> /design STG_ORDERS
+/agentspec:workflow-design STG_ORDERS
 ```
 
-`design-agent` produces a file manifest that maps `models/staging/stg_orders.sql` and `models/marts/mart_revenue.sql` to `@de-dbt-specialist`, along with schema contract and incremental strategy selection (merge on `order_id`).
+`design-agent` produces a file manifest that maps `models/staging/stg_orders.sql` and `models/marts/mart_revenue.sql` to `@dbt-specialist`, along with schema contract and incremental strategy selection (merge on `order_id`).
 
 **Step 3 — Build**
 
 ```bash
-claude> /build STG_ORDERS
+/agentspec:workflow-build STG_ORDERS
 ```
 
-`build-agent` reads the manifest, delegates `stg_orders.sql` to `de-dbt-specialist`, and writes the files. Example output for the staging model:
+`build-agent` reads the manifest, delegates `stg_orders.sql` to `dbt-specialist`, and writes the files. Example output for the staging model:
 
 ```sql
 -- models/staging/stg_orders.sql
@@ -90,28 +90,28 @@ select * from renamed
 **Step 4 — Ship**
 
 ```bash
-claude> /ship STG_ORDERS
+/agentspec:workflow-ship STG_ORDERS
 ```
 
-`ship-agent` archives the SDD documents to `.claude/sdd/archive/` and writes a BUILD_REPORT with lessons learned.
+`ship-agent` archives the SDD documents to `.github/sdd/archive/` and writes a BUILD_REPORT with lessons learned.
 
 ---
 
 ### Design a Star Schema with /schema
 
-**Time:** 10 min | **Agent:** `architect-schema-designer`
+**Time:** 10 min | **Agent:** `schema-designer`
 
 Skip the SDD workflow when you just need a dimensional model fast.
 
 **Step 1 — Run the command**
 
 ```bash
-claude> /schema "Star schema for e-commerce: orders, customers, products"
+/agentspec:data-engineering-schema "Star schema for e-commerce: orders, customers, products"
 ```
 
-**Step 2 — architect-schema-designer produces the model**
+**Step 2 — schema-designer produces the model**
 
-`architect-schema-designer` identifies the grain, creates dimension and fact tables, and outputs DDL for your target platform. Example output:
+`schema-designer` identifies the grain, creates dimension and fact tables, and outputs DDL for your target platform. Example output:
 
 ```
 Grain: one row per order line item
@@ -132,25 +132,25 @@ Dimensions:
 Ask follow-up questions in the same session:
 
 ```bash
-claude> "Add SCD Type 2 to dim_customers to track address changes"
-claude> "Generate BigQuery DDL for all tables"
+/agentspec:data-engineering-schema "Add SCD Type 2 to dim_customers to track address changes"
+/agentspec:data-engineering-schema "Generate BigQuery DDL for all tables"
 ```
 
-`architect-schema-designer` handles SCD Type 2 surrogate key patterns, effective dates, and current-row flags without leaving the conversation.
+`schema-designer` handles SCD Type 2 surrogate key patterns, effective dates, and current-row flags without leaving the conversation.
 
 ---
 
 ### Add Data Quality with Great Expectations
 
-**Time:** 10 min | **Agent:** `test-data-quality-analyst`
+**Time:** 10 min | **Agent:** `data-quality-analyst`
 
 **Step 1 — Point at a model file**
 
 ```bash
-claude> /data-quality models/staging/stg_orders.sql
+/agentspec:data-engineering-data-quality models/staging/stg_orders.sql
 ```
 
-**Step 2 — test-data-quality-analyst generates the suite**
+**Step 2 — data-quality-analyst generates the suite**
 
 The agent reads the model's column definitions and business rules, then produces two artifacts.
 
@@ -205,19 +205,19 @@ models:
 **Step 3 — Generate checks for a description instead of a file**
 
 ```bash
-claude> /data-quality "Quality checks for customer dimension with SCD Type 2"
+/agentspec:data-engineering-data-quality "Quality checks for customer dimension with SCD Type 2"
 ```
 
 ---
 
 ### Build a PySpark Processing Job
 
-**Time:** 15 min | **Agents:** `define-agent`, `build-agent`, `de-spark-engineer`
+**Time:** 15 min | **Agents:** `define-agent`, `build-agent`, `spark-engineer`
 
 **Step 1 — Define the job**
 
 ```bash
-claude> /define "PySpark job to deduplicate and SCD merge customer events"
+/agentspec:workflow-define "PySpark job to deduplicate and SCD merge customer events"
 ```
 
 `define-agent` captures the deduplication key (`customer_id + event_timestamp`), merge strategy (SCD Type 2 on `email` and `address`), and target format (Delta Lake).
@@ -225,10 +225,10 @@ claude> /define "PySpark job to deduplicate and SCD merge customer events"
 **Step 2 — Build it**
 
 ```bash
-claude> /build CUSTOMER_EVENTS
+/agentspec:workflow-build CUSTOMER_EVENTS
 ```
 
-`build-agent` delegates to `de-spark-engineer`, which produces a structured job:
+`build-agent` delegates to `spark-engineer`, which produces a structured job:
 
 ```
 jobs/
@@ -240,7 +240,7 @@ jobs/
       test_transforms.py
 ```
 
-`de-spark-engineer` applies KB patterns: window-based deduplication with `row_number()`, Delta `MERGE INTO` for SCD Type 2, and partition pruning on `event_date`.
+`spark-engineer` applies KB patterns: window-based deduplication with `row_number()`, Delta `MERGE INTO` for SCD Type 2, and partition pruning on `event_date`.
 
 **Step 3 — Run and verify**
 
@@ -254,12 +254,12 @@ spark-submit --master local[4] jobs/customer_events/job.py \
 
 ### Create a Kafka Streaming Pipeline
 
-**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `de-streaming-engineer`, `de-spark-streaming-architect`
+**Time:** 15 min | **Agents:** `define-agent`, `design-agent`, `streaming-engineer`, `spark-streaming-architect`
 
 **Step 1 — Define the pipeline**
 
 ```bash
-claude> /define "Real-time order events from Kafka to lakehouse"
+/agentspec:workflow-define "Real-time order events from Kafka to lakehouse"
 ```
 
 `define-agent` captures source topic (`orders.created`), target (Delta Lake `silver.orders`), latency SLA (sub-60s), and late data tolerance (10 min watermark).
@@ -267,13 +267,13 @@ claude> /define "Real-time order events from Kafka to lakehouse"
 **Step 2 — Design the architecture**
 
 ```bash
-claude> /design ORDER_STREAM
+/agentspec:workflow-design ORDER_STREAM
 ```
 
 `design-agent` creates the architecture document and assigns:
 
-- `de-streaming-engineer` — Kafka consumer, schema registry integration, DLQ handling
-- `de-spark-streaming-architect` — Structured Streaming job, watermarking, checkpoint config
+- `streaming-engineer` — Kafka consumer, schema registry integration, DLQ handling
+- `spark-streaming-architect` — Structured Streaming job, watermarking, checkpoint config
 
 The architecture document shows the pipeline topology:
 
@@ -289,24 +289,24 @@ Kafka (orders.created)
 **Step 3 — Build**
 
 ```bash
-claude> /build ORDER_STREAM
+/agentspec:workflow-build ORDER_STREAM
 ```
 
-`build-agent` delegates to both agents. `de-spark-streaming-architect` produces the Structured Streaming job with checkpoint location, trigger interval, and watermark configuration. `de-streaming-engineer` produces the Kafka source options and DLQ handler.
+`build-agent` delegates to both agents. `spark-streaming-architect` produces the Structured Streaming job with checkpoint location, trigger interval, and watermark configuration. `streaming-engineer` produces the Kafka source options and DLQ handler.
 
 ---
 
 ### Build a RAG Pipeline with /ai-pipeline
 
-**Time:** 15 min | **Agents:** `de-ai-data-engineer`, `de-qdrant-specialist`
+**Time:** 15 min | **Agents:** `ai-data-engineer`, `qdrant-specialist`
 
 **Step 1 — Run the command**
 
 ```bash
-claude> /ai-pipeline "RAG pipeline for internal knowledge base with Qdrant"
+/agentspec:data-engineering-ai-pipeline "RAG pipeline for internal knowledge base with Qdrant"
 ```
 
-**Step 2 — de-ai-data-engineer designs the layers**
+**Step 2 — ai-data-engineer designs the layers**
 
 The agent structures the pipeline into two layers:
 
@@ -331,7 +331,7 @@ pipeline.py         # end-to-end RAG chain
 
 **Step 3 — Qdrant collection setup**
 
-`de-qdrant-specialist` handles the collection configuration:
+`qdrant-specialist` handles the collection configuration:
 
 ```python
 client.create_collection(
@@ -361,7 +361,7 @@ Payload indexes are created on `source`, `doc_type`, and `created_at` to enable 
 **Step 1 — Update with /iterate**
 
 ```bash
-claude> /iterate .claude/sdd/features/DEFINE_ORDERS_PIPELINE.md \
+/agentspec:workflow-iterate .github/sdd/features/DEFINE_ORDERS_PIPELINE.md \
   "Add support for late-arriving data with 3-day lookback"
 ```
 
@@ -382,7 +382,7 @@ Cascade detected:
 **Step 3 — Apply the cascade**
 
 ```bash
-claude> /iterate .claude/sdd/features/DESIGN_ORDERS_PIPELINE.md \
+/agentspec:workflow-iterate .github/sdd/features/DESIGN_ORDERS_PIPELINE.md \
   "Update watermark to 3 days to match new late data requirement"
 ```
 
@@ -401,15 +401,15 @@ Each iteration is focused and explicit. `iterate-agent` never silently updates d
 ```yaml
 files:
   - path: models/staging/stg_orders.sql
-    agent: "@de-dbt-specialist"
+    agent: "@dbt-specialist"
     pattern: incremental-model
 
   - path: jobs/customer_events/job.py
-    agent: "@de-spark-engineer"
+    agent: "@spark-engineer"
     pattern: deduplication
 
   - path: models/staging/stg_orders.yml
-    agent: "@de-dbt-specialist"
+    agent: "@dbt-specialist"
     pattern: testing-framework
 
   - path: tests/test_transforms.py
@@ -420,7 +420,7 @@ files:
 **Running the build**
 
 ```bash
-claude> /build ORDERS_PIPELINE
+/agentspec:workflow-build ORDERS_PIPELINE
 ```
 
 `build-agent` processes the manifest top to bottom. For each `@agent-name` entry it launches the specialist via the Task tool, passing the KB domain context. For `(general)` entries it writes the file directly using KB patterns.
@@ -435,22 +435,22 @@ claude> /build ORDERS_PIPELINE
 
 ### Creating a Knowledge Base Domain
 
-**Time:** 10 min | **Agent:** `architect-kb`
+**Time:** 10 min | **Agent:** `kb-architect`
 
-Use `/create-kb` to scaffold a complete domain with index, quick-reference, concepts, and patterns.
+Use `/agentspec:knowledge-create-kb` to scaffold a complete domain with index, quick-reference, concepts, and patterns.
 
 **Step 1 — Run the command**
 
 ```bash
-claude> /create-kb redis
+/agentspec:knowledge-create-kb redis
 ```
 
-**Step 2 — architect-kb scaffolds the domain**
+**Step 2 — kb-architect scaffolds the domain**
 
-The agent validates `.claude/kb/_templates/` and `_index.yaml`, then creates:
+The agent validates `.github/kb/_templates/` and `_index.yaml`, then creates:
 
 ```
-.claude/kb/redis/
+.github/kb/redis/
   index.md            # domain overview: what, when, scope
   quick-reference.md  # cheat sheet: commands, config, patterns
   concepts/
@@ -464,7 +464,7 @@ The agent validates `.claude/kb/_templates/` and `_index.yaml`, then creates:
 
 **Step 3 — Registry update**
 
-`architect-kb` adds the new domain to `.claude/kb/_index.yaml`:
+`kb-architect` adds the new domain to `.github/kb/_index.yaml`:
 
 ```yaml
 redis:
@@ -477,7 +477,7 @@ redis:
 **Step 4 — Audit existing KB health**
 
 ```bash
-claude> /create-kb --audit
+/agentspec:knowledge-create-kb --audit
 ```
 
 Reports which domains are missing files, have outdated patterns, or are not referenced by any agent.
@@ -491,51 +491,51 @@ Reports which domains are missing files, have outdated patterns, or are not refe
 Design a star schema without the full SDD workflow:
 
 ```bash
-claude> /schema "Star schema for e-commerce: orders, customers, products"
+/agentspec:data-engineering-schema "Star schema for e-commerce: orders, customers, products"
 ```
 
-`architect-schema-designer` creates dimension/fact tables, grain definitions, and DDL for your target platform.
+`schema-designer` creates dimension/fact tables, grain definitions, and DDL for your target platform.
 
 ### Quick Pipeline Scaffold
 
 Scaffold an Airflow DAG:
 
 ```bash
-claude> /pipeline "Daily orders ETL: Postgres -> staging -> dbt -> Snowflake marts"
+/agentspec:data-engineering-pipeline "Daily orders ETL: Postgres -> staging -> dbt -> Snowflake marts"
 ```
 
-`architect-pipeline` creates DAG code with task dependencies, sensors, and error handling.
+`pipeline-architect` creates DAG code with task dependencies, sensors, and error handling.
 
 ### Data Quality Rules Generation
 
 Generate quality checks for existing models:
 
 ```bash
-claude> /data-quality models/staging/stg_orders.sql
+/agentspec:data-engineering-data-quality models/staging/stg_orders.sql
 
-claude> /data-quality "Quality checks for customer dimension with SCD Type 2"
+/agentspec:data-engineering-data-quality "Quality checks for customer dimension with SCD Type 2"
 ```
 
-`test-data-quality-analyst` generates Great Expectations suites and/or dbt test YAML.
+`data-quality-analyst` generates Great Expectations suites and/or dbt test YAML.
 
 ### SQL Review for Anti-Patterns
 
 ```bash
-claude> /sql-review models/marts/
+/agentspec:data-engineering-sql-review models/marts/
 
-claude> /sql-review models/staging/stg_orders.sql
+/agentspec:data-engineering-sql-review models/staging/stg_orders.sql
 ```
 
-`python-code-reviewer` (with DE capability) and `de-sql-optimizer` check for `SELECT *`, missing partition filters, PII exposure, implicit coercion, and more.
+`code-reviewer` (with DE capability) and `sql-optimizer` check for `SELECT *`, missing partition filters, PII exposure, implicit coercion, and more.
 
 ### Legacy ETL Migration
 
 Migrate stored procedures to dbt:
 
 ```bash
-claude> /migrate legacy/sp_daily_orders.sql
+/agentspec:data-engineering-migrate legacy/sp_daily_orders.sql
 
-claude> /migrate "Convert Informatica workflows to Airflow + dbt"
+/agentspec:data-engineering-migrate "Convert Informatica workflows to Airflow + dbt"
 ```
 
 ### Data Contract Authoring
@@ -543,7 +543,7 @@ claude> /migrate "Convert Informatica workflows to Airflow + dbt"
 Create producer-consumer agreements:
 
 ```bash
-claude> /data-contract "Contract between orders team and analytics for mart_revenue"
+/agentspec:data-engineering-data-contract "Contract between orders team and analytics for mart_revenue"
 ```
 
 ---
@@ -555,13 +555,13 @@ claude> /data-contract "Contract between orders team and analytics for mart_reve
 Skip brainstorm when requirements are already clear:
 
 ```bash
-claude> /define "Add incremental refresh to stg_orders model"
+/agentspec:workflow-define "Add incremental refresh to stg_orders model"
 
-claude> /design STG_ORDERS_INCREMENTAL
+/agentspec:workflow-design STG_ORDERS_INCREMENTAL
 
-claude> /build STG_ORDERS_INCREMENTAL
+/agentspec:workflow-build STG_ORDERS_INCREMENTAL
 
-claude> /ship STG_ORDERS_INCREMENTAL
+/agentspec:workflow-ship STG_ORDERS_INCREMENTAL
 ```
 
 ### Updating Requirements Mid-Stream
@@ -569,7 +569,7 @@ claude> /ship STG_ORDERS_INCREMENTAL
 When a stakeholder changes scope after you have started design:
 
 ```bash
-claude> /iterate .claude/sdd/features/DEFINE_ORDERS_PIPELINE.md \
+/agentspec:workflow-iterate .github/sdd/features/DEFINE_ORDERS_PIPELINE.md \
   "Add support for late-arriving data with 3-day lookback"
 ```
 
@@ -582,11 +582,11 @@ claude> /iterate .claude/sdd/features/DEFINE_ORDERS_PIPELINE.md \
 ### Code Review with Dual AI
 
 ```bash
-claude> /review
+/agentspec:review-code
 
-claude> /review --base main
+/agentspec:review-code --base main
 
-claude> /review --quick
+/agentspec:review-code --quick
 ```
 
 ---

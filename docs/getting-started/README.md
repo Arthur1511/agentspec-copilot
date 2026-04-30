@@ -4,88 +4,70 @@ Get from zero to your first spec-driven data pipeline in 10 minutes.
 
 ## Prerequisites
 
-- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed
+- [GitHub Copilot CLI](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line) installed and authenticated
 - Git
 
 ## Installation
 
-### Option 1: Install as Plugin (Recommended)
+### Install the Plugin (Recommended)
 
 ```bash
-claude plugin marketplace add luanmorenommaciel/agentspec
-claude plugin install agentspec
+copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
 ```
 
-Or test locally:
+Or test locally from source:
 
 ```bash
-git clone https://github.com/luanmorenommaciel/agentspec.git
-claude --plugin-dir ./agentspec/plugin
+git clone https://github.com/Arthur1511/agentspec-copilot.git
+cd agentspec-copilot
+./build-copilot.sh   # Linux/macOS
+.\build-copilot.ps1  # Windows PowerShell
 ```
 
-### Option 2: Copy Framework (Legacy)
+## Framework Structure
 
-```bash
-git clone https://github.com/luanmorenommaciel/agentspec.git
-cp -r agentspec/.claude your-project/.claude
-```
-
-## Initialize Your Project
-
-The SDD directory structure is already set up:
+The plugin ships 58 agents, 35 skills, and 24 KB domains under `.github/`:
 
 ```text
-your-project/.claude/
-+-- agents/              # 58 specialized agents (ready to use)
-|   +-- workflow/        # 6 SDD phase agents
-|   +-- architect/       # 8 system-level design agents
-|   +-- cloud/           # 10 AWS, GCP, CI/CD agents
-|   +-- platform/        # 6 Microsoft Fabric agents
-|   +-- python/          # 6 code quality + prompt agents
-|   +-- test/            # 3 testing + data quality agents
-|   +-- data-engineering/ # 15 DE implementation agents
-|   +-- dev/             # 4 developer productivity agents
-|
-+-- commands/            # 29 slash commands (ready to use)
-|   +-- workflow/        # 7 SDD phase commands
-|   +-- data-engineering/ # 8 DE commands
-|   +-- visual-explainer/ # 8 visual documentation commands
-|   +-- core/            # 4 utility commands
-|   +-- knowledge/       # 1 KB command
-|   +-- review/          # 1 code review command
-|
-+-- sdd/
-|   +-- features/        # Your active feature documents go here
-|   +-- reports/         # Build reports land here
-|   +-- archive/         # Shipped features archived here
-|   +-- templates/       # 5 document templates
-|
-+-- kb/                  # 23 data engineering KB domains (ready to use)
+.github/
+├── agents/              # 58 specialized agents (flat directory)
+├── skills/              # 35 skills (each directory has SKILL.md)
+│   ├── workflow-*/      # 7 SDD phase skills
+│   ├── data-engineering-*/ # 9 DE skills
+│   ├── visual-explainer-*/ # 9 visual documentation skills
+│   ├── core-*/          # 5 utility skills
+│   └── ...              # 5 more standalone skills
+├── sdd/
+│   ├── features/        # Active WIP feature documents
+│   ├── reports/         # Build reports
+│   ├── archive/         # Shipped features
+│   └── templates/       # 5 phase document templates
+└── kb/                  # 24 data engineering KB domains
 ```
 
 ## Your First Data Pipeline (5 minutes)
 
-Let's build an orders pipeline using the full SDD workflow.
+Let's build an orders pipeline using the full SDD workflow. Invoke skills with `/agentspec:<skill-name>`:
 
 ### Step 1: Brainstorm (Optional)
 
 Explore your idea through guided dialogue:
 
-```bash
-claude> /brainstorm "Daily orders pipeline from Postgres to Snowflake with star schema"
+```
+/agentspec:workflow-brainstorm "Daily orders pipeline from Postgres to Snowflake with star schema"
 ```
 
-AgentSpec asks targeted questions about source systems, volumes, freshness SLAs, and consumer needs. Output: `BRAINSTORM_ORDERS_PIPELINE.md`
+AgentSpec asks targeted questions about source systems, volumes, freshness SLAs, and consumer needs. Output: `.github/sdd/features/BRAINSTORM_ORDERS_PIPELINE.md`
 
 ### Step 2: Define Requirements
 
 Capture formal requirements with data contracts:
 
-```bash
-claude> /define ORDERS_PIPELINE
+```
+/agentspec:workflow-define ORDERS_PIPELINE
 ```
 
-Output: `DEFINE_ORDERS_PIPELINE.md` with:
+Output: `.github/sdd/features/DEFINE_ORDERS_PIPELINE.md` with:
 
 - Problem statement and users
 - Data contract (schema, SLAs, lineage)
@@ -96,76 +78,76 @@ Output: `DEFINE_ORDERS_PIPELINE.md` with:
 
 Create the pipeline architecture:
 
-```bash
-claude> /design ORDERS_PIPELINE
+```
+/agentspec:workflow-design ORDERS_PIPELINE
 ```
 
-Output: `DESIGN_ORDERS_PIPELINE.md` with:
+Output: `.github/sdd/features/DESIGN_ORDERS_PIPELINE.md` with:
 
 - Architecture diagram with DAG structure
 - Partition strategy and incremental approach
-- File manifest with agent assignments (@de-dbt-specialist, @de-airflow-specialist, @de-spark-engineer)
-- Schema evolution plan
-- Data quality gates
+- File manifest with agent assignments (`@dbt-specialist`, `@airflow-specialist`, `@spark-engineer`)
+- Schema evolution plan and data quality gates
 
 ### Step 4: Build
 
 Execute the implementation with agent delegation:
 
-```bash
-claude> /build ORDERS_PIPELINE
+```
+/agentspec:workflow-build ORDERS_PIPELINE
 ```
 
-AgentSpec delegates dbt models to `@de-dbt-specialist`, DAGs to `@de-airflow-specialist`, Spark jobs to `@de-spark-engineer`, and quality checks to `@test-data-quality-analyst`. Verification includes `dbt build`, `sqlfluff lint`, and data quality assertions. Output: `BUILD_REPORT_ORDERS_PIPELINE.md`
+AgentSpec delegates dbt models to `@dbt-specialist`, DAGs to `@airflow-specialist`, Spark jobs to `@spark-engineer`, and quality checks to `@data-quality-analyst`. Output: `.github/sdd/reports/BUILD_REPORT_ORDERS_PIPELINE.md`
 
 ### Step 5: Ship
 
 Archive everything with lessons learned:
 
-```bash
-claude> /ship ORDERS_PIPELINE
+```
+/agentspec:workflow-ship ORDERS_PIPELINE
 ```
 
-## Quick Data Engineering Commands
+## Quick Data Engineering Skills
 
-Don't need the full SDD workflow? Use commands directly:
+Don't need the full SDD workflow? Use skills directly:
 
-```bash
+```
 # Design a star schema
-claude> /schema "Star schema for e-commerce analytics"
+/agentspec:data-engineering-schema "Star schema for e-commerce analytics"
 
 # Scaffold an Airflow DAG
-claude> /pipeline "Daily orders ETL from Postgres to Snowflake"
+/agentspec:data-engineering-pipeline "Daily orders ETL from Postgres to Snowflake"
 
 # Generate quality checks for a model
-claude> /data-quality models/staging/stg_orders.sql
+/agentspec:data-engineering-data-quality models/staging/stg_orders.sql
 
 # Review SQL for anti-patterns
-claude> /sql-review models/marts/
+/agentspec:data-engineering-sql-review models/marts/
 
 # Migrate legacy stored procedures
-claude> /migrate legacy/etl_orders_proc.sql
+/agentspec:data-engineering-migrate legacy/etl_orders_proc.sql
 
 # Author a data contract
-claude> /data-contract "Contract between orders team and analytics"
+/agentspec:data-engineering-data-contract "Contract between orders team and analytics"
 ```
 
 ## What's Next
 
-- [Core Concepts](../concepts/) -- understand how phases, agents, and KB work together
-- [Tutorials](../tutorials/) -- dbt, star schema, data quality, Spark, streaming, RAG walkthroughs
-- [Reference](../reference/) -- full command, agent, and KB domain catalog
+- [Core Concepts](../concepts/) — understand how phases, agents, and KB work together
+- [Tutorials](../tutorials/) — dbt, star schema, data quality, Spark, streaming, RAG walkthroughs
+- [Reference](../reference/) — full skill, agent, and KB domain catalog
 
 ## Troubleshooting
 
-**Commands not recognized?**
-Ensure `.claude/commands/` exists in your project root with the slash command files.
+**Skills not recognized?**
+Ensure the plugin is installed: `copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot`
 
 **Agent not matching?**
-Check that `.claude/agents/` contains the agent `.md` files. Agents are discovered via glob pattern.
+Check that `.github/agents/` contains the agent `.md` files in the installed plugin.
 
 **Clarity score too low?**
-The `/define` phase requires 12/15 to proceed. For data pipelines, ensure Source Inventory, Schema Contract, and Freshness SLAs are populated.
+The `/agentspec:workflow-define` phase requires 12/15 to proceed. For data pipelines, ensure Source Inventory, Schema Contract, and Freshness SLAs are populated.
 
 **KB domain not loading?**
-Check `.claude/kb/_index.yaml` -- the domain must be registered there. All 23 KB domains come pre-configured.
+Check `.github/kb/_index.yaml` — the domain must be registered there. All 24 KB domains come pre-configured.
+
