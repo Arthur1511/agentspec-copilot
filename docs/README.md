@@ -1,6 +1,6 @@
 # AgentSpec Documentation
 
-> Everything you need to build data pipelines with Spec-Driven Development.
+> Everything you need to build data pipelines with Spec-Driven Development using GitHub Copilot CLI.
 
 ## Start Here
 
@@ -14,21 +14,22 @@
 | Guide | Description |
 |-------|-------------|
 | [Tutorials](tutorials/) | dbt, star schema, data quality, Spark, streaming, RAG walkthroughs |
-| [Reference](reference/) | Full catalog: 58 agents, 29 commands, 23 KB domains, 2 skills |
+| [Reference](reference/) | Full catalog: 58 agents, 35 skills, 24 KB domains |
 
 ## Data Engineering Quick Links
 
-- [DE Commands](../.claude/commands/data-engineering/README.md) -- 8 data engineering slash commands
-- [DE Agents](../.claude/agents/data-engineering/) -- 15 specialist agents
-- [KB Domains](../.claude/kb/_index.yaml) -- 23 knowledge base domains
+- [DE Skills](../.github/skills/) — 9 data engineering skills
+- [DE Agents](../.github/agents/) — 15 specialist agents (prefix `de-`)
+- [KB Domains](../.github/kb/_index.yaml) — 24 knowledge base domains
 
 ## Framework Quick Links
 
-- [SDD Workflow](../.claude/sdd/architecture/WORKFLOW_CONTRACTS.yaml) -- Phase transition rules
-- [All Agents](../.claude/agents/README.md) -- 58 agents across 8 categories
-- [All Commands](../.claude/commands/README.md) -- 29 slash commands
+- [SDD Workflow](../.github/sdd/architecture/WORKFLOW_CONTRACTS.yaml) — Phase transition rules
+- [All Agents](../.github/agents/) — 58 agents across 8 categories
+- [All Skills](../.github/skills/) — 35 skills across 6 categories
 
 ## Need Help?
 
-- [GitHub Issues](https://github.com/luanmorenommaciel/agentspec/issues) -- Bug reports
-- [Discussions](https://github.com/luanmorenommaciel/agentspec/discussions) -- Questions and ideas
+- [GitHub Issues](https://github.com/Arthur1511/agentspec-copilot/issues) — Bug reports
+- [Discussions](https://github.com/Arthur1511/agentspec-copilot/discussions) — Questions and ideas
+

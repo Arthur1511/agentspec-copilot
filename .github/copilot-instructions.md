@@ -1,6 +1,6 @@
 # AgentSpec Copilot CLI — Copilot Instructions
 
-AgentSpec is a GitHub Copilot CLI extension that provides a 5-phase Spec-Driven Development (SDD) workflow with 58 specialized agents, 29 commands, and 24 KB domains for data engineering.
+AgentSpec is a GitHub Copilot CLI extension that provides a 5-phase Spec-Driven Development (SDD) workflow with 58 specialized agents, 35 skills, and 24 KB domains for data engineering.
 
 ---
 
@@ -41,7 +41,7 @@ This repo ships AgentSpec for **two platforms**:
 ```
 .github/
 ├── agents/           # 58 *.agent.md files — flat directory, no subdirectories
-├── skills/           # 31 skill directories, each containing SKILL.md
+├── skills/           # 35 skill directories, each containing SKILL.md
 ├── kb/               # 24 KB domain directories + _index.yaml registry
 │   ├── _index.yaml   # Machine-readable domain registry (entry point for agents)
 │   ├── _templates/   # 7 templates for new domains
@@ -96,7 +96,7 @@ All 58 agents live as a **flat list** in `.github/agents/` — no subdirectories
 | `python-` | Python & code quality | 6 | `python-code-reviewer`, `python-code-cleaner`, `python-developer` |
 | `test-` | QA & contracts | 3 | `test-generator`, `test-data-quality-analyst`, `test-data-contracts-engineer` |
 | `de-` | Data engineering | 15 | `de-spark-engineer`, `de-dbt-specialist`, `de-airflow-specialist`, `de-lakeflow-*` |
-| `dev-` | Developer tools | 4 | `dev-codebase-explorer`, `dev-meeting-analyst`, `dev-prompt-crafter` |
+| `dev-` | Developer tools | 4 | `dev-codebase-explorer`, `dev-meeting-analyst`, `dev-prompt-crafter`, `dev-shell-script-specialist` |
 
 Every agent file follows this structure:
 
@@ -154,16 +154,16 @@ Register new domains in `.github/kb/_index.yaml` before writing any domain files
 
 ### Skill Files
 
-Each skill is a directory containing a single `SKILL.md` file (31 skills total). Skill names use kebab-case with a category prefix:
+Each skill is a directory containing a single `SKILL.md` file (35 skills total). Skill names use kebab-case with a category prefix:
 
 | Prefix | Skills |
 |---|---|
 | `workflow-` | `brainstorm`, `build`, `create-pr`, `define`, `design`, `iterate`, `ship` |
 | `visual-explainer` / `visual-explainer-*` | base + `diff-review`, `fact-check`, `generate-slides`, `generate-visual-plan`, `generate-web-diagram`, `plan-review`, `project-recap`, `share` |
-| `data-engineering-*` | `ai-pipeline`, `data-contract`, `data-quality`, `lakehouse`, `migrate`, `pipeline`, `schema`, `sql-review` |
-| `core-*` | `meeting`, `memory`, `readme-maker`, `sync-context` |
+| `data-engineering-*` | `ai-pipeline`, `data-contract`, `data-quality`, `guide`, `lakehouse`, `migrate`, `pipeline`, `schema`, `sql-review` |
+| `core-*` | `meeting`, `memory`, `readme-maker`, `status`, `sync-context` |
 | `knowledge-*` | `create-kb` |
-| standalone | `excalidraw-diagram`, `review-code` |
+| standalone | `agent-router`, `excalidraw-diagram`, `review-code`, `sdd-workflow` |
 
 ### SDD Templates
 

@@ -31,7 +31,7 @@ categories:
     description: SDD workflow agents and commands
   data_engineering:
     agents: 15
-    skills: 8
+    skills: 9
     description: Data engineering specialists
   architect:
     agents: 8

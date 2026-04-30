@@ -2,7 +2,10 @@
 
 Complete catalog of commands, agents, KB domains, templates, and configuration.
 
-## Slash Commands (29 total)
+## Skills (35 total)
+
+> **Invocation:** `/agentspec:<skill-name>` in GitHub Copilot CLI (e.g., `/agentspec:workflow-brainstorm`)
+
 
 ### Workflow Commands (7)
 
@@ -20,14 +23,14 @@ Complete catalog of commands, agents, KB domains, templates, and configuration.
 
 | Command | Purpose | Primary Agent |
 |---------|---------|---------------|
-| `/pipeline` | DAG/pipeline scaffolding | architect-pipeline |
-| `/schema` | Interactive schema design | architect-schema-designer |
-| `/data-quality` | Quality rules generation | test-data-quality-analyst |
-| `/lakehouse` | Table format + catalog guidance | architect-lakehouse |
-| `/sql-review` | SQL-specific code review | python-code-reviewer + de-sql-optimizer |
-| `/ai-pipeline` | RAG/embedding scaffolding | de-ai-data-engineer |
-| `/data-contract` | Contract authoring (ODCS) | test-data-contracts-engineer |
-| `/migrate` | Legacy ETL migration | de-dbt-specialist + de-spark-engineer |
+| `/pipeline` | DAG/pipeline scaffolding | pipeline-architect |
+| `/schema` | Interactive schema design | schema-designer |
+| `/data-quality` | Quality rules generation | data-quality-analyst |
+| `/lakehouse` | Table format + catalog guidance | lakehouse-architect |
+| `/sql-review` | SQL-specific code review | code-reviewer + sql-optimizer |
+| `/ai-pipeline` | RAG/embedding scaffolding | ai-data-engineer |
+| `/data-contract` | Contract authoring (ODCS) | data-contracts-engineer |
+| `/migrate` | Legacy ETL migration | dbt-specialist + spark-engineer |
 
 ### Core Commands (4)
 
@@ -35,7 +38,7 @@ Complete catalog of commands, agents, KB domains, templates, and configuration.
 |---------|---------|-------|
 | `/meeting` | Meeting transcript analysis | Transcript text or file path |
 | `/memory` | Save session insights to storage | Optional context note |
-| `/sync-context` | Update `copilot-instructions.md` from codebase | `--section`, `--dry-run` |
+| `/sync-context` | Update CLAUDE.md from codebase | `--section`, `--dry-run` |
 | `/readme-maker` | Generate README.md | `--output`, `--style` |
 
 ### Knowledge Commands (1)
@@ -96,14 +99,14 @@ System-level design and architecture decisions.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `architect-genai` | T1 | Opus | Multi-agent orchestration, agentic workflows, production AI systems |
-| `architect-the-planner` | T2 | Opus | Strategic architecture and comprehensive implementation plans |
-| `architect-kb` | T2 | Sonnet | Knowledge base domain creation and audit |
-| `architect-lakehouse` | T2 | Sonnet | Iceberg, Delta Lake, catalog governance design |
-| `architect-medallion` | T1 | Sonnet | Bronze/Silver/Gold layer design, data quality progression |
-| `architect-pipeline` | T2 | Sonnet | Airflow, Dagster, DAG design patterns |
-| `architect-schema-designer` | T2 | Sonnet | Dimensional modeling, SCD, Data Vault |
-| `architect-data-platform-engineer` | T2 | Sonnet | Snowflake, Databricks, BigQuery, cost optimization |
+| `genai-architect` | T1 | Opus | Multi-agent orchestration, agentic workflows, production AI systems |
+| `the-planner` | T2 | Opus | Strategic architecture and comprehensive implementation plans |
+| `kb-architect` | T2 | Sonnet | Knowledge base domain creation and audit |
+| `lakehouse-architect` | T2 | Sonnet | Iceberg, Delta Lake, catalog governance design |
+| `medallion-architect` | T1 | Sonnet | Bronze/Silver/Gold layer design, data quality progression |
+| `pipeline-architect` | T2 | Sonnet | Airflow, Dagster, DAG design patterns |
+| `schema-designer` | T2 | Sonnet | Dimensional modeling, SCD, Data Vault |
+| `data-platform-engineer` | T2 | Sonnet | Snowflake, Databricks, BigQuery, cost optimization |
 
 ### Cloud Agents (10)
 
@@ -111,16 +114,16 @@ Cloud provider services, deployment, and CI/CD.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `cloud-aws-data-architect` | T1 | Sonnet | Lambda, S3, Glue, Redshift, MWAA, serverless pipelines |
-| `cloud-aws-deployer` | T3 | Sonnet | SAM, CloudFormation, CI/CD, Terraform for AWS |
-| `cloud-aws-lambda-architect` | T3 | Sonnet | SAM templates, least-privilege IAM policies |
-| `cloud-lambda-builder` | T3 | Sonnet | Python Lambda handlers, S3-triggered functions |
-| `cloud-gcp-data-architect` | T1 | Sonnet | BigQuery, Cloud Run, Pub/Sub, Dataflow, Vertex AI |
-| `cloud-ai-data-engineer-gcp` | T2 | Sonnet | GCP serverless architectures, Cloud Functions, BigQuery pipelines |
-| `cloud-ai-data-engineer-cloud` | T3 | Sonnet | Cloud architecture optimization, AI/ML pipelines |
-| `cloud-ai-prompt-specialist-gcp` | T3 | Sonnet | Google Gemini, Vertex AI, multi-modal document extraction |
-| `cloud-ci-cd-specialist` | T3 | Sonnet | Azure DevOps, Terraform, Databricks Asset Bundles |
-| `cloud-supabase-specialist` | T3 | Opus | pgvector, RLS, Edge Functions, Auth, Realtime |
+| `aws-data-architect` | T1 | Sonnet | Lambda, S3, Glue, Redshift, MWAA, serverless pipelines |
+| `aws-deployer` | T3 | Sonnet | SAM, CloudFormation, CI/CD, Terraform for AWS |
+| `aws-lambda-architect` | T3 | Sonnet | SAM templates, least-privilege IAM policies |
+| `lambda-builder` | T3 | Sonnet | Python Lambda handlers, S3-triggered functions |
+| `gcp-data-architect` | T1 | Sonnet | BigQuery, Cloud Run, Pub/Sub, Dataflow, Vertex AI |
+| `ai-data-engineer-gcp` | T2 | Sonnet | GCP serverless architectures, Cloud Functions, BigQuery pipelines |
+| `ai-data-engineer-cloud` | T3 | Sonnet | Cloud architecture optimization, AI/ML pipelines |
+| `ai-prompt-specialist-gcp` | T3 | Sonnet | Google Gemini, Vertex AI, multi-modal document extraction |
+| `ci-cd-specialist` | T3 | Sonnet | Azure DevOps, Terraform, Databricks Asset Bundles |
+| `supabase-specialist` | T3 | Opus | pgvector, RLS, Edge Functions, Auth, Realtime |
 
 ### Platform Agents (6)
 
@@ -142,11 +145,11 @@ Python development, code quality, and prompt engineering.
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
 | `python-developer` | T1 | Sonnet | Python code architecture, dataclasses, type hints |
-| `python-code-reviewer` | T2 | Sonnet | Review code for quality and security issues |
-| `python-code-cleaner` | T2 | Sonnet | Clean code, remove redundant comments, apply DRY |
-| `python-code-documenter` | T2 | Sonnet | Generate documentation, READMEs, API docs |
-| `python-ai-prompt-specialist` | T1 | Sonnet | Prompt optimization, structured extraction, few-shot |
-| `python-llm-specialist` | T3 | Opus | Advanced prompt engineering, chain-of-thought, structured output |
+| `code-reviewer` | T2 | Sonnet | Review code for quality and security issues |
+| `code-cleaner` | T2 | Sonnet | Clean code, remove redundant comments, apply DRY |
+| `code-documenter` | T2 | Sonnet | Generate documentation, READMEs, API docs |
+| `ai-prompt-specialist` | T1 | Sonnet | Prompt optimization, structured extraction, few-shot |
+| `llm-specialist` | T3 | Opus | Advanced prompt engineering, chain-of-thought, structured output |
 
 ### Test Agents (3)
 
@@ -155,8 +158,8 @@ Testing, data quality, and contract validation.
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
 | `test-generator` | T2 | Sonnet | Generate pytest tests with fixtures |
-| `test-data-quality-analyst` | T2 | Sonnet | Great Expectations, dbt tests, data contracts |
-| `test-data-contracts-engineer` | T2 | Sonnet | ODCS, SLAs, schema governance |
+| `data-quality-analyst` | T2 | Sonnet | Great Expectations, dbt tests, data contracts |
+| `data-contracts-engineer` | T2 | Sonnet | ODCS, SLAs, schema governance |
 
 ### Data Engineering Agents (15)
 
@@ -164,21 +167,21 @@ Implementation specialists for data pipelines and processing.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `de-dbt-specialist` | T2 | Sonnet | dbt models, macros, tests, incremental strategies |
-| `de-spark-engineer` | T2 | Sonnet | PySpark, Spark SQL, distributed processing |
-| `de-spark-specialist` | T2 | Opus | Spark architecture, configuration, performance |
-| `de-spark-troubleshooter` | T1 | Sonnet | Spark debugging — OOM, data skew, shuffle failures |
-| `de-spark-performance-analyzer` | T1 | Sonnet | Spark tuning — memory, partitions, joins, AQE |
-| `de-spark-streaming-architect` | T3 | Sonnet | Structured Streaming, Kafka, real-time pipelines |
-| `de-streaming-engineer` | T2 | Sonnet | Flink, Kafka, Spark Streaming, CDC |
-| `de-sql-optimizer` | T2 | Sonnet | Query plans, cross-dialect SQL, window functions |
-| `de-airflow-specialist` | T3 | Sonnet | Apache Airflow 3.0, DAGs, TaskFlow API |
-| `de-lakeflow-architect` | T3 | Sonnet | Databricks Lakeflow, Medallion architecture |
-| `de-lakeflow-expert` | T3 | Sonnet | DLT troubleshooting, CDC, SCD Type 2 |
-| `de-lakeflow-pipeline-builder` | T3 | Sonnet | DLT pipeline creation, quality expectations |
-| `de-lakeflow-specialist` | T1 | Sonnet | Declarative pipelines, materialized views, streaming tables |
-| `de-ai-data-engineer` | T2 | Sonnet | RAG pipelines, vector DBs, feature stores |
-| `de-qdrant-specialist` | T3 | Opus | Qdrant vector database, collection management |
+| `dbt-specialist` | T2 | Sonnet | dbt models, macros, tests, incremental strategies |
+| `spark-engineer` | T2 | Sonnet | PySpark, Spark SQL, distributed processing |
+| `spark-specialist` | T2 | Opus | Spark architecture, configuration, performance |
+| `spark-troubleshooter` | T1 | Sonnet | Spark debugging — OOM, data skew, shuffle failures |
+| `spark-performance-analyzer` | T1 | Sonnet | Spark tuning — memory, partitions, joins, AQE |
+| `spark-streaming-architect` | T3 | Sonnet | Structured Streaming, Kafka, real-time pipelines |
+| `streaming-engineer` | T2 | Sonnet | Flink, Kafka, Spark Streaming, CDC |
+| `sql-optimizer` | T2 | Sonnet | Query plans, cross-dialect SQL, window functions |
+| `airflow-specialist` | T3 | Sonnet | Apache Airflow 3.0, DAGs, TaskFlow API |
+| `lakeflow-architect` | T3 | Sonnet | Databricks Lakeflow, Medallion architecture |
+| `lakeflow-expert` | T3 | Sonnet | DLT troubleshooting, CDC, SCD Type 2 |
+| `lakeflow-pipeline-builder` | T3 | Sonnet | DLT pipeline creation, quality expectations |
+| `lakeflow-specialist` | T1 | Sonnet | Declarative pipelines, materialized views, streaming tables |
+| `ai-data-engineer` | T2 | Sonnet | RAG pipelines, vector DBs, feature stores |
+| `qdrant-specialist` | T3 | Opus | Qdrant vector database, collection management |
 
 ### Dev Agents (4)
 
@@ -186,14 +189,14 @@ Developer tools and productivity.
 
 | Agent | Tier | Model | Purpose |
 |-------|------|-------|---------|
-| `dev-prompt-crafter` | T1 | Sonnet | SDD-lite PROMPT.md builder with agent matching |
-| `dev-codebase-explorer` | T2 | Sonnet | Analyze codebase structure with health scoring |
-| `dev-meeting-analyst` | T2 | Sonnet | Extract decisions and action items from meetings |
-| `dev-shell-script-specialist` | T2 | Sonnet | Production-grade Bash scripts, automation, deployment scripts |
+| `prompt-crafter` | T1 | Sonnet | SDD-lite PROMPT.md builder with agent matching |
+| `codebase-explorer` | T2 | Sonnet | Analyze codebase structure with health scoring |
+| `meeting-analyst` | T2 | Sonnet | Extract decisions and action items from meetings |
+| `shell-script-specialist` | T2 | Sonnet | Production-grade Bash scripts, automation, deployment scripts |
 
 ---
 
-## Knowledge Base Domains (22 total)
+## Knowledge Base Domains (24 total)
 
 Domains are grouped into five areas. Each domain contains an `index.md`, a `quick-reference.md`, and `concepts/` and `patterns/` subdirectories.
 
@@ -224,15 +227,16 @@ Domains are grouped into five areas. Each domain contains an `index.md`, a `quic
 | `lakeflow` | Databricks Lakeflow — DLT pipelines and expectations | Materialized views, streaming tables, CDC, DABs deployment |
 | `microsoft-fabric` | Microsoft Fabric — end-to-end platform | Lakehouse, Warehouse, Pipelines, Real-Time Analytics, KQL, CI/CD, AI |
 
-### Cloud Provider Deep Dives (3)
+### Cloud Provider Deep Dives (4)
 
 | Domain | Description | Key Topics |
 |--------|-------------|------------|
 | `aws` | AWS data engineering — Lambda, S3, Glue, MWAA | SAM templates, IAM policies, S3 triggers, Powertools logging |
 | `gcp` | Google Cloud Platform — Cloud Run, Pub/Sub, BigQuery | Cloud Run scaling, event-driven pipelines, GCS-triggered workflows |
 | `terraform` | Terraform IaC — resources, modules, state | GCP/AWS modules, remote state, workspaces, provider config |
+| `supabase` | Supabase — pgvector, Auth, RLS, Edge Functions | pgvector + HNSW, row-level security, serverless functions, Realtime |
 
-### AI and Prompt Engineering (7)
+### AI and Prompt Engineering (8)
 
 | Domain | Description | Key Topics |
 |--------|-------------|------------|
@@ -243,12 +247,13 @@ Domains are grouped into five areas. Each domain contains an `index.md`, a `quic
 | `pydantic` | Pydantic patterns — BaseModel, validators | LLM output validation, extraction schemas, error handling |
 | `python` | Python patterns — dataclasses, type hints | Clean architecture, generators, context managers |
 | `testing` | Testing patterns — pytest, fixtures, mocking | Unit tests, fixture factories, integration tests, Spark testing |
+| `xgboost` | XGBoost — gradient boosting, feature engineering | Model training, hyperparameter tuning, SHAP values, MLflow integration |
 
 ---
 
 ## SDD Templates
 
-All templates live in `.claude/sdd/templates/`:
+All templates live in `.github/sdd/templates/`:
 
 | Template | Phase | Purpose | DE Sections |
 |----------|-------|---------|-------------|
@@ -262,7 +267,7 @@ All templates live in `.claude/sdd/templates/`:
 
 ## KB Templates
 
-All templates live in `.claude/kb/_templates/`:
+All templates live in `.github/kb/_templates/`:
 
 | Template | Purpose |
 |----------|---------|
@@ -276,23 +281,74 @@ All templates live in `.claude/kb/_templates/`:
 
 ---
 
-## Skills (2 core + 2 plugin-only)
+## Skills (35 total)
 
-Skills are reusable capability packs in `.claude/skills/` that provide templates, references, and scripts for specialized generation tasks.
+Skills are reusable capability packs in `.github/skills/` invoked via `/agentspec:<skill-name>` in GitHub Copilot CLI.
 
-| Skill | Description | Commands |
-|-------|-------------|----------|
-| `visual-explainer` | Self-contained HTML pages for diagrams, slides, reviews, and recaps | 8 visual-explainer commands |
-| `excalidraw-diagram` | Excalidraw JSON files for workflow and architecture visualization | Invoked directly |
-
-### Plugin-Only Skills
-
-These skills are bundled in the distributed plugin (`plugin/skills/`) but are not part of the `.claude/` source tree. They are merged in by `build-plugin.sh`.
+### Workflow Skills (7)
 
 | Skill | Description |
 |-------|-------------|
-| `sdd-workflow` | Spec-Driven Development workflow guidance for structured feature development. Proactively guides through the 5-phase SDD workflow: Brainstorm → Define → Design → Build → Ship. |
-| `data-engineering-guide` | Data engineering expertise for pipelines, schemas, data quality, SQL, lakehouse, and streaming. Routes users to the right command and agent based on their task, backed by 23 KB domains. |
+| `workflow-brainstorm` | Collaborative idea exploration (Phase 0) |
+| `workflow-define` | Requirements extraction and validation (Phase 1) |
+| `workflow-design` | Architecture and technical specification (Phase 2) |
+| `workflow-build` | Implementation executor with agent delegation (Phase 3) |
+| `workflow-ship` | Feature archival and lessons learned (Phase 4) |
+| `workflow-iterate` | Cross-phase document updater with cascade awareness |
+| `workflow-create-pr` | Create pull request with conventional commits |
+
+### Visual Explainer Skills (9)
+
+| Skill | Description |
+|-------|-------------|
+| `visual-explainer` | Self-contained HTML pages for any visual explanation |
+| `visual-explainer-diff-review` | Before/after architecture comparison with code review |
+| `visual-explainer-fact-check` | Verify document accuracy against the codebase |
+| `visual-explainer-generate-slides` | Magazine-quality HTML slide deck |
+| `visual-explainer-generate-visual-plan` | Visual implementation plan with state machines |
+| `visual-explainer-generate-web-diagram` | Standalone HTML diagram with full styling |
+| `visual-explainer-plan-review` | Current codebase vs. proposed implementation plan |
+| `visual-explainer-project-recap` | Project state, decisions, and cognitive debt hotspots |
+| `visual-explainer-share` | Share HTML page instantly via Vercel |
+
+### Data Engineering Skills (9)
+
+| Skill | Description |
+|-------|-------------|
+| `data-engineering-guide` | Routing and expertise for pipelines, SQL, quality, and streaming |
+| `data-engineering-pipeline` | DAG/pipeline scaffolding via `architect-pipeline` |
+| `data-engineering-schema` | Interactive schema design via `architect-schema-designer` |
+| `data-engineering-data-quality` | Quality rules generation via `test-data-quality-analyst` |
+| `data-engineering-lakehouse` | Table format and catalog guidance via `architect-lakehouse` |
+| `data-engineering-sql-review` | SQL-specific code review via `de-sql-optimizer` |
+| `data-engineering-ai-pipeline` | RAG/embedding pipeline scaffolding via `de-ai-data-engineer` |
+| `data-engineering-data-contract` | Data contract authoring (ODCS) via `test-data-contracts-engineer` |
+| `data-engineering-migrate` | Legacy ETL migration via `de-dbt-specialist` + `de-spark-engineer` |
+
+### Core Skills (5)
+
+| Skill | Description |
+|-------|-------------|
+| `core-meeting` | Meeting transcript analysis and structured documentation |
+| `core-memory` | Save valuable session insights to storage |
+| `core-readme-maker` | Generate comprehensive README.md via codebase analysis |
+| `core-status` | Generate comprehensive project status report |
+| `core-sync-context` | Sync project context to copilot-instructions.md |
+
+### Knowledge Skills (1)
+
+| Skill | Description |
+|-------|-------------|
+| `knowledge-create-kb` | Create a new KB domain from scratch with MCP validation |
+
+### Standalone Skills (4)
+
+| Skill | Description |
+|-------|-------------|
+| `agent-router` | Intelligent agent routing based on file patterns and intent keywords |
+| `sdd-workflow` | SDD workflow guidance — proactively routes through 5 phases |
+| `excalidraw-diagram` | Excalidraw JSON files for workflow and architecture visualization |
+| `review-code` | Dual AI code review with CodeRabbit + Claude Code |
 
 ---
 
@@ -300,7 +356,7 @@ These skills are bundled in the distributed plugin (`plugin/skills/`) but are no
 
 ### Workflow Contracts
 
-Phase transition rules are defined in `.claude/sdd/architecture/WORKFLOW_CONTRACTS.yaml`:
+Phase transition rules are defined in `.github/sdd/architecture/WORKFLOW_CONTRACTS.yaml`:
 
 - Phase inputs, outputs, and quality gates
 - Model allocation per phase (Opus/Sonnet/Haiku)
@@ -312,7 +368,7 @@ Phase transition rules are defined in `.claude/sdd/architecture/WORKFLOW_CONTRAC
 
 ### Settings
 
-Project settings in `.claude/settings.local.json` (auto-generated, gitignored — personal to each developer):
+Project settings in `.github/settings.local.json` (auto-generated, gitignored — personal to each developer):
 
 - `permissions` — tool access control
 - `outputStyle` — response formatting (e.g., "Explanatory")
@@ -323,10 +379,10 @@ Project settings in `.claude/settings.local.json` (auto-generated, gitignored �
 
 | Artifact | Pattern | Location |
 |----------|---------|----------|
-| Brainstorm document | `BRAINSTORM_{FEATURE}.md` | `.claude/sdd/features/` |
-| Requirements document | `DEFINE_{FEATURE}.md` | `.claude/sdd/features/` |
-| Design document | `DESIGN_{FEATURE}.md` | `.claude/sdd/features/` |
-| Build report | `BUILD_REPORT_{FEATURE}.md` | `.claude/sdd/reports/` |
-| Shipped archive | `SHIPPED_{YYYY-MM-DD}.md` | `.claude/sdd/archive/{FEATURE}/` |
+| Brainstorm document | `BRAINSTORM_{FEATURE}.md` | `.github/sdd/features/` |
+| Requirements document | `DEFINE_{FEATURE}.md` | `.github/sdd/features/` |
+| Design document | `DESIGN_{FEATURE}.md` | `.github/sdd/features/` |
+| Build report | `BUILD_REPORT_{FEATURE}.md` | `.github/sdd/reports/` |
+| Shipped archive | `SHIPPED_{YYYY-MM-DD}.md` | `.github/sdd/archive/{FEATURE}/` |
 
 Feature names use `SCREAMING_SNAKE_CASE` (e.g., `ORDERS_PIPELINE`, `STAR_SCHEMA`).

@@ -1,6 +1,6 @@
 {
   "name": "agentspec",
-  "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 31 skills",
+  "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 35 skills",
   "version": "1.0.0",
   "author": {
     "name": "Arthur Pinto",

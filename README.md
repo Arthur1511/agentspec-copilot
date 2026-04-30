@@ -44,7 +44,7 @@ AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow 
 copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
 ```
 
-Done. Every Copilot CLI session now has 58 agents, 31 skills, and 24 KB domains. Updates are one command:
+Done. Every Copilot CLI session now has 58 agents, 35 skills, and 24 KB domains. Updates are one command:
 
 ```bash
 copilot plugin update agentspec
@@ -220,7 +220,7 @@ Each domain contains an `index.md`, `quick-reference.md`, `concepts/` (3-6 files
 agentspec-copilot/
 ├── .github/                 # Source of truth for Copilot CLI
 │   ├── agents/              # 58 *.agent.md files (flat directory)
-│   ├── skills/              # 31 skill directories (each with SKILL.md)
+│   ├── skills/              # 35 skill directories (each with SKILL.md)
 │   ├── kb/                  # 24 KB domain directories + _index.yaml
 │   ├── sdd/                 # Templates, contracts, features, archive
 │   ├── copilot-instructions.md  # Copilot CLI system prompt
@@ -228,7 +228,7 @@ agentspec-copilot/
 │
 ├── plugin-copilot/          # Distributable Copilot CLI extension (generated)
 │   ├── agents/              # Path-rewritten agents
-│   ├── skills/              # All 31 skills
+│   ├── skills/              # All 35 skills
 │   └── ...                  # kb, sdd, manifest
 │
 ├── build-copilot.sh         # Packages .github/ → plugin-copilot/ (Linux/macOS)
@@ -248,7 +248,7 @@ agentspec-copilot/
 | [Getting Started](docs/getting-started/) | Install and build your first data pipeline |
 | [Core Concepts](docs/concepts/) | SDD pillars through a data engineering lens |
 | [Tutorials](docs/tutorials/) | dbt, star schema, data quality, Spark, streaming, RAG |
-| [Reference](docs/reference/) | Full catalog: 58 agents, 31 skills, 24 KB domains |
+| [Reference](docs/reference/) | Full catalog: 58 agents, 35 skills, 24 KB domains |
 
 <br/>
 

@@ -16,7 +16,7 @@ Generate self-contained HTML files for technical diagrams, visualizations, and d
 
 ## Available Commands
 
-Detailed prompt templates in `.github/commands/visual-explainer/`. In GitHub Copilot CLI, these are slash commands (`/diff-review`). In Claude Code, namespaced (`/visual-explainer:diff-review`).
+Detailed prompt templates in `.github/skills/visual-explainer/`. In GitHub Copilot CLI, these are slash commands (`/diff-review`). In Claude Code, namespaced (`/visual-explainer:diff-review`).
 
 | Command | What it does |
 |---------|-------------|
