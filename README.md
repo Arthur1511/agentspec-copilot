@@ -40,18 +40,17 @@ AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow 
 ## Install
 
 ```bash
-# Install the plugin (one-time)
-copilot plugin install Arthur1511/agentspec-copilot:plugin-copilot
+# Install from a registered marketplace (Recomended)
+/plugin marketplace add arthur1511/agentspec-copilot
+/plugin install agentspec@agentspec
 ```
 
 Done. Every Copilot CLI session now has 58 agents, 35 skills, and 24 KB domains. Updates are one command:
 
 ```bash
-copilot plugin update agentspec
+# marketplace install
+/plugin update agentspec@agentspec
 ```
-
-<details>
-<summary><b>Alternative install methods</b></summary>
 
 ```bash
 # Install from a registered marketplace
@@ -76,21 +75,21 @@ copilot plugin install ./plugin-copilot
 ### Build a data pipeline in 5 phases
 
 ```bash
-/agentspec:workflow-brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
-/agentspec:workflow-define ORDERS_PIPELINE
-/agentspec:workflow-design ORDERS_PIPELINE
-/agentspec:workflow-build ORDERS_PIPELINE
-/agentspec:workflow-ship ORDERS_PIPELINE
+/agentspec:brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
+/agentspec:define ORDERS_PIPELINE
+/agentspec:design ORDERS_PIPELINE
+/agentspec:build ORDERS_PIPELINE
+/agentspec:ship ORDERS_PIPELINE
 ```
 
 ### Or jump straight to what you need
 
 ```bash
-/agentspec:data-engineering-schema "Star schema for e-commerce analytics"
-/agentspec:data-engineering-pipeline "Daily orders ETL with Airflow"
-/agentspec:data-engineering-data-quality models/staging/stg_orders.sql
-/agentspec:data-engineering-sql-review models/marts/
-/agentspec:data-engineering-data-contract "Contract between orders team and analytics"
+/agentspec:schema "Star schema for e-commerce analytics"
+/agentspec:pipeline "Daily orders ETL with Airflow"
+/agentspec:data-quality models/staging/stg_orders.sql
+/agentspec:sql-review models/marts/
+/agentspec:data-contract "Contract between orders team and analytics"
 ```
 
 <br/>
