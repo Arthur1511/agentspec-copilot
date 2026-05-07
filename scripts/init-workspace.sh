@@ -112,7 +112,7 @@ detect_stack() {
     fi
 
     # Airflow
-    if find . -maxdepth 4 -name "*.py" 2>/dev/null | xargs grep -l "from airflow" 2>/dev/null | grep -q .; then
+    if find . -maxdepth 4 -name "*.py" -exec grep -ql "from airflow" {} + 2>/dev/null; then
         detected+=("airflow")
     fi
 
@@ -127,12 +127,13 @@ detect_stack() {
     fi
 
     # Spark / PySpark
-    if find . -maxdepth 4 -name "*.py" 2>/dev/null | xargs grep -l "from pyspark\|import pyspark" 2>/dev/null | grep -q .; then
+    if find . -maxdepth 4 -name "*.py" -exec grep -ql "from pyspark\|import pyspark" {} + 2>/dev/null; then
         detected+=("spark")
     fi
 
     # Streaming / Kafka
-    if find . -maxdepth 4 -name "*.py" -o -name "*.java" -o -name "*.scala" 2>/dev/null | xargs grep -l "kafka\|flink\|KafkaProducer\|KafkaConsumer" 2>/dev/null | grep -q .; then
+    if find . -maxdepth 4 \( -name "*.py" -o -name "*.java" -o -name "*.scala" \) \
+        -exec grep -ql "kafka\|flink\|KafkaProducer\|KafkaConsumer" {} + 2>/dev/null; then
         detected+=("streaming-kafka")
     fi
 
@@ -147,7 +148,7 @@ detect_stack() {
     fi
 
     # Pydantic
-    if find . -maxdepth 4 -name "*.py" 2>/dev/null | xargs grep -l "from pydantic\|import pydantic" 2>/dev/null | grep -q .; then
+    if find . -maxdepth 4 -name "*.py" -exec grep -ql "from pydantic\|import pydantic" {} + 2>/dev/null; then
         detected+=("pydantic")
     fi
 
@@ -229,10 +230,10 @@ elif [[ "$(find "${DETECTED_STACK}" -mmin +1440 2>/dev/null)" != "" ]]; then
 fi
 
 if [[ "${SHOULD_DETECT}" == "true" ]]; then
-    detected=$(detect_stack)
-    write_detected_stack "${detected}"
-    if [[ -n "${detected}" ]]; then
-        log "Stack detected: ${detected}"
+    stack_result=$(detect_stack)
+    write_detected_stack "${stack_result}"
+    if [[ -n "${stack_result}" ]]; then
+        log "Stack detected: ${stack_result}"
     else
         log "No specific stack detected."
     fi
