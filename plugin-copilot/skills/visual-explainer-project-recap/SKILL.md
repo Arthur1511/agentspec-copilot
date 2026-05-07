@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-project-recap
+name: project-recap
 description: Generate a visual HTML project recap — rebuild mental model of a project's current state, recent decisions, and cognitive debt hotspots. Use when re-entering a project or summarizing recent activity.
 ---
 

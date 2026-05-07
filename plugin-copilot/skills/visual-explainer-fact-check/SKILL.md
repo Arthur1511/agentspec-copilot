@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-fact-check
+name: fact-check
 description: Verify the factual accuracy of a document against the actual codebase, correct inaccuracies in place. Use when validating HTML review pages, plan documents, or any document making claims about code.
 ---
 

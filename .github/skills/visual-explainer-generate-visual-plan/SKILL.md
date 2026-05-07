@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-generate-visual-plan
+name: generate-visual-plan
 description: Generate a visual HTML implementation plan — detailed feature specification with state machines, code snippets, and edge cases. Use when planning a feature implementation with architectural depth.
 ---
 

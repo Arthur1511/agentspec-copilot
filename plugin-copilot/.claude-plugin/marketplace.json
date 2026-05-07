@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "AgentSpec — Spec-Driven Data Engineering plugins for GitHub Copilot CLI",
-    "version": "1.0.0"
+    "version": "3.2.0"
   },
   "plugins": [
     {
       "name": "agentspec",
-      "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 35 skills",
-      "version": "1.0.0",
+      "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 36 skills",
+      "version": "3.2.0",
       "source": "./",
       "author": {
         "name": "Arthur Pinto",
@@ -35,7 +35,8 @@
         "streaming"
       ],
       "agents": "agents/",
-      "skills": "skills/"
+      "skills": "skills/",
+      "hooks": "hooks/hooks.json"
     }
   ]
 }

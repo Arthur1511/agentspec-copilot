@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-generate-slides
+name: generate-slides
 description: Generate a stunning magazine-quality slide deck as a self-contained HTML page. Use when creating presentations, stakeholder decks, or visual storytelling for any technical topic.
 ---
 

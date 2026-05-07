@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-diff-review
+name: diff-review
 description: Generate a visual HTML diff review — before/after architecture comparison with code review analysis. Use when visualizing code changes, comparing branches, or reviewing PRs visually.
 ---
 

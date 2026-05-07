@@ -1,5 +1,5 @@
 ---
-name: knowledge-create-kb
+name: create-kb
 description: Create a complete KB domain from scratch with MCP validation. Use when adding a new knowledge base domain for a technology, library, or concept.
 ---
 

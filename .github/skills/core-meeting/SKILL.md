@@ -1,5 +1,5 @@
 ---
-name: core-meeting
+name: meeting
 description: Analyze meeting transcripts — extract decisions, action items, and create SSOT documents. Use when processing standup notes, stakeholder reviews, or sprint meetings.
 ---
 

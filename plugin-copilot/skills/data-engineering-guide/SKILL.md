@@ -1,5 +1,5 @@
 ---
-name: data-engineering-guide
+name: guide
 description: |
   Data engineering expertise for pipelines, schemas, data quality, SQL, lakehouse, and streaming.
   Use PROACTIVELY when the user discusses data pipelines, ETL/ELT, schema design, dimensional modeling,

@@ -13,10 +13,10 @@ extension:
 
 # AgentSpec metadata
 agentspec:
-  version: "3.0.0"
+  version: "3.2.0"
   agents: 58
   kb_domains: 24
-  skills: 35
+  skills: 36
   cognitive_framework:
     - kb_first
     - confidence_scored
