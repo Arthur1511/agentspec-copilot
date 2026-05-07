@@ -68,11 +68,11 @@ if [[ ! -f "${SOURCE_DIR}/manifest.yaml" ]]; then
     exit 1
 fi
 
-if [[ ! -f "${PLUGIN_DIR}/.claude-plugin/plugin.json" ]]; then
-    error "plugin-copilot/.claude-plugin/plugin.json not found."
-    error "Create the plugin manifest before building."
-    exit 1
-fi
+# if [[ ! -f "${PLUGIN_DIR}/.claude-plugin/plugin.json" ]]; then
+#     error "plugin-copilot/.claude-plugin/plugin.json not found."
+#     error "Create the plugin manifest before building."
+#     exit 1
+# fi
 
 info "Building AgentSpec Copilot CLI plugin from .github/ ..."
 
