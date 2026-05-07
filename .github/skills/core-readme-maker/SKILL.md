@@ -1,5 +1,5 @@
 ---
-name: core-readme-maker
+name: readme-maker
 description: Generate comprehensive, production-ready README.md by analyzing codebase with explorer + documenter agents. Use when creating or updating project documentation.
 ---
 

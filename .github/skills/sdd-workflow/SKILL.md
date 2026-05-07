@@ -1,5 +1,5 @@
 ---
-name: sdd-workflow
+name: workflow
 description: |
   Spec-Driven Development workflow guidance for structured feature development.
   Use PROACTIVELY when the user discusses building features, planning implementations, capturing requirements,

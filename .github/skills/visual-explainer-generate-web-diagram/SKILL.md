@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-generate-web-diagram
+name: generate-web-diagram
 description: Generate a beautiful standalone HTML diagram and open it in the browser. Use when visualizing workflows, architectures, systems, or any concept that benefits from a rich visual page.
 ---
 

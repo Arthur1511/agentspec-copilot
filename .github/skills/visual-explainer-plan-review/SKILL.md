@@ -1,5 +1,5 @@
 ---
-name: visual-explainer-plan-review
+name: plan-review
 description: Generate a visual HTML plan review — current codebase state vs. proposed implementation plan. Use when evaluating a spec, RFC, or design document against the actual codebase.
 ---
 

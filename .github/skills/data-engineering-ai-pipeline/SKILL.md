@@ -1,5 +1,5 @@
 ---
-name: data-engineering-ai-pipeline
+name: ai-pipeline
 description: RAG/embedding pipeline scaffolding — delegates to de-ai-data-engineer agent. Use when building RAG pipelines, embedding workflows, feature stores, or text-to-SQL systems.
 ---
 

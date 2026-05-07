@@ -78,6 +78,17 @@ if (-not (Test-Path (Join-Path $PluginDir '.claude-plugin\plugin.json'))) {
 
 Write-Info "Building AgentSpec Copilot CLI plugin from .github/ ..."
 
+# --- Step 0: Generate agent router --------------------------------------------
+
+Write-Info "Generating agent router (step 0)..."
+$result = & uv run python scripts/generate-agent-router.py 2>&1
+if ($LASTEXITCODE -ne 0) {
+    Write-Err "Agent router generation failed. Fix scripts/generate-agent-router.py before building."
+    Write-Err $result
+    exit 1
+}
+Write-Ok "Agent router generated."
+
 # --- Step 1: Clean previous build ---------------------------------------------
 
 Write-Info "Cleaning previous build..."

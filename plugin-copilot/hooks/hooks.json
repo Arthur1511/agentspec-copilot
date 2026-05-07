@@ -4,8 +4,8 @@
     "sessionStart": [
       {
         "type": "command",
-        "bash": "([[ -d .git ]] || [[ -f copilot-instructions.md ]] || [[ -d .github ]]) && mkdir -p .github/sdd/features .github/sdd/reports .github/sdd/archive || true",
-        "powershell": "if ((Test-Path '.git') -or (Test-Path 'copilot-instructions.md') -or (Test-Path '.github')) { @('.github/sdd/features','.github/sdd/reports','.github/sdd/archive') | ForEach-Object { New-Item -ItemType Directory -Force -Path $_ | Out-Null } }",
+        "bash": "bash scripts/init-workspace.sh 2>/dev/null || true",
+        "powershell": "if (Get-Command bash -ErrorAction SilentlyContinue) { bash scripts/init-workspace.sh 2>$null } elseif ((Test-Path '.git') -or (Test-Path 'copilot-instructions.md') -or (Test-Path '.github')) { @('.github/sdd/features','.github/sdd/reports','.github/sdd/archive') | ForEach-Object { New-Item -ItemType Directory -Force -Path $_ | Out-Null } }",
         "timeoutSec": 30
       }
     ]

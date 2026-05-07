@@ -1,5 +1,5 @@
 ---
-name: core-status
+name: status
 description: |
   Generate a comprehensive project status report — active features, recent decisions, agent recommendations, and health assessment.
   Use PROACTIVELY when the user asks for project status, current state, active work, or health check.

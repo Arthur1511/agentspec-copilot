@@ -1,9 +1,9 @@
 # AgentSpec - Workflow Contracts
 # 5-Phase Development Workflow with Agent Matching and Delegation
-# Version: 3.0.0
-# Date: 2026-04-14
+# Version: 3.2.0
+# Date: 2026-05-07
 
-version: "3.0.0"
+version: "3.2.0"
 name: "AgentSpec"
 description: "5-phase spec-driven development workflow with agent orchestration for software and data engineering"
 
@@ -782,6 +782,42 @@ status_transitions:
     - "workflow-ship: Update all documents to 'Shipped'"
 
 # =============================================================================
+# AGENT RESOLUTION
+# =============================================================================
+
+agent_resolution:
+  description: "How agents are located and loaded at runtime in the Copilot CLI fork."
+  structure: "Flat — all agents live as *.agent.md files in a single directory."
+
+  directories:
+    plugin_agents: "${COPILOT_PLUGIN_ROOT}/agents/"
+    local_agents:  "${COPILOT_PLUGIN_ROOT}/agents/"
+
+  resolution_order:
+    - priority: 1
+      location: "${COPILOT_PLUGIN_ROOT}/agents/<name>.agent.md"
+      description: "Local project-level agent override (checked first)"
+    - priority: 2
+      location: "${COPILOT_PLUGIN_ROOT}/agents/<name>.agent.md"
+      description: "Plugin-bundled agent (fallback)"
+
+  conventions:
+    - "All 58 agents live as flat *.agent.md files — no category subdirectories."
+    - "Agent names use kebab-case category prefixes: de-, architect-, cloud-, fabric-, python-, test-, workflow-, dev-."
+    - "Local overrides in ${COPILOT_PLUGIN_ROOT}/agents/ are scoped to the project and take priority."
+    - "Custom user agents live in ${COPILOT_PLUGIN_ROOT}/agents/custom/ to avoid name collisions with plugin agents."
+
+  agent_prefixes:
+    workflow:   ["workflow-brainstorm", "workflow-define", "workflow-design", "workflow-build", "workflow-iterate", "workflow-ship"]
+    architect:  ["architect-the-planner", "architect-pipeline", "architect-schema-designer", "architect-lakehouse", "architect-medallion", "architect-genai", "architect-kb", "architect-data-platform-engineer"]
+    cloud:      ["cloud-aws-data-architect", "cloud-aws-lambda-architect", "cloud-aws-deployer", "cloud-lambda-builder", "cloud-gcp-data-architect", "cloud-ai-data-engineer-gcp", "cloud-ai-data-engineer-cloud", "cloud-ai-prompt-specialist-gcp", "cloud-supabase-specialist", "cloud-ci-cd-specialist"]
+    fabric:     ["fabric-architect", "fabric-pipeline-developer", "fabric-security-specialist", "fabric-cicd-specialist", "fabric-logging-specialist", "fabric-ai-specialist"]
+    python:     ["python-developer", "python-code-reviewer", "python-code-cleaner", "python-code-documenter", "python-ai-prompt-specialist", "python-llm-specialist"]
+    test:       ["test-generator", "test-data-quality-analyst", "test-data-contracts-engineer"]
+    de:         ["de-spark-engineer", "de-spark-specialist", "de-spark-streaming-architect", "de-spark-troubleshooter", "de-spark-performance-analyzer", "de-dbt-specialist", "de-airflow-specialist", "de-sql-optimizer", "de-streaming-engineer", "de-lakeflow-specialist", "de-lakeflow-architect", "de-lakeflow-expert", "de-lakeflow-pipeline-builder", "de-lakeflow-builder", "de-ai-data-engineer", "de-qdrant-specialist"]
+    dev:        ["dev-codebase-explorer", "dev-meeting-analyst", "dev-prompt-crafter", "dev-shell-script-specialist"]
+
+# =============================================================================
 # QUALITY STANDARDS
 # =============================================================================
 
@@ -824,6 +860,19 @@ quality:
 # =============================================================================
 
 version_history:
+  - version: "3.2.0"
+    date: "2026-05-07"
+    changes:
+      - "Judge Layer V0: cross-model second opinion via OpenRouter (scripts/judge.py)"
+      - "Workspace initializer hook: scripts/init-workspace.sh auto-creates SDD dirs and detected-stack"
+      - "review-judge skill: user-invokable wrapper for judge.py (36th skill)"
+      - "Agent resolution contract: flat ${COPILOT_PLUGIN_ROOT}/agents/ structure, priority-1 local override"
+      - "Build scripts Step 0: agent router auto-generation before clean"
+      - "Makefile: contributor tooling (build, check, generate, lint, clean, install-deps)"
+      - "Agent override guide: docs/concepts/agent-overrides.md"
+      - "Judge setup guide: docs/getting-started/judge-setup.md"
+      - ".shellcheckrc: SC1091 + SC2155 disabled for all shell scripts"
+
   - version: "3.0.0"
     date: "2026-04-14"
     changes:

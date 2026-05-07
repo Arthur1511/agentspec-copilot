@@ -1,5 +1,5 @@
 ---
-name: core-memory
+name: memory
 description: Save valuable insights from the current session to storage. Use when you've discovered decisions, patterns, or gotchas worth remembering across sessions.
 ---
 

@@ -76,6 +76,15 @@ fi
 
 info "Building AgentSpec Copilot CLI plugin from .github/ ..."
 
+# --- Step 0: Generate agent router ------------------------------------------
+
+info "Generating agent router (step 0)..."
+if ! python3 scripts/generate-agent-router.py; then
+    error "Agent router generation failed. Fix scripts/generate-agent-router.py before building."
+    exit 1
+fi
+ok "Agent router generated."
+
 # --- Step 1: Clean previous build --------------------------------------------
 
 info "Cleaning previous build..."

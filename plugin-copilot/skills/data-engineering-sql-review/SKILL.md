@@ -1,5 +1,5 @@
 ---
-name: data-engineering-sql-review
+name: sql-review
 description: SQL-specific code review — delegates to de-sql-optimizer + python-code-reviewer agents. Use when reviewing SQL for anti-patterns, performance issues, or cross-dialect correctness.
 ---
 

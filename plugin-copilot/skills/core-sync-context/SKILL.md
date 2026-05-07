@@ -1,5 +1,5 @@
 ---
-name: core-sync-context
+name: sync-context
 description: Sync project context to copilot-instructions.md by analyzing codebase patterns and conventions. Use after adding agents, commands, or significant architecture changes.
 ---
 

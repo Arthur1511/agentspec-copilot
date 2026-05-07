@@ -1,5 +1,5 @@
 ---
-name: data-engineering-lakehouse
+name: lakehouse
 description: Table format and catalog guidance — delegates to architect-lakehouse agent. Use when working with Iceberg, Delta Lake, catalogs, or migrating from legacy table formats.
 ---
 
