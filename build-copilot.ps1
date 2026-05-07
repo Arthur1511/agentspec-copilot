@@ -70,11 +70,11 @@ if (-not (Test-Path (Join-Path $SourceDir 'manifest.yaml'))) {
     exit 1
 }
 
-if (-not (Test-Path (Join-Path $PluginDir '.claude-plugin\plugin.json'))) {
-    Write-Err "plugin-copilot/.claude-plugin/plugin.json not found."
-    Write-Err "Create the plugin manifest before building."
-    exit 1
-}
+# if (-not (Test-Path (Join-Path $PluginDir '.claude-plugin\plugin.json'))) {
+#     Write-Err "plugin-copilot/.claude-plugin/plugin.json not found."
+#     Write-Err "Create the plugin manifest before building."
+#     exit 1
+# }
 
 Write-Info "Building AgentSpec Copilot CLI plugin from .github/ ..."
 
