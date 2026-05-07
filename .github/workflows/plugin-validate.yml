@@ -2,33 +2,35 @@ name: Validate Plugin
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
     paths:
-      - '.github/agents/**'
-      - '.github/skills/**'
-      - '.github/kb/**'
-      - '.github/sdd/templates/**'
-      - '.github/sdd/architecture/**'
-      - '.github/manifest.yaml'
-      - 'build-copilot.sh'
-      - 'build-copilot.ps1'
-      - 'plugin-copilot/.claude-plugin/**'
-      - 'plugin-copilot/hooks/**'
-      - 'plugin-copilot/scripts/**'
+      - ".github/agents/**"
+      - ".github/skills/**"
+      - ".github/kb/**"
+      - ".github/sdd/templates/**"
+      - ".github/sdd/architecture/**"
+      - ".github/manifest.yaml"
+      - "build-copilot.sh"
+      - "build-copilot.ps1"
+      - ".claude-plugin/**"
+      - ".github/plugin/**"
+      - "plugin-copilot/hooks/**"
+      - "plugin-copilot/scripts/**"
   pull_request:
-    branches: [main]
+    branches: [ main ]
     paths:
-      - '.github/agents/**'
-      - '.github/skills/**'
-      - '.github/kb/**'
-      - '.github/sdd/templates/**'
-      - '.github/sdd/architecture/**'
-      - '.github/manifest.yaml'
-      - 'build-copilot.sh'
-      - 'build-copilot.ps1'
-      - 'plugin-copilot/.claude-plugin/**'
-      - 'plugin-copilot/hooks/**'
-      - 'plugin-copilot/scripts/**'
+      - ".github/agents/**"
+      - ".github/skills/**"
+      - ".github/kb/**"
+      - ".github/sdd/templates/**"
+      - ".github/sdd/architecture/**"
+      - ".github/manifest.yaml"
+      - "build-copilot.sh"
+      - "build-copilot.ps1"
+      - ".claude-plugin/**"
+      - ".github/plugin/**"
+      - "plugin-copilot/hooks/**"
+      - "plugin-copilot/scripts/**"
 
 jobs:
   validate:
@@ -41,7 +43,7 @@ jobs:
           echo "Checking plugin.json syntax..."
           python3 -c "
           import json, sys
-          with open('plugin-copilot/.claude-plugin/plugin.json') as f:
+          with open('.copilot-plugin/plugin.json') as f:
               data = json.load(f)
           required = ['name', 'version', 'description']
           missing = [k for k in required if k not in data]
@@ -56,7 +58,7 @@ jobs:
           echo "Checking marketplace.json syntax..."
           python3 -c "
           import json
-          with open('plugin-copilot/.claude-plugin/marketplace.json') as f:
+          with open('.github/plugin/marketplace.json') as f:
               data = json.load(f)
           assert 'name' in data, 'Missing top-level name field'
           assert 'owner' in data, 'Missing top-level owner field'
@@ -87,7 +89,6 @@ jobs:
             | grep -v '\.github/copilot-instructions' \
             | grep -v '\.github/CLAUDE\.md' \
             | grep -v '\.github/\*\*' \
-            | grep -v '\.claude-plugin' \
             | grep -v '^[[:space:]]*#' \
             | grep -v '├── \.github' \
             || true)
@@ -132,4 +133,3 @@ jobs:
           echo "Checking init script..."
           test -f plugin-copilot/scripts/init-workspace.sh || { echo "::error::init-workspace.sh not found"; exit 1; }
           echo "All checks passed"
-
