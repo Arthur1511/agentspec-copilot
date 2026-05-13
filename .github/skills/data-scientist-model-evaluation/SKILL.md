@@ -1,6 +1,10 @@
 ---
 name: model-evaluation
-description: Model evaluation for data scientists — delegates to ds-model-evaluator agent. Use when computing classification or regression metrics, plotting ROC/PR curves, calibrating probabilities, tuning decision thresholds, or comparing models statistically.
+description: |
+  Model evaluation for data scientists — delegates to ds-model-evaluator agent.
+  Use when computing classification or regression metrics, plotting ROC/PR
+  curves, calibrating probabilities, tuning decision thresholds, or comparing
+  models statistically.
 ---
 
 # Model Evaluation Command

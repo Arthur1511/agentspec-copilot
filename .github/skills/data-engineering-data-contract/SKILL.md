@@ -1,6 +1,9 @@
 ---
 name: data-contract
-description: Data contract authoring (ODCS) — delegates to test-data-contracts-engineer agent. Use when defining producer-consumer agreements, SLAs, or schema governance rules.
+description: |
+  Data contract authoring (ODCS) — delegates to test-data-contracts-engineer
+  agent. Use when defining producer-consumer agreements, SLAs, or schema
+  governance rules.
 ---
 
 # Data Contract Command

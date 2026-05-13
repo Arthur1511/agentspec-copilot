@@ -1,6 +1,9 @@
 ---
 name: design
-description: Create architecture and technical specification from a DEFINE document (Phase 2). Use when the user wants to design a solution, create an architecture, or plan implementation after requirements are captured.
+description: |
+  Create architecture and technical specification from a DEFINE document (Phase
+  2). Use when the user wants to design a solution, create an architecture, or
+  plan implementation after requirements are captured.
 ---
 
 # Design Command

@@ -1,6 +1,9 @@
 ---
 name: data-quality
-description: Data quality rules generation — delegates to test-data-quality-analyst agent. Use when generating Great Expectations suites, dbt tests, or SQL quality assertions for your data models.
+description: |
+  Data quality rules generation — delegates to test-data-quality-analyst agent.
+  Use when generating Great Expectations suites, dbt tests, or SQL quality
+  assertions for your data models.
 ---
 
 # Data Quality Command

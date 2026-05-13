@@ -1,6 +1,9 @@
 ---
 name: share
-description: Share a visual explainer HTML file instantly via Vercel — returns a live URL with no authentication required. Use when sharing diagrams, reviews, or slide decks with others.
+description: |
+  Share a visual explainer HTML file instantly via Vercel — returns a live URL
+  with no authentication required. Use when sharing diagrams, reviews, or slide
+  decks with others.
 ---
 
 # Share Visual Explainer Page

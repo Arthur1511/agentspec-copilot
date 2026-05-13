@@ -1,6 +1,9 @@
 ---
 name: define
-description: Capture and validate requirements in one pass (Phase 1). Use when the user wants to extract requirements from notes, emails, a BRAINSTORM document, or a direct request.
+description: |
+  Capture and validate requirements in one pass (Phase 1). Use when the user
+  wants to extract requirements from notes, emails, a BRAINSTORM document, or a
+  direct request.
 ---
 
 # Define Command

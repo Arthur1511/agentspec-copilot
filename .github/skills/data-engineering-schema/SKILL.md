@@ -1,6 +1,9 @@
 ---
 name: schema
-description: Interactive schema design — delegates to architect-schema-designer agent. Use when designing star schemas, Data Vault models, SCD strategies, or DDL for any target platform.
+description: |
+  Interactive schema design — delegates to architect-schema-designer agent. Use
+  when designing star schemas, Data Vault models, SCD strategies, or DDL for any
+  target platform.
 ---
 
 # Schema Command

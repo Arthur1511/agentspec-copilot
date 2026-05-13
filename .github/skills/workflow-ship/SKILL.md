@@ -1,6 +1,9 @@
 ---
 name: ship
-description: Archive a completed feature with lessons learned (Phase 4). Use when the build is done, all tests pass, and the user wants to finalize and archive the feature.
+description: |
+  Archive a completed feature with lessons learned (Phase 4). Use when the build
+  is done, all tests pass, and the user wants to finalize and archive the
+  feature.
 ---
 
 # Ship Command

@@ -1,6 +1,9 @@
 ---
 name: brainstorm
-description: Explore ideas through collaborative dialogue before requirements capture (Phase 0). Use when the user wants to brainstorm a feature, explore an idea, or hasn't defined requirements yet.
+description: |
+  Explore ideas through collaborative dialogue before requirements capture
+  (Phase 0). Use when the user wants to brainstorm a feature, explore an idea,
+  or hasn't defined requirements yet.
 ---
 
 # Brainstorm Command

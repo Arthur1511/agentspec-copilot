@@ -1,6 +1,9 @@
 ---
 name: code
-description: Dual AI code review with CodeRabbit + Claude Code for maximum coverage. Use when reviewing changes before a PR, or for deep architectural analysis of committed code.
+description: |
+  Dual AI code review with CodeRabbit + Claude Code for maximum coverage. Use
+  when reviewing changes before a PR, or for deep architectural analysis of
+  committed code.
 ---
 
 # Review Command

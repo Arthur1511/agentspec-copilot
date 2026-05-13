@@ -1,6 +1,9 @@
 ---
 name: diff-review
-description: Generate a visual HTML diff review — before/after architecture comparison with code review analysis. Use when visualizing code changes, comparing branches, or reviewing PRs visually.
+description: |
+  Generate a visual HTML diff review — before/after architecture comparison with
+  code review analysis. Use when visualizing code changes, comparing branches,
+  or reviewing PRs visually.
 ---
 
 Load the visual-explainer skill, then generate a comprehensive visual diff review as a self-contained HTML page.

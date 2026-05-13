@@ -1,6 +1,9 @@
 ---
 name: sql-review
-description: SQL-specific code review — delegates to de-sql-optimizer + python-code-reviewer agents. Use when reviewing SQL for anti-patterns, performance issues, or cross-dialect correctness.
+description: |
+  SQL-specific code review — delegates to de-sql-optimizer + python-code-
+  reviewer agents. Use when reviewing SQL for anti-patterns, performance issues,
+  or cross-dialect correctness.
 ---
 
 # SQL Review Command
