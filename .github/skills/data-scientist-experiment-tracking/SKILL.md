@@ -1,5 +1,5 @@
 ---
-name: ds-experiment-tracking
+name: experiment-tracking
 description: Experiment tracking and ML deployment for data scientists — delegates to ds-experiment-tracker and ds-ml-deployer agents. Use when logging MLflow runs, comparing experiments, registering models, promoting to production, serving via API, or running batch inference.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: ds-eda
+name: eda
 description: Exploratory data analysis for data scientists — delegates to ds-eda-analyst agent. Use when profiling datasets, visualizing distributions, checking correlations, or detecting missing data and outliers.
 ---
 

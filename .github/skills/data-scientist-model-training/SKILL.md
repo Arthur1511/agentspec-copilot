@@ -1,5 +1,5 @@
 ---
-name: ds-model-training
+name: model-training
 description: Model training for data scientists — delegates to ds-model-trainer agent. Use when training classification or regression models, tuning hyperparameters with Optuna, running cross-validation, or comparing multiple algorithms.
 ---
 

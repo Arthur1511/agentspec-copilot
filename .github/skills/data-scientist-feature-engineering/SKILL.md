@@ -1,5 +1,5 @@
 ---
-name: ds-feature-engineering
+name: feature-engineering
 description: Feature engineering for data scientists — delegates to ds-feature-engineer agent. Use when building scikit-learn Pipelines, encoding categoricals, imputing missing values, scaling features, or creating lag/rolling features for time series.
 ---
 
