@@ -1,6 +1,9 @@
 ---
 name: plan-review
-description: Generate a visual HTML plan review — current codebase state vs. proposed implementation plan. Use when evaluating a spec, RFC, or design document against the actual codebase.
+description: |
+  Generate a visual HTML plan review — current codebase state vs. proposed
+  implementation plan. Use when evaluating a spec, RFC, or design document
+  against the actual codebase.
 ---
 
 Load the visual-explainer skill, then generate a comprehensive visual plan review as a self-contained HTML page, comparing the current codebase against a proposed implementation plan.

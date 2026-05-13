@@ -1,6 +1,9 @@
 ---
 name: project-recap
-description: Generate a visual HTML project recap — rebuild mental model of a project's current state, recent decisions, and cognitive debt hotspots. Use when re-entering a project or summarizing recent activity.
+description: |
+  Generate a visual HTML project recap — rebuild mental model of a project's
+  current state, recent decisions, and cognitive debt hotspots. Use when re-
+  entering a project or summarizing recent activity.
 ---
 
 Load the visual-explainer skill, then generate a comprehensive visual project recap as a self-contained HTML page.

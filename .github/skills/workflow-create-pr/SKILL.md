@@ -1,8 +1,8 @@
 ---
 name: create-pr
-description: Create a pull request with conventional commits and a structured description. Use when the user wants to open a PR, commit changes, or submit work for review.
-allowed-tools: shell
----
+dedescription: |
+  Create a pull request with conventional commits and a structured description.
+  Use when the user wants to open a PR, commit changes, or submit work for  review.
 
 # Create PR Command
 

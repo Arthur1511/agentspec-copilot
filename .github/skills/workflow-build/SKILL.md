@@ -1,6 +1,9 @@
 ---
 name: build
-description: Execute implementation with on-the-fly task generation from a DESIGN document (Phase 3). Use when the user wants to implement a feature that has a completed DESIGN document.
+description: |
+  Execute implementation with on-the-fly task generation from a DESIGN document
+  (Phase 3). Use when the user wants to implement a feature that has a completed
+  DESIGN document.
 ---
 
 # Build Command

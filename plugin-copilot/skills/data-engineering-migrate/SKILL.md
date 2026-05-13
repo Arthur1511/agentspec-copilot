@@ -1,6 +1,9 @@
 ---
 name: migrate
-description: Legacy ETL migration — delegates to de-dbt-specialist and de-spark-engineer agents. Use when converting stored procedures, SSIS packages, or Informatica workflows to modern stack.
+description: |
+  Legacy ETL migration — delegates to de-dbt-specialist and de-spark-engineer
+  agents. Use when converting stored procedures, SSIS packages, or Informatica
+  workflows to modern stack.
 ---
 
 # Migrate Command

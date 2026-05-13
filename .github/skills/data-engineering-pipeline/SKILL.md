@@ -1,6 +1,8 @@
 ---
 name: pipeline
-description: DAG/pipeline scaffolding — delegates to architect-pipeline agent. Use when scaffolding Airflow or Dagster pipelines with best-practice patterns.
+description: |
+  DAG/pipeline scaffolding — delegates to architect-pipeline agent. Use when
+  scaffolding Airflow or Dagster pipelines with best-practice patterns.
 ---
 
 # Pipeline Command

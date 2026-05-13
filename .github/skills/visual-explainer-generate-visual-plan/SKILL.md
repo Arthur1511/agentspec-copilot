@@ -1,6 +1,9 @@
 ---
 name: generate-visual-plan
-description: Generate a visual HTML implementation plan — detailed feature specification with state machines, code snippets, and edge cases. Use when planning a feature implementation with architectural depth.
+description: |
+  Generate a visual HTML implementation plan — detailed feature specification
+  with state machines, code snippets, and edge cases. Use when planning a
+  feature implementation with architectural depth.
 ---
 
 Load the visual-explainer skill, then generate a comprehensive visual implementation plan for `$@` as a self-contained HTML page.

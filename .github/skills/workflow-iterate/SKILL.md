@@ -1,6 +1,9 @@
 ---
 name: iterate
-description: Update any SDD phase document when requirements or design change (Cross-Phase). Use when the user needs to modify a BRAINSTORM, DEFINE, or DESIGN document mid-stream and wants cascade awareness.
+description: |
+  Update any SDD phase document when requirements or design change (Cross-
+  Phase). Use when the user needs to modify a BRAINSTORM, DEFINE, or DESIGN
+  document mid-stream and wants cascade awareness.
 ---
 
 # Iterate Command
