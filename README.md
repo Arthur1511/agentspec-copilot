@@ -14,7 +14,7 @@
 [![Version](https://img.shields.io/badge/v1.0.0-green?style=flat-square)](plugin-copilot/manifest.yaml)
 
 **A single AI agent reviewing your data pipeline will miss things.**<br/>
-**58 specialized agents with 24 knowledge domains will not.**
+**66 specialized agents with 30 knowledge domains will not.**
 
 <br/>
 
@@ -45,7 +45,7 @@ AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow 
 /plugin install agentspec@agentspec
 ```
 
-Done. Every Copilot CLI session now has 58 agents, 35 skills, and 24 KB domains. Updates are one command:
+Done. Every Copilot CLI session now has 66 agents, 41 skills, and 30 KB domains. Updates are one command:
 
 ```bash
 # marketplace install
@@ -164,13 +164,14 @@ copilot plugin install ./plugin-copilot
 
 <br/>
 
-## 58 Agents Across 8 Categories
+## 66 Agents Across 9 Categories
 
 | Category | Count | Focus |
 |:--|:--|:--|
 | **Architect** | 8 | Schema design, pipeline architecture, medallion layers, GenAI systems |
 | **Cloud** | 10 | AWS Lambda, GCP Cloud Run, Supabase, CI/CD, Terraform |
 | **Data Engineering** | 15 | dbt, Spark, Airflow, streaming, Lakeflow, SQL optimization |
+| **Data Science** | 8 | EDA, model training/evaluation, feature engineering, experiment tracking, deployment |
 | **Platform** | 6 | Microsoft Fabric end-to-end (architecture, pipelines, security, AI, logging, CI/CD) |
 | **Python** | 6 | Code review, documentation, cleaning, prompt engineering |
 | **Workflow** | 6 | Brainstorm, define, design, build, ship, iterate |
@@ -186,7 +187,7 @@ Every agent follows the same cognitive framework:
 
 <br/>
 
-## 24 Knowledge Base Domains
+## 30 Knowledge Base Domains
 
 | Category | Domains |
 |:--|:--|
@@ -196,6 +197,7 @@ Every agent follows the same cognitive framework:
 | **Cloud** | `aws` · `gcp` · `microsoft-fabric` |
 | **AI & Modern** | `ai-data-engineering` · `modern-stack` · `genai` · `prompt-engineering` |
 | **Foundations** | `pydantic` · `python` · `testing` · `supabase` · `xgboost` |
+| **Data Science** | `pandas` · `scikit-learn` · `mlflow` · `statistical-analysis` · `time-series` · `data-visualization` |
 
 Each domain contains an `index.md`, `quick-reference.md`, `concepts/` (3-6 files), and `patterns/` (3-6 files with production code). Agents load domains on-demand, not upfront.
 
@@ -218,16 +220,16 @@ Each domain contains an `index.md`, `quick-reference.md`, `concepts/` (3-6 files
 ```
 agentspec-copilot/
 ├── .github/                 # Source of truth for Copilot CLI
-│   ├── agents/              # 58 *.agent.md files (flat directory)
-│   ├── skills/              # 35 skill directories (each with SKILL.md)
-│   ├── kb/                  # 24 KB domain directories + _index.yaml
+│   ├── agents/              # 66 *.agent.md files (flat directory)
+│   ├── skills/              # 41 skill directories (each with SKILL.md)
+│   ├── kb/                  # 30 KB domain directories + _index.yaml
 │   ├── sdd/                 # Templates, contracts, features, archive
 │   ├── copilot-instructions.md  # Copilot CLI system prompt
 │   └── manifest.yaml        # Plugin manifest
 │
 ├── plugin-copilot/          # Distributable Copilot CLI extension (generated)
 │   ├── agents/              # Path-rewritten agents
-│   ├── skills/              # All 35 skills
+│   ├── skills/              # All 41 skills
 │   └── ...                  # kb, sdd, manifest
 │
 ├── build-copilot.sh         # Packages .github/ → plugin-copilot/ (Linux/macOS)
@@ -247,7 +249,7 @@ agentspec-copilot/
 | [Getting Started](docs/getting-started/) | Install and build your first data pipeline |
 | [Core Concepts](docs/concepts/) | SDD pillars through a data engineering lens |
 | [Tutorials](docs/tutorials/) | dbt, star schema, data quality, Spark, streaming, RAG |
-| [Reference](docs/reference/) | Full catalog: 58 agents, 35 skills, 24 KB domains |
+| [Reference](docs/reference/) | Full catalog: 66 agents, 41 skills, 30 KB domains |
 
 <br/>
 

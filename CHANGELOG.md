@@ -13,6 +13,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [3.3.0] - 2026-05-13
+
+### Added
+
+- **8 new `ds-*` data scientist agents** — `ds-eda-analyst`, `ds-model-trainer`, `ds-model-evaluator`, `ds-feature-engineer`, `ds-experiment-tracker`, `ds-ml-deployer`, `ds-statistician`, `ds-time-series-analyst`. Full Copilot CLI frontmatter with tier, kb_domains, color, stop_conditions, escalation_rules, and `agent` tool for inter-agent delegation.
+
+- **6 new KB domains** — `data-visualization`, `mlflow`, `pandas`, `scikit-learn`, `statistical-analysis`, `time-series`. Each domain includes `index.md`, `quick-reference.md`, 4 concept files, and 4 pattern files with production code examples.
+
+- **5 new `data-scientist-*` skills** — `data-scientist-eda`, `data-scientist-experiment-tracking`, `data-scientist-feature-engineering`, `data-scientist-model-evaluation`, `data-scientist-model-training`.
+
+- **`scripts/convert_frontmatter.py`** — Bulk frontmatter conversion script. Fetches canonical frontmatter from upstream `luanmorenommaciel/agentspec`, maps tool name aliases (Read → read, Bash → shell, etc.), wraps description examples in `<example>` XML blocks, and retains custom properties (`tier`, `kb_domains`, `color`, `stop_conditions`, `escalation_rules`) as Copilot CLI unsupported fields.
+
+### Changed
+
+- **All 66 `.agent.md` files converted** to valid Copilot CLI frontmatter format. `description` field now uses `<example>` XML blocks as required by the spec. Tool names use canonical lowercase aliases. Unsupported fields retained for AgentSpec runtime use.
+
+- **Fixed 93 broken `escalation_rules.target` names** — short IDs (`define-agent`, `spark-eng`) corrected to canonical agent identifiers (`workflow-define`, `de-spark-engineer`). `generate-agent-router.py` regex updated to allow `:` in agent names.
+
+- **Multi-provider model routing strategy** applied to all 66 agents:
+  - `GPT-5 mini` (0x) — discovery and documentation agents
+  - `GPT-5.3-Codex` (1x) — agentic execution (build, data engineering, cloud deployers, test, code quality)
+  - `Claude Sonnet 4.6` (1x) — reasoning and design (SDD workflow, ds-*, architect, fabric, cloud architects)
+  - `Claude Opus 4.6` (3x) — security only (`fabric-security-specialist`)
+
+- **`scripts/generate-agent-router.py`** — Added `ds` category support; updated STATIC_FOOTER with multi-provider routing table replacing old Anthropic-only table; target regex now matches `:` in canonical agent names.
+
+- **Agent router regenerated** — `agent-router/SKILL.md` + `routing.json` updated to 66 agents across 9 categories.
+
+- **`plugin-copilot/`** rebuilt to include all the above.
+
+### Category counts
+
+| Category | Before | After |
+|----------|--------|-------|
+| Agents | 58 | **66** |
+| Skills | 36 | **41** |
+| KB domains | 24 | **30** |
+
+### SDD
+
+- `COPILOT_FRONTMATTER_ADAPTATION` feature archived to `.github/sdd/archive/` (Phase 4 complete).
+
+---
+
 ## [3.2.0] - 2026-05-07
 
 Sync with upstream `luanmorenommaciel/agentspec` v3.2.0. All changes adapted to Copilot CLI conventions (`.github/` paths, `${COPILOT_PLUGIN_ROOT}`, flat agent structure, skills instead of slash commands).

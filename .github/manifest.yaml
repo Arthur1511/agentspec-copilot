@@ -1,5 +1,5 @@
 name: agentspec
-description: AgentSpec - Spec-Driven Data Engineering for GitHub Copilot CLI (58 agents, 35 skills, 24 KB domains)
+description: AgentSpec - Spec-Driven Data Engineering for GitHub Copilot CLI (66 agents, 41 skills, 30 KB domains)
 version: 1.0.0
 author: Arthur1511
 license: MIT
@@ -13,10 +13,10 @@ extension:
 
 # AgentSpec metadata
 agentspec:
-  version: "3.2.0"
-  agents: 58
-  kb_domains: 24
-  skills: 36
+  version: "3.3.0"
+  agents: 66
+  kb_domains: 30
+  skills: 41
   cognitive_framework:
     - kb_first
     - confidence_scored
@@ -33,6 +33,10 @@ categories:
     agents: 15
     skills: 9
     description: Data engineering specialists
+  data_science:
+    agents: 8
+    skills: 5
+    description: Data science and ML specialists
   architect:
     agents: 8
     description: System design architects
