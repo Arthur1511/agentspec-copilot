@@ -17,9 +17,9 @@ AgentSpec is a GitHub Copilot CLI extension that provides a 5-phase Spec-Driven 
 cat plugin-copilot/manifest.yaml
 ```
 
-Both scripts package `.github/` → `plugin-copilot/` with identical logic: clean the output directory, copy all components, rewrite `.github/<path>` → `${COPILOT_PLUGIN_ROOT}/<path>`, and restore workspace paths (`sdd/features/`, `sdd/reports/`, `sdd/archive/`).
+Both scripts package `${COPILOT_PLUGIN_ROOT}/` → `plugin-copilot/` with identical logic: clean the output directory, copy all components, rewrite `${COPILOT_PLUGIN_ROOT}/<path>` → `${COPILOT_PLUGIN_ROOT}/<path>`, and restore workspace paths (`sdd/features/`, `sdd/reports/`, `sdd/archive/`).
 
-The CI workflow (`.github/workflows/plugin-validate.yml`) runs `build-plugin.sh` (Claude Code variant) and checks agent count (≥50), skill count (≥4), KB domain count (≥20), and JSON/plugin manifest validity.
+The CI workflow (`${COPILOT_PLUGIN_ROOT}/workflows/plugin-validate.yml`) runs `build-plugin.sh` (Claude Code variant) and checks agent count (≥50), skill count (≥4), KB domain count (≥20), and JSON/plugin manifest validity.
 
 ---
 
@@ -31,15 +31,15 @@ This repo ships AgentSpec for **two platforms**:
 
 | Platform | Source of Truth | Build Script | Output |
 |---|---|---|---|
-| GitHub Copilot CLI | `.github/` | `build-copilot.sh` | `plugin-copilot/` |
+| GitHub Copilot CLI | `${COPILOT_PLUGIN_ROOT}/` | `build-copilot.sh` | `plugin-copilot/` |
 | Claude Code | `.claude/` | `build-plugin.sh` | `plugin/` |
 
-**Never edit `plugin-copilot/` or `plugin/` directly** — they are generated artifacts. All content changes go into `.github/` (Copilot CLI) or `.claude/` (Claude Code).
+**Never edit `plugin-copilot/` or `plugin/` directly** — they are generated artifacts. All content changes go into `${COPILOT_PLUGIN_ROOT}/` (Copilot CLI) or `.claude/` (Claude Code).
 
-### Source Structure (`.github/`)
+### Source Structure (`${COPILOT_PLUGIN_ROOT}/`)
 
 ```
-.github/
+${COPILOT_PLUGIN_ROOT}/
 ├── agents/           # 66 *.agent.md files — flat directory, no subdirectories
 ├── skills/           # 41 skill directories, each containing SKILL.md
 ├── kb/               # 30 KB domain directories + _index.yaml registry
@@ -57,14 +57,14 @@ This repo ships AgentSpec for **two platforms**:
 
 ### Path Rewriting During Build
 
-`build-copilot.sh` / `build-copilot.ps1` rewrites `.github/<path>` → `${COPILOT_PLUGIN_ROOT}/<path>` in all `.md`, `.yaml`, `.yml`, `.json` files inside `plugin-copilot/`.
+`build-copilot.sh` / `build-copilot.ps1` rewrites `${COPILOT_PLUGIN_ROOT}/<path>` → `${COPILOT_PLUGIN_ROOT}/<path>` in all `.md`, `.yaml`, `.yml`, `.json` files inside `plugin-copilot/`.
 
 **Exception — workspace output paths are preserved as-is:**
 - `.github/sdd/features/`
 - `.github/sdd/reports/`
 - `.github/sdd/archive/`
 
-If you add new internal references in agent or skill files, use `.github/<component>/` paths — the build will rewrite them.
+If you add new internal references in agent or skill files, use `${COPILOT_PLUGIN_ROOT}/<component>/` paths — the build will rewrite them.
 
 ### 5-Phase SDD Workflow
 
@@ -85,7 +85,7 @@ All phase documents live in `.github/sdd/features/` while active.
 
 ### Agent Files (`*.agent.md`)
 
-All 66 agents live as a **flat list** in `.github/agents/` — no subdirectories. Category is encoded in the filename prefix:
+All 66 agents live as a **flat list** in `${COPILOT_PLUGIN_ROOT}/agents/` — no subdirectories. Category is encoded in the filename prefix:
 
 | Prefix | Category | Count | Examples |
 |---|---|---|---|
@@ -140,7 +140,7 @@ Data engineering agents must include a `kb_domains` field listing relevant KB do
 
 ### KB Domain Structure
 
-30 domains live under `.github/kb/`. Each domain must have exactly:
+30 domains live under `${COPILOT_PLUGIN_ROOT}/kb/`. Each domain must have exactly:
 ```
 <domain>/
 ├── index.md           # Domain overview
@@ -151,7 +151,7 @@ Data engineering agents must include a `kb_domains` field listing relevant KB do
 
 **Available domains:** `ai-data-engineering`, `airflow`, `aws`, `cloud-platforms`, `data-modeling`, `data-quality`, `data-visualization`, `dbt`, `gcp`, `genai`, `lakeflow`, `lakehouse`, `medallion`, `microsoft-fabric`, `mlflow`, `modern-stack`, `pandas`, `prompt-engineering`, `pydantic`, `python`, `scikit-learn`, `spark`, `sql-patterns`, `statistical-analysis`, `streaming`, `supabase`, `terraform`, `testing`, `time-series`, `xgboost`
 
-Register new domains in `.github/kb/_index.yaml` before writing any domain files.
+Register new domains in `${COPILOT_PLUGIN_ROOT}/kb/_index.yaml` before writing any domain files.
 
 ### Skill Files
 
@@ -169,7 +169,7 @@ Each skill is a directory containing a single `SKILL.md` file (41 skills total).
 
 ### SDD Templates
 
-When creating SDD phase documents, always use the corresponding template from `.github/sdd/templates/`:
+When creating SDD phase documents, always use the corresponding template from `${COPILOT_PLUGIN_ROOT}/sdd/templates/`:
 - `BRAINSTORM_TEMPLATE.md`
 - `DEFINE_TEMPLATE.md`
 - `DESIGN_TEMPLATE.md`
@@ -206,3 +206,4 @@ gh copilot suggest "Use agentspec:build-agent to implement DESIGN_REDIS_KB.md"
 ```
 
 Active WIP docs are in `.github/sdd/features/`. Check there before starting new work to avoid duplicating in-flight features.
+
