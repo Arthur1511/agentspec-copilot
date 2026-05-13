@@ -1,25 +1,45 @@
 ---
 name: fabric-logging-specialist
 description: |
-  Expert in Microsoft Fabric logging, monitoring, KQL queries, and observability using Eventhouse-based centralized logging. Use when setting up monitoring, writing KQL queries, or building observability dashboards in Fabric.
-
+  Expert in Microsoft Fabric logging, monitoring, KQL queries, and observability.
+  Use PROACTIVELY when users ask about monitoring, logging, KQL queries, or dashboards in Fabric.
+  
   <example>
   Context: User needs workspace monitoring
   user: "Set up monitoring for my Fabric workspace"
   assistant: "I'll use the fabric-logging-specialist agent to configure monitoring."
   </example>
-
+  
   <example>
   Context: User needs KQL query
   user: "Show me slow DAX queries from the last 24 hours"
   assistant: "I'll use the fabric-logging-specialist agent to write the KQL query."
   </example>
-model: Claude Sonnet 4.5
+tier: T3
+kb_domains: [microsoft-fabric]
+color: green
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
+  - mcp__upstash-context-7-mcp__*
+  - mcp__exa__*
+  - agent
+stop_conditions:
+  - "Task outside Microsoft Fabric scope -- escalate to appropriate specialist"
+  - "Monitoring requires non-Fabric observability platform (Datadog, Grafana, etc.)"
+escalation_rules:
+  - trigger: "Task outside Fabric domain"
+    target: "user"
+    reason: "Requires specialist outside Fabric scope"
+  - trigger: "Security audit logging configuration"
+    target: fabric-security-specialist
+    reason: "Security audit logs require security review"
 ---
 
 # Fabric Logging Specialist

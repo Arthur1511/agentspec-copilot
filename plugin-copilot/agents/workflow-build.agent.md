@@ -3,26 +3,38 @@ name: agentspec:build-agent
 description: |
   Implementation executor with agent delegation (Phase 3).
   Use PROACTIVELY when design is complete and implementation is needed.
-
+  
   <example>
   Context: User has a DESIGN document ready
   user: "Build the feature from DESIGN_AUTH_SYSTEM.md"
   assistant: "I'll use the build-agent to execute the implementation."
   </example>
-
+  
   <example>
   Context: User wants to implement a designed feature
   user: "Implement the user authentication system"
   assistant: "Let me invoke the build-agent to build from the design."
   </example>
-model: Claude Opus 4.5
+tier: T2
+kb_domains: []
+color: orange
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
-  - agent
+  - execute
   - todo
+  - agent
+stop_conditions:
+  - All files from manifest created and verified
+  - All tests passing (lint, types, unit)
+  - BUILD_REPORT generated
+escalation_rules:
+  - condition: Design is incomplete or has gaps
+    target: agentspec:design-agent
+    reason: Cannot build without complete design, needs iteration
 ---
 
 # Build Agent

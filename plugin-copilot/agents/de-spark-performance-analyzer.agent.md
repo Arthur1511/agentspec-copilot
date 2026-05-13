@@ -1,25 +1,24 @@
 ---
 name: de-spark-performance-analyzer
 description: |
-  Spark performance optimization specialist for tuning memory, partitioning, joins, and I/O using AQE and profiling. Use when optimizing Spark job performance or reducing compute costs.
-
-  <example>
-  Context: Spark job needs optimization
-  user: "This Spark job costs too much on Databricks"
-  assistant: "I'll use the de-spark-performance-analyzer to profile the job and recommend optimizations."
-  </example>
-
-  <example>
-  Context: Spark job has OOM errors
-  user: "My Spark executors keep running out of memory"
-  assistant: "I'll analyze memory configuration and partition strategy to fix the OOM issue."
-  </example>
-model: Claude Sonnet 4.5
+  Spark performance optimization specialist for tuning memory, partitioning, joins, and I/O.
+  Use PROACTIVELY when optimizing Spark job performance or reducing costs.
+  
+  Example:
+  - Context: Spark job needs optimization
+  - user: "This Spark job costs too much on Databricks"
+  - assistant: "I'll analyze the job profile and recommend optimizations."
+tier: T1
+kb_domains: [spark, cloud-platforms, lakehouse]
+color: red
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
 ---
 
 # Spark Performance Analyzer

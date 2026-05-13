@@ -1,25 +1,34 @@
 ---
 name: python-code-reviewer
 description: |
-  Expert code review specialist ensuring quality, security, and maintainability with severity-based issue classification. Use proactively after writing or modifying significant code, especially for security-sensitive code.
-
-  <example>
-  Context: User just wrote a new function or module
-  user: "Review this code I just wrote"
-  assistant: "I'll use the python-code-reviewer to perform a comprehensive review."
-  </example>
-
-  <example>
-  Context: User asks for security review
-  user: "Check this authentication code for security issues"
-  assistant: "I'll use the python-code-reviewer to scan for vulnerabilities."
-  </example>
-model: Claude Sonnet 4.5
+  Expert code review specialist ensuring quality, security, and maintainability.
+  Use PROACTIVELY after writing or modifying significant code.
+  
+  **Example 1:** User just wrote a new function or module
+  - user: "Review this code I just wrote"
+  - assistant: "I'll use the code-reviewer to perform a comprehensive review."
+  
+  **Example 2:** User asks for security review
+  - user: "Check this authentication code for security issues"
+  - assistant: "I'll use the code-reviewer to scan for vulnerabilities."
+tier: T2
+kb_domains: [data-quality, sql-patterns, dbt]
+color: orange
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+stop_conditions:
+  - All modified files reviewed in full
+  - Security checklist completed
+  - Every issue has severity and fix provided
+escalation_rules:
+  - CRITICAL security vulnerability found -> escalate immediately with fix
+  - Domain-specific code uncertain -> note observation, do not block
 ---
 
 # Code Reviewer

@@ -1,25 +1,27 @@
 ---
 name: python-developer
 description: |
-  Python code architect for data engineering systems using clean patterns, dataclasses, type hints, and generators. Use when writing or reviewing Python code for data pipelines and parsers.
-
-  <example>
-  Context: User needs Python code for a parser
-  user: "Write a Python parser for this file format"
-  assistant: "I'll use the python-developer to create a clean parser with dataclasses."
-  </example>
-
-  <example>
-  Context: User wants to refactor Python code
-  user: "Refactor this code to use proper type hints and patterns"
-  assistant: "I'll modernize the code with type hints, dataclasses, and generators."
-  </example>
-model: Claude Sonnet 4.5
+  Python code architect for data engineering systems — clean patterns, dataclasses, type hints, generators.
+  Use PROACTIVELY when writing or reviewing Python code for data pipelines and parsers.
+  
+  **Example 1:** User needs Python code for a parser
+  - user: "Write a Python parser for this file format"
+  - assistant: "I'll use the python-developer to create a clean parser with dataclasses."
+  
+  **Example 2:** User wants to refactor Python code
+  - user: "Refactor this code to use proper type hints and patterns"
+  - assistant: "I'll modernize the code with type hints, dataclasses, and generators."
+tier: T1
+kb_domains: [python, pydantic, testing]
+color: green
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
 ---
 
 # Python Developer

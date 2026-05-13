@@ -35,8 +35,220 @@ shared:
     path: shared/anti-patterns.md
     description: "Cross-agent anti-pattern library referenced by all data engineering agents"
 
-# Domain Registry — 24 Domains
+# Domain Registry — 30 Domains
 domains:
+
+  # ─── Data Science ──────────────────────────────────────────────────
+
+  pandas:
+    name: pandas
+    description: "pandas data manipulation — DataFrame wrangling, indexing, groupby, merging, missing data, performance"
+    path: pandas/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: dataframe-fundamentals
+        path: concepts/dataframe-fundamentals.md
+        confidence: 0.95
+      - name: indexing-selection
+        path: concepts/indexing-selection.md
+        confidence: 0.95
+      - name: groupby-aggregation
+        path: concepts/groupby-aggregation.md
+        confidence: 0.95
+      - name: data-types
+        path: concepts/data-types.md
+        confidence: 0.90
+    patterns:
+      - name: data-wrangling
+        path: patterns/data-wrangling.md
+        confidence: 0.95
+      - name: merge-join
+        path: patterns/merge-join.md
+        confidence: 0.95
+      - name: missing-data
+        path: patterns/missing-data.md
+        confidence: 0.95
+      - name: performance-optimization
+        path: patterns/performance-optimization.md
+        confidence: 0.90
+
+  scikit-learn:
+    name: scikit-learn
+    description: "scikit-learn ML — Estimator API, Pipelines, preprocessing, cross-validation, classification, regression, model selection"
+    path: scikit-learn/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: estimator-api
+        path: concepts/estimator-api.md
+        confidence: 0.95
+      - name: pipeline
+        path: concepts/pipeline.md
+        confidence: 0.95
+      - name: cross-validation
+        path: concepts/cross-validation.md
+        confidence: 0.95
+      - name: preprocessing
+        path: concepts/preprocessing.md
+        confidence: 0.95
+    patterns:
+      - name: classification-workflow
+        path: patterns/classification-workflow.md
+        confidence: 0.95
+      - name: regression-workflow
+        path: patterns/regression-workflow.md
+        confidence: 0.95
+      - name: model-selection
+        path: patterns/model-selection.md
+        confidence: 0.90
+      - name: feature-pipeline
+        path: patterns/feature-pipeline.md
+        confidence: 0.95
+
+  statistical-analysis:
+    name: statistical-analysis
+    description: "Statistical analysis — probability distributions, hypothesis testing, A/B test design, correlation, effect sizes, confidence intervals"
+    path: statistical-analysis/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: distributions
+        path: concepts/distributions.md
+        confidence: 0.95
+      - name: hypothesis-testing
+        path: concepts/hypothesis-testing.md
+        confidence: 0.95
+      - name: correlation-causation
+        path: concepts/correlation-causation.md
+        confidence: 0.95
+      - name: ab-testing
+        path: concepts/ab-testing.md
+        confidence: 0.95
+    patterns:
+      - name: exploratory-stats
+        path: patterns/exploratory-stats.md
+        confidence: 0.95
+      - name: hypothesis-workflow
+        path: patterns/hypothesis-workflow.md
+        confidence: 0.95
+      - name: ab-test-design
+        path: patterns/ab-test-design.md
+        confidence: 0.95
+      - name: reporting-stats
+        path: patterns/reporting-stats.md
+        confidence: 0.90
+
+  data-visualization:
+    name: data-visualization
+    description: "Data visualization in Python — matplotlib foundations, seaborn statistical plots, plotly interactive charts, publication-quality figures"
+    path: data-visualization/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: matplotlib-foundations
+        path: concepts/matplotlib-foundations.md
+        confidence: 0.95
+      - name: seaborn-statistical-plots
+        path: concepts/seaborn-statistical-plots.md
+        confidence: 0.95
+      - name: plotly-interactive
+        path: concepts/plotly-interactive.md
+        confidence: 0.95
+      - name: visual-design-principles
+        path: concepts/visual-design-principles.md
+        confidence: 0.90
+    patterns:
+      - name: eda-charts
+        path: patterns/eda-charts.md
+        confidence: 0.95
+      - name: model-evaluation-plots
+        path: patterns/model-evaluation-plots.md
+        confidence: 0.95
+      - name: publication-quality
+        path: patterns/publication-quality.md
+        confidence: 0.90
+      - name: dashboard-layout
+        path: patterns/dashboard-layout.md
+        confidence: 0.90
+
+  time-series:
+    name: time-series
+    description: "Time series analysis and forecasting in Python — stationarity, decomposition, ARIMA, Prophet, ML-based forecasting, and evaluation metrics"
+    path: time-series/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: ts-fundamentals
+        path: concepts/ts-fundamentals.md
+        confidence: 0.95
+      - name: stationarity
+        path: concepts/stationarity.md
+        confidence: 0.95
+      - name: forecasting-models
+        path: concepts/forecasting-models.md
+        confidence: 0.90
+      - name: feature-engineering-ts
+        path: concepts/feature-engineering-ts.md
+        confidence: 0.90
+    patterns:
+      - name: arima-workflow
+        path: patterns/arima-workflow.md
+        confidence: 0.90
+      - name: prophet-workflow
+        path: patterns/prophet-workflow.md
+        confidence: 0.90
+      - name: ml-forecasting
+        path: patterns/ml-forecasting.md
+        confidence: 0.90
+      - name: evaluation-ts
+        path: patterns/evaluation-ts.md
+        confidence: 0.90
+
+  mlflow:
+    name: mlflow
+    description: "MLflow experiment tracking and model registry — run logging, autologging, artifact management, model versioning, production serving"
+    path: mlflow/
+    mcp_validated: "2026-05-08"
+    entry_points:
+      index: index.md
+      quick_reference: quick-reference.md
+    concepts:
+      - name: experiment-tracking
+        path: concepts/experiment-tracking.md
+        confidence: 0.95
+      - name: model-registry
+        path: concepts/model-registry.md
+        confidence: 0.95
+      - name: artifact-logging
+        path: concepts/artifact-logging.md
+        confidence: 0.95
+      - name: run-management
+        path: concepts/run-management.md
+        confidence: 0.90
+    patterns:
+      - name: sklearn-integration
+        path: patterns/sklearn-integration.md
+        confidence: 0.95
+      - name: model-versioning
+        path: patterns/model-versioning.md
+        confidence: 0.95
+      - name: experiment-comparison
+        path: patterns/experiment-comparison.md
+        confidence: 0.95
+      - name: production-serving
+        path: patterns/production-serving.md
+        confidence: 0.90
 
   # ─── Core Data Engineering ─────────────────────────────────────────
 

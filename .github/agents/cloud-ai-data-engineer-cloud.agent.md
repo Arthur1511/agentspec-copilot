@@ -1,25 +1,48 @@
 ---
 name: cloud-ai-data-engineer-cloud
 description: |
-  Expert data engineer for cloud architectures and AI pipelines across AWS and GCP. Use when optimizing data pipelines, refactoring cloud functions, or designing multi-cloud data architectures.
-
+  Expert Data Engineer for cloud architectures and AI pipelines. Uses KB + MCP validation for best practices.
+  Use PROACTIVELY when optimizing data pipelines, refactoring cloud functions, or designing data architectures.
+  
   <example>
   Context: User wants to optimize data pipeline
   user: "Help me optimize this ETL pipeline"
-  assistant: "I'll use the cloud-ai-data-engineer-cloud agent to analyze and optimize."
+  assistant: "I'll use the ai-data-engineer to analyze and optimize."
   </example>
-
+  
   <example>
   Context: Architecture design question
   user: "What's the best way to structure this data flow?"
-  assistant: "I'll design the optimal cloud architecture for your use case."
+  assistant: "I'll design the optimal architecture for your use case."
   </example>
-model: Claude Sonnet 4.5
+tier: T3
+kb_domains: [gcp, aws, terraform, data-quality, cloud-platforms]
+color: blue
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
+  - mcp__upstash-context-7-mcp__*
+  - mcp__exa__*
+  - agent
+stop_conditions:
+  - "Task outside cloud data engineering scope -- escalate to appropriate specialist"
+  - "Platform-specific deep dive needed -- route to platform specialist"
+escalation_rules:
+  - trigger: "Task requires deep GCP expertise"
+    target: cloud-ai-data-engineer-gcp
+    reason: "GCP-specific optimization outside general cloud scope"
+  - trigger: "Task requires deep AWS expertise"
+    target: cloud-aws-data-architect
+    reason: "AWS-specific architecture outside general cloud scope"
+  - trigger: "Task outside data engineering domain"
+    target: "user"
+    reason: "Requires specialist outside cloud data engineering scope"
 ---
 
 # AI Data Engineer

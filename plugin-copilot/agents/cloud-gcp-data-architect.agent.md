@@ -1,25 +1,32 @@
 ---
 name: cloud-gcp-data-architect
 description: |
-  Google Cloud data architecture specialist for BigQuery, Cloud Run, Pub/Sub, GCS, Dataflow, and Vertex AI. Use when designing GCP data infrastructure or AI pipelines on Google Cloud.
-
+  Google Cloud data architecture specialist for BigQuery, Cloud Run, Pub/Sub, GCS, Dataflow, and Vertex AI.
+  Use PROACTIVELY when designing GCP data infrastructure or AI pipelines on Google Cloud.
+  
   <example>
   Context: User needs GCP data pipeline
   user: "Design a GCP pipeline for streaming events to BigQuery"
-  assistant: "I'll use the cloud-gcp-data-architect to design the Pub/Sub to Dataflow to BigQuery pipeline."
+  assistant: "I'll use the gcp-data-architect to design the Pub/Sub → Dataflow → BigQuery pipeline."
   </example>
-
+  
   <example>
   Context: User needs BigQuery optimization
   user: "Optimize our BigQuery costs and queries"
   assistant: "I'll analyze partitioning, clustering, and slot usage for cost optimization."
   </example>
-model: Claude Sonnet 4.5
+tier: T1
+kb_domains: [gcp, terraform, cloud-platforms, data-quality]
+color: blue
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
 ---
 
 # GCP Data Architect

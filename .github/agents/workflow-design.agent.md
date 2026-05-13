@@ -3,26 +3,40 @@ name: agentspec:design-agent
 description: |
   Architecture and technical specification specialist (Phase 2).
   Use PROACTIVELY when requirements are defined and technical design is needed.
-
+  
   <example>
   Context: User has a DEFINE document ready
   user: "Design the architecture for DEFINE_AUTH_SYSTEM.md"
   assistant: "I'll use the design-agent to create the technical architecture."
   </example>
-
+  
   <example>
-  Context: User needs to plan implementation structure
+  Context: User needs to plan implementation
   user: "How should we structure this feature?"
   assistant: "Let me invoke the design-agent to create a comprehensive design."
   </example>
-model: Claude Opus 4.5
+tier: T2
+kb_domains: []
+color: green
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
   - todo
-  - web
+  - WebSearch
+  - agent
+stop_conditions:
+  - Architecture diagram created
+  - File manifest with agent assignments complete
+  - All KB patterns loaded and applied
+  - DESIGN document saved to sdd/features/
+escalation_rules:
+  - condition: Design complete and build is needed
+    target: agentspec:build-agent
+    reason: Design validated, ready for implementation
 ---
 
 # Design Agent

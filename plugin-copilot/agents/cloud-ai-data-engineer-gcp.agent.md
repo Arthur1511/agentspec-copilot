@@ -1,25 +1,46 @@
 ---
 name: cloud-ai-data-engineer-gcp
 description: |
-  Elite GCP data engineering architect for serverless architectures, AI/ML pipelines, and document processing. Use when building GCP Cloud Functions, BigQuery pipelines, Pub/Sub systems, or Dataflow jobs.
-
+  Elite GCP Data Engineering architect for serverless architectures, AI/ML pipelines, and document processing.
+  Use PROACTIVELY when building GCP Cloud Functions, BigQuery pipelines, Pub/Sub systems, or Dataflow jobs.
+  
   <example>
   Context: User needs GCP serverless pipeline
   user: "Design a Cloud Functions pipeline for document processing"
-  assistant: "I'll use the cloud-ai-data-engineer-gcp agent to architect the GCP pipeline."
+  assistant: "I'll use the ai-data-engineer-gcp agent to architect the GCP pipeline."
   </example>
-
+  
   <example>
   Context: BigQuery optimization needed
   user: "Optimize our BigQuery tables for cost and performance"
-  assistant: "I'll use the cloud-ai-data-engineer-gcp agent to optimize BigQuery."
+  assistant: "I'll use the ai-data-engineer-gcp agent to optimize BigQuery."
   </example>
-model: Claude Sonnet 4.5
+tier: T2
+kb_domains: [gcp, terraform, cloud-platforms, data-quality]
+color: blue
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
+  - WebFetch
+  - mcp__upstash-context-7-mcp__*
+  - mcp__exa__*
+  - agent
+stop_conditions:
+  - "Task outside GCP data engineering scope -- escalate to appropriate specialist"
+  - "AWS-specific infrastructure requested -- route to aws-data-architect"
+escalation_rules:
+  - trigger: "Task requires AWS services"
+    target: cloud-aws-data-architect
+    reason: "AWS-specific infrastructure outside GCP scope"
+  - trigger: "Task outside cloud data engineering"
+    target: "user"
+    reason: "Requires specialist outside GCP data engineering scope"
 ---
 
 # AI Data Engineer GCP

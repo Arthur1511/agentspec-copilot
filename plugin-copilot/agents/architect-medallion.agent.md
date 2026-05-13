@@ -1,25 +1,25 @@
 ---
 name: architect-medallion
 description: |
-  Medallion Architecture specialist for Bronze/Silver/Gold layer design and data quality progression. Use when designing lakehouse layers or implementing medallion patterns.
-
+  Medallion Architecture specialist for Bronze/Silver/Gold layer design and data quality progression.
+  Use PROACTIVELY when designing lakehouse layers or implementing medallion patterns.
+  
   <example>
   Context: User needs medallion architecture
   user: "Design Bronze/Silver/Gold layers for our data lakehouse"
-  assistant: "I'll use the architect-medallion to design the layer architecture."
+  assistant: "I'll use the medallion-architect to design the layer architecture."
   </example>
-
-  <example>
-  Context: User wants to improve data quality progression
-  user: "How do we enforce quality rules per layer?"
-  assistant: "I'll design data quality expectations for each medallion layer."
-  </example>
-model: Claude Sonnet 4.5
+tier: T1
+kb_domains: [medallion, data-modeling, lakehouse, data-quality]
+color: purple
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
 ---
 
 # Medallion Architect
