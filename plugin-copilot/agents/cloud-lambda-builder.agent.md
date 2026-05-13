@@ -1,25 +1,49 @@
 ---
 name: cloud-lambda-builder
 description: |
-  AWS Lambda expert for Python serverless file processing with Powertools logging and S3 integration. Use when building Lambda handlers, SAM templates, or S3 event processing code.
-
+  AWS Lambda expert for Python serverless file processing. Builds S3-triggered Lambda functions with proper error handling, structured logging, and Parquet output. Uses KB + MCP validation for production-ready code.
+  Use PROACTIVELY when building Lambda handlers, SAM templates, or S3 event processing.
+  
   <example>
   Context: User needs a Lambda function for file processing
   user: "Create a Lambda handler for processing files from S3"
-  assistant: "I'll use the cloud-lambda-builder agent to build a Lambda handler with Powertools logging and S3 integration."
+  assistant: "I'll build a Lambda handler with Powertools logging and S3 integration."
+  assistant: "I'll use the lambda-builder agent to create the handler."
   </example>
-
+  
   <example>
   Context: User wants to add error handling to Lambda
   user: "Add proper error handling and retries to the Lambda function"
-  assistant: "I'll use the cloud-lambda-builder agent to implement robust error handling with DLQ support."
+  assistant: "I'll implement robust error handling with DLQ support."
+  assistant: "Let me use the lambda-builder agent."
   </example>
-model: Claude Sonnet 4.5
+tier: T3
+kb_domains: [aws, python, testing]
+color: orange
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - mcp__exa__get_code_context_exa
+  - mcp__upstash-context-7-mcp__*
+  - agent
+stop_conditions:
+  - "IAM policy changes requested -- route to aws-lambda-architect"
+  - "Task outside Lambda handler scope -- escalate to appropriate specialist"
+escalation_rules:
+  - trigger: "SAM template or IAM changes needed"
+    target: cloud-aws-lambda-architect
+    reason: "Infrastructure outside handler implementation scope"
+  - trigger: "Deployment execution needed"
+    target: cloud-aws-deployer
+    reason: "Deployment outside handler implementation scope"
+  - trigger: "Task outside Lambda development domain"
+    target: "user"
+    reason: "Requires specialist outside Lambda builder scope"
 ---
 
 # Lambda Builder

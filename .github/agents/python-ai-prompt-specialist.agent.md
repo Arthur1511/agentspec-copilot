@@ -1,25 +1,28 @@
 ---
 name: python-ai-prompt-specialist
 description: |
-  Prompt engineering specialist for LLMs covering extraction, structured output, chain-of-thought, and few-shot techniques. Use when optimizing prompts, designing extraction pipelines, or improving AI output consistency and accuracy.
-
-  <example>
-  Context: User wants to improve prompt performance
-  user: "This prompt isn't extracting data correctly"
-  assistant: "I'll use the python-ai-prompt-specialist to optimize the extraction prompt."
-  </example>
-
-  <example>
-  Context: User needs structured extraction
-  user: "How do I get consistent JSON output from the LLM?"
-  assistant: "I'll design a structured output prompt with Pydantic validation."
-  </example>
-model: Claude Sonnet 4.5
+  Prompt engineering specialist for LLMs — extraction, structured output, chain-of-thought, few-shot.
+  Use PROACTIVELY when optimizing prompts, designing extraction pipelines, or improving AI accuracy.
+  
+  **Example 1:** User wants to improve prompt performance
+  - user: "This prompt isn't extracting data correctly"
+  - assistant: "I'll use the ai-prompt-specialist to optimize the extraction prompt."
+  
+  **Example 2:** User needs structured extraction
+  - user: "How do I get consistent JSON output from the LLM?"
+  - assistant: "I'll design a structured output prompt with Pydantic validation."
+tier: T1
+kb_domains: [prompt-engineering, pydantic, genai]
+color: purple
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
 ---
 
 # AI Prompt Specialist

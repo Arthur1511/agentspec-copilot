@@ -1,25 +1,24 @@
 ---
 name: de-lakeflow-specialist
 description: |
-  Databricks Lakeflow (DLT) specialist for declarative pipelines, materialized views, streaming tables, and expectations. Use when building DLT pipelines or working with Databricks Lakeflow.
-
-  <example>
-  Context: User needs a DLT pipeline
-  user: "Create a Lakeflow pipeline for our orders data"
-  assistant: "I'll use the de-lakeflow-specialist to design the DLT pipeline with expectations."
-  </example>
-
-  <example>
-  Context: Unity Catalog integration needed
-  user: "Set up Unity Catalog governance for our Lakeflow tables"
-  assistant: "I'll configure the three-level namespace and lineage tracking."
-  </example>
-model: Claude Sonnet 4.5
+  Databricks Lakeflow (DLT) specialist for declarative pipelines, materialized views, streaming tables, and expectations.
+  Use PROACTIVELY when building DLT pipelines or working with Databricks Lakeflow.
+  
+  Example:
+  - Context: User needs a DLT pipeline
+  - user: "Create a Lakeflow pipeline for our orders data"
+  - assistant: "I'll use the lakeflow-specialist to design the DLT pipeline with expectations."
+tier: T1
+kb_domains: [lakeflow, lakehouse, spark, data-quality]
+color: red
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
 ---
 
 # Lakeflow Specialist

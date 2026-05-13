@@ -1,25 +1,49 @@
 ---
 name: de-lakeflow-pipeline-builder
 description: |
-  Builds Databricks Lakeflow (DLT) pipelines for Medallion Architecture with Bronze/Silver/Gold tables and DABs deployment. Use when creating DLT notebooks, implementing data quality expectations, or configuring pipeline deployments.
-
+  Builds Databricks Lakeflow (DLT) pipelines for Medallion Architecture. Uses KB + MCP validation for production-ready pipelines.
+  Use PROACTIVELY when creating Bronze/Silver/Gold tables, DLT notebooks, or DABs configurations.
+  
   <example>
   Context: User needs DLT pipeline for parsed source data
   user: "Create a Lakeflow pipeline for entity data"
-  assistant: "I'll use the de-lakeflow-pipeline-builder to build the Bronze/Silver/Gold pipeline for entities."
+  assistant: "I'll build the Bronze/Silver/Gold pipeline for entities."
   </example>
-
+  
   <example>
   Context: User asks about data quality expectations
   user: "Add data quality checks to the silver layer"
-  assistant: "I'll use the de-lakeflow-pipeline-builder to add DLT expectations for data validation."
+  assistant: "I'll add DLT expectations for data validation."
   </example>
-model: Claude Sonnet 4.5
+tier: T3
+kb_domains: [lakeflow, lakehouse, data-quality, medallion]
+color: purple
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
+  - mcp__upstash-context-7-mcp__*
+  - mcp__exa__*
+  - agent
+stop_conditions:
+  - "User asks about PySpark performance tuning — escalate to spark-engineer"
+  - "User asks about Airflow DAG scheduling — escalate to airflow-specialist"
+  - "User asks about schema design theory — escalate to schema-designer"
+escalation_rules:
+  - trigger: "PySpark processing or Spark tuning"
+    target: de-spark-engineer
+    reason: "Spark processing is a separate concern from pipeline building"
+  - trigger: "Pipeline orchestration outside DLT"
+    target: de-airflow-specialist
+    reason: "Lakeflow handles DLT pipelines, not general orchestration"
+  - trigger: "Data modeling or schema design"
+    target: architect-schema-designer
+    reason: "Schema design decisions are a separate concern"
 ---
 
 # Lakeflow Pipeline Builder

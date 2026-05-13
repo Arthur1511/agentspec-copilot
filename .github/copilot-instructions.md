@@ -1,6 +1,6 @@
 # AgentSpec Copilot CLI — Copilot Instructions
 
-AgentSpec is a GitHub Copilot CLI extension that provides a 5-phase Spec-Driven Development (SDD) workflow with 58 specialized agents, 35 skills, and 24 KB domains for data engineering.
+AgentSpec is a GitHub Copilot CLI extension that provides a 5-phase Spec-Driven Development (SDD) workflow with 66 specialized agents, 41 skills, and 30 KB domains for data engineering and data science.
 
 ---
 
@@ -40,9 +40,9 @@ This repo ships AgentSpec for **two platforms**:
 
 ```
 .github/
-├── agents/           # 58 *.agent.md files — flat directory, no subdirectories
-├── skills/           # 35 skill directories, each containing SKILL.md
-├── kb/               # 24 KB domain directories + _index.yaml registry
+├── agents/           # 66 *.agent.md files — flat directory, no subdirectories
+├── skills/           # 41 skill directories, each containing SKILL.md
+├── kb/               # 30 KB domain directories + _index.yaml registry
 │   ├── _index.yaml   # Machine-readable domain registry (entry point for agents)
 │   ├── _templates/   # 7 templates for new domains
 │   └── <domain>/     # index.md, quick-reference.md, concepts/, patterns/
@@ -85,7 +85,7 @@ All phase documents live in `.github/sdd/features/` while active.
 
 ### Agent Files (`*.agent.md`)
 
-All 58 agents live as a **flat list** in `.github/agents/` — no subdirectories. Category is encoded in the filename prefix:
+All 66 agents live as a **flat list** in `.github/agents/` — no subdirectories. Category is encoded in the filename prefix:
 
 | Prefix | Category | Count | Examples |
 |---|---|---|---|
@@ -96,6 +96,7 @@ All 58 agents live as a **flat list** in `.github/agents/` — no subdirectories
 | `python-` | Python & code quality | 6 | `python-code-reviewer`, `python-code-cleaner`, `python-developer` |
 | `test-` | QA & contracts | 3 | `test-generator`, `test-data-quality-analyst`, `test-data-contracts-engineer` |
 | `de-` | Data engineering | 15 | `de-spark-engineer`, `de-dbt-specialist`, `de-airflow-specialist`, `de-lakeflow-*` |
+| `ds-` | Data science & ML | 8 | `ds-eda-analyst`, `ds-model-trainer`, `ds-experiment-tracker`, `ds-statistician` |
 | `dev-` | Developer tools | 4 | `dev-codebase-explorer`, `dev-meeting-analyst`, `dev-prompt-crafter`, `dev-shell-script-specialist` |
 
 Every agent file follows this structure:
@@ -111,7 +112,7 @@ description: |
   user: "<user message>"
   assistant: "<how to invoke>"
   </example>
-model: Claude Sonnet 4.5
+model: claude-sonnet-4.6   # or gpt-5-mini / gpt-5.3-codex / claude-opus-4.6 per routing strategy
 tools:
   - read
   - edit
@@ -139,7 +140,7 @@ Data engineering agents must include a `kb_domains` field listing relevant KB do
 
 ### KB Domain Structure
 
-24 domains live under `.github/kb/`. Each domain must have exactly:
+30 domains live under `.github/kb/`. Each domain must have exactly:
 ```
 <domain>/
 ├── index.md           # Domain overview
@@ -148,22 +149,23 @@ Data engineering agents must include a `kb_domains` field listing relevant KB do
 └── patterns/          # 3–6 pattern files with code examples (≤200 lines each)
 ```
 
-**Available domains:** `ai-data-engineering`, `airflow`, `aws`, `cloud-platforms`, `data-modeling`, `data-quality`, `dbt`, `gcp`, `genai`, `lakeflow`, `lakehouse`, `medallion`, `microsoft-fabric`, `modern-stack`, `prompt-engineering`, `pydantic`, `python`, `spark`, `sql-patterns`, `streaming`, `supabase`, `terraform`, `testing`, `xgboost`
+**Available domains:** `ai-data-engineering`, `airflow`, `aws`, `cloud-platforms`, `data-modeling`, `data-quality`, `data-visualization`, `dbt`, `gcp`, `genai`, `lakeflow`, `lakehouse`, `medallion`, `microsoft-fabric`, `mlflow`, `modern-stack`, `pandas`, `prompt-engineering`, `pydantic`, `python`, `scikit-learn`, `spark`, `sql-patterns`, `statistical-analysis`, `streaming`, `supabase`, `terraform`, `testing`, `time-series`, `xgboost`
 
 Register new domains in `.github/kb/_index.yaml` before writing any domain files.
 
 ### Skill Files
 
-Each skill is a directory containing a single `SKILL.md` file (35 skills total). Skill names use kebab-case with a category prefix:
+Each skill is a directory containing a single `SKILL.md` file (41 skills total). Skill names use kebab-case with a category prefix:
 
 | Prefix | Skills |
 |---|---|
 | `workflow-` | `brainstorm`, `build`, `create-pr`, `define`, `design`, `iterate`, `ship` |
 | `visual-explainer` / `visual-explainer-*` | base + `diff-review`, `fact-check`, `generate-slides`, `generate-visual-plan`, `generate-web-diagram`, `plan-review`, `project-recap`, `share` |
 | `data-engineering-*` | `ai-pipeline`, `data-contract`, `data-quality`, `guide`, `lakehouse`, `migrate`, `pipeline`, `schema`, `sql-review` |
+| `data-scientist-*` | `eda`, `experiment-tracking`, `feature-engineering`, `model-evaluation`, `model-training` |
 | `core-*` | `meeting`, `memory`, `readme-maker`, `status`, `sync-context` |
 | `knowledge-*` | `create-kb` |
-| standalone | `agent-router`, `excalidraw-diagram`, `review-code`, `sdd-workflow` |
+| standalone | `agent-router`, `excalidraw-diagram`, `review-code`, `review-judge`, `sdd-workflow` |
 
 ### SDD Templates
 

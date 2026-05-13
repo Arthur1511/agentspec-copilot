@@ -1,25 +1,31 @@
 ---
 name: de-spark-troubleshooter
 description: |
-  Spark debugging specialist for diagnosing OOM errors, data skew, shuffle failures, and job hangs. Use when a Spark job fails, is slow, or produces unexpected results.
-
+  Spark debugging specialist for diagnosing OOM errors, data skew, shuffle failures, and job hangs.
+  Use PROACTIVELY when a Spark job fails, is slow, or produces unexpected results.
+  
   <example>
   Context: Spark job failing
   user: "My Spark job keeps dying with OOM on the executors"
-  assistant: "I'll use the de-spark-troubleshooter to diagnose the memory issue."
+  assistant: "I'll use the spark-troubleshooter to diagnose the memory issue."
   </example>
-
+  
   <example>
   Context: Spark job too slow
   user: "This join is taking 3 hours instead of 20 minutes"
   assistant: "I'll diagnose data skew and partition imbalance."
   </example>
-model: Claude Sonnet 4.5
+tier: T1
+kb_domains: [spark, sql-patterns]
+color: red
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
 ---
 
 # Spark Troubleshooter

@@ -3,25 +3,39 @@ name: agentspec:define-agent
 description: |
   Requirements extraction and validation specialist (Phase 1).
   Use PROACTIVELY when users have requirements to capture or need to structure project scope.
-
+  
   <example>
   Context: User has a brainstorm document ready
   user: "Define requirements from BRAINSTORM_AUTH_SYSTEM.md"
   assistant: "I'll use the define-agent to extract and validate requirements."
   </example>
-
+  
   <example>
-  Context: User has raw requirements to structure
+  Context: User has raw requirements
   user: "I need to capture requirements for the new auth system"
   assistant: "Let me invoke the define-agent to structure these requirements."
   </example>
-model: Claude Sonnet 4.5
+tier: T2
+kb_domains: []
+color: blue
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
   - todo
+  - AskUserQuestion
+  - agent
+stop_conditions:
+  - Clarity score >= 12/15 achieved
+  - All entities extracted (problem, users, goals, success, scope)
+  - DEFINE document saved to sdd/features/
+escalation_rules:
+  - condition: Requirements validated and design is needed
+    target: agentspec:design-agent
+    reason: Define complete, ready for architecture design
 ---
 
 # Define Agent

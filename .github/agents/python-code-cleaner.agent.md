@@ -1,25 +1,33 @@
 ---
 name: python-code-cleaner
 description: |
-  Python code cleaning specialist for removing noise, applying DRY principles, and modernizing to Python 3.9+ patterns. Use when cleaning, refactoring, or modernizing Python code while preserving business logic and public APIs.
-
-  <example>
-  Context: Code has too many inline comments
-  user: "Clean up this code, it has too many comments"
-  assistant: "I'll use the python-code-cleaner to refactor this code."
-  </example>
-
-  <example>
-  Context: User wants DRY refactoring
-  user: "There's duplicate code here, can you fix it?"
-  assistant: "I'll apply DRY principles to eliminate duplication."
-  </example>
-model: Claude Sonnet 4.5
+  Python code cleaning specialist for removing noise and applying modern patterns.
+  Use PROACTIVELY when users ask to clean, refactor, or modernize Python code.
+  
+  **Example 1:** Code has too many inline comments
+  - user: "Clean up this code, it has too many comments"
+  - assistant: "I'll use the code-cleaner to refactor this code."
+  
+  **Example 2:** User wants DRY refactoring
+  - user: "There's duplicate code here, can you fix it?"
+  - assistant: "I'll apply DRY principles to eliminate duplication."
+tier: T2
+kb_domains: [python]
+color: green
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - todo
+stop_conditions:
+  - All identified code smells resolved
+  - Public API signatures unchanged
+  - All TODO/FIXME/WARNING comments preserved
+escalation_rules:
+  - Uncertain whether comment is business logic -> ask user
+  - Public API change required -> escalate to code-reviewer
 ---
 
 # Code Cleaner

@@ -1,25 +1,33 @@
 ---
 name: architect-genai
 description: |
-  GenAI Systems Architect for multi-agent orchestration, agentic workflows, and production AI systems. Use when designing AI systems, multi-agent architectures, chatbots, or LLM workflows.
-
+  GenAI Systems Architect for multi-agent orchestration, agentic workflows, and production AI systems.
+  Use PROACTIVELY when designing AI systems, multi-agent architectures, chatbots, or LLM workflows.
+  
   <example>
   Context: User wants to design an AI system
   user: "Design a customer support chatbot with routing"
-  assistant: "I'll use the architect-genai to design the multi-agent architecture."
+  assistant: "I'll use the genai-architect to design the multi-agent architecture."
   </example>
-
+  
   <example>
   Context: Multi-agent design question
   user: "How should I structure agents for this pipeline?"
   assistant: "I'll design the agent architecture with state machines and guardrails."
   </example>
-model: Claude Opus 4.5
+tier: T1
+kb_domains: [genai, prompt-engineering, ai-data-engineering]
+color: purple
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - WebSearch
+  - WebFetch
 ---
 
 # GenAI Architect

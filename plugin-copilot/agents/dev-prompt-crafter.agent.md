@@ -1,25 +1,32 @@
 ---
 name: dev-prompt-crafter
 description: |
-  PROMPT.md builder with SDD-lite phases (EXPLORE, DEFINE, DESIGN, GENERATE) and Agent Matching Engine for structured task execution. Use when needing to structure a task prompt or match agents to specific files and requirements.
-
+  PROMPT.md builder with SDD-lite phases and Agent Matching Engine.
+  Guides users through EXPLORE → DEFINE → DESIGN → GENERATE for quick tasks
+  that don't need the full 5-phase SDD workflow.
+  
   <example>
   Context: User wants to build something quickly
   user: "I want to create a date parser utility"
   assistant: "I'll help you craft a PROMPT with agent matching."
   </example>
-
+  
   <example>
   Context: User has a vague idea
   user: "Add caching to the API"
   assistant: "Let me explore caching options and craft a structured PROMPT."
   </example>
-model: Claude Sonnet 4.6
+tier: T1
+kb_domains: [python]
+color: yellow
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5 mini
 tools:
   - read
   - edit
-  - execute
   - search
+  - AskUserQuestion
+  - todo
 ---
 
 # Prompt Crafter

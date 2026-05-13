@@ -2,7 +2,7 @@
 
 Complete catalog of commands, agents, KB domains, templates, and configuration.
 
-## Skills (35 total)
+## Skills (41 total)
 
 > **Invocation:** `/agentspec:<skill-name>` in GitHub Copilot CLI (e.g., `/agentspec:workflow-brainstorm`)
 
@@ -70,9 +70,9 @@ Generate self-contained HTML pages for visual documentation. Powered by the `vis
 
 ---
 
-## Agents (58 total)
+## Agents (66 total)
 
-Agents are organized into 8 categories. Each agent declares a tier (T1/T2/T3) governing its template requirements, line budget, and response format.
+Agents are organized into 9 categories. Each agent declares a tier (T1/T2/T3) governing its template requirements, line budget, and response format.
 
 | Tier | Name | Use For |
 |------|------|---------|
@@ -194,9 +194,24 @@ Developer tools and productivity.
 | `meeting-analyst` | T2 | Sonnet | Extract decisions and action items from meetings |
 | `shell-script-specialist` | T2 | Sonnet | Production-grade Bash scripts, automation, deployment scripts |
 
+### Data Science Agents (8)
+
+Machine learning, statistical analysis, and model lifecycle.
+
+| Agent | Tier | Model | Purpose |
+|-------|------|-------|---------|
+| `ds-eda-analyst` | T2 | claude-sonnet-4.6 | Exploratory data analysis, profiling, distributions, outlier detection |
+| `ds-model-trainer` | T2 | claude-sonnet-4.6 | scikit-learn, XGBoost, LightGBM training and cross-validation |
+| `ds-model-evaluator` | T2 | claude-sonnet-4.6 | Classification/regression metrics, ROC/PR curves, calibration |
+| `ds-feature-engineer` | T2 | claude-sonnet-4.6 | ColumnTransformer pipelines, encoding, scaling, imputation |
+| `ds-experiment-tracker` | T2 | claude-sonnet-4.6 | MLflow experiment tracking, run comparison, model registry |
+| `ds-ml-deployer` | T2 | claude-sonnet-4.6 | MLflow model promotion, FastAPI serving, batch inference |
+| `ds-statistician` | T2 | claude-sonnet-4.6 | Hypothesis testing, A/B test design, effect size reporting |
+| `ds-time-series-analyst` | T2 | claude-sonnet-4.6 | ARIMA/SARIMA, Prophet, ML forecasting, walk-forward evaluation |
+
 ---
 
-## Knowledge Base Domains (24 total)
+## Knowledge Base Domains (30 total)
 
 Domains are grouped into five areas. Each domain contains an `index.md`, a `quick-reference.md`, and `concepts/` and `patterns/` subdirectories.
 
@@ -248,6 +263,17 @@ Domains are grouped into five areas. Each domain contains an `index.md`, a `quic
 | `python` | Python patterns — dataclasses, type hints | Clean architecture, generators, context managers |
 | `testing` | Testing patterns — pytest, fixtures, mocking | Unit tests, fixture factories, integration tests, Spark testing |
 | `xgboost` | XGBoost — gradient boosting, feature engineering | Model training, hyperparameter tuning, SHAP values, MLflow integration |
+
+### Data Science (6)
+
+| Domain | Description | Key Topics |
+|--------|-------------|------------|
+| `pandas` | Pandas patterns — DataFrames, groupby, merges | Indexing, aggregation, merge/join, missing data, performance |
+| `scikit-learn` | scikit-learn — pipelines, preprocessing, model selection | Pipeline API, ColumnTransformer, cross-validation, hyperparameter search |
+| `mlflow` | MLflow — experiment tracking, model registry | Run logging, artifact storage, model versioning, production serving |
+| `statistical-analysis` | Statistics — hypothesis testing, A/B testing | t-tests, ANOVA, effect size, power analysis, SRM detection |
+| `time-series` | Time series — forecasting, stationarity, decomposition | ARIMA, Prophet, ML features, walk-forward evaluation |
+| `data-visualization` | Visualization — Matplotlib, Seaborn, Plotly | EDA charts, publication-quality plots, interactive dashboards |
 
 ---
 

@@ -1,25 +1,46 @@
 ---
 name: de-sql-optimizer
 description: |
-  Cross-dialect SQL optimization specialist for query plans, window functions, deduplication, and performance tuning. Use when optimizing slow queries, writing complex SQL, or translating between SQL dialects.
-
+  Cross-dialect SQL optimization specialist for query plans, window functions, and performance tuning.
+  Use PROACTIVELY when optimizing slow queries, writing complex SQL, or comparing SQL dialects.
+  
   <example>
   Context: User has a slow query
   user: "This query takes 30 minutes, help me optimize it"
-  assistant: "I'll use the de-sql-optimizer agent to analyze and optimize."
+  assistant: "I'll use the sql-optimizer agent to analyze and optimize."
   </example>
-
+  
   <example>
   Context: User needs cross-dialect SQL
   user: "Convert this Snowflake query to BigQuery"
-  assistant: "Let me invoke the de-sql-optimizer for dialect translation."
+  assistant: "Let me invoke the sql-optimizer for dialect translation."
   </example>
-model: Claude Sonnet 4.5
+tier: T2
+kb_domains: [sql-patterns, data-modeling, dbt]
+color: orange
+anti_pattern_refs: [shared-anti-patterns]
+model: GPT-5.3-Codex
 tools:
   - read
   - edit
-  - execute
   - search
+  - execute
+  - todo
+  - agent
+stop_conditions:
+  - "User asks about PySpark code — escalate to spark-engineer"
+  - "User asks about schema design theory — escalate to schema-designer"
+  - "User asks about dbt project setup — escalate to dbt-specialist"
+escalation_rules:
+  - trigger: "PySpark or DataFrame optimization"
+    target: de-spark-engineer
+    reason: "PySpark has its own optimizer (Catalyst); different tuning patterns"
+  - trigger: "Schema redesign for performance"
+    target: architect-schema-designer
+    reason: "Index strategy needs modeling context"
+  - trigger: "dbt model SQL optimization"
+    target: de-dbt-specialist
+    reason: "dbt has materialization-specific optimization (incremental, pre-hook)"
 ---
 
 # SQL Optimizer

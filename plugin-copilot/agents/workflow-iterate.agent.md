@@ -3,24 +3,44 @@ name: agentspec:iterate-agent
 description: |
   Cross-phase document updater with cascade awareness (All Phases).
   Use PROACTIVELY when requirements change mid-stream or documents need updating.
-
+  
   <example>
   Context: Requirements changed after design started
   user: "Update DEFINE to add PDF support"
   assistant: "I'll use the iterate-agent to update with cascade awareness."
   </example>
-
+  
   <example>
   Context: Design needs modification during build
   user: "Change the architecture to use Redis instead"
   assistant: "Let me invoke the iterate-agent to update DESIGN and check cascades."
   </example>
-model: Claude Sonnet 4.5
+tier: T2
+kb_domains: []
+color: yellow
+anti_pattern_refs: [shared-anti-patterns]
+model: Claude Sonnet 4.6
 tools:
   - read
   - edit
   - search
   - todo
+  - AskUserQuestion
+  - agent
+stop_conditions:
+  - Target document updated with version bump
+  - Cascade analysis complete for all downstream documents
+  - User confirmed cascade handling approach
+escalation_rules:
+  - condition: Change affects BRAINSTORM or DEFINE scope
+    target: agentspec:define-agent
+    reason: Requirements-level changes need full re-validation
+  - condition: Change affects DESIGN architecture
+    target: agentspec:design-agent
+    reason: Architectural changes need design-agent review
+  - condition: Change requires code rebuild
+    target: agentspec:build-agent
+    reason: Code-level cascades need build-agent execution
 ---
 
 # Iterate Agent

@@ -48,6 +48,7 @@ CATEGORIES = {
     "fabric":    ("Microsoft Fabric",       "Fabric lakehouse, pipelines, AI, security"),
     "python":    ("Python & Code Quality",  "Python dev, review, cleanup, documentation, LLM prompts"),
     "test":      ("Testing & Contracts",    "pytest, data quality, ODCS contracts"),
+    "ds":        ("Data Science",           "EDA, feature engineering, model training, evaluation, deployment, statistics, time series"),
 }
 
 
@@ -115,7 +116,7 @@ def parse_frontmatter(text: str) -> dict:
             if line and not line.startswith(" ") and not line.startswith("-"):
                 in_block = False
                 continue
-            m = re.match(r"\s*target:\s*['\"]?([a-z0-9\-]+)['\"]?\s*$", line)
+            m = re.match(r"\s*target:\s*['\"]?([a-z0-9:][a-z0-9\-:]*)['\"]?\s*$", line)
             if m:
                 escalations.append(m.group(1))
     fm["escalates_to"] = escalations
@@ -259,17 +260,43 @@ STATIC_FOOTER = """
 ## D. Model Routing Strategy
 
 Cost-optimize by matching task complexity to model capability.
+All multipliers are relative to the base premium request unit.
 
-| Model | Share | Use For |
-|-------|-------|---------|
-| Haiku | ~70% | File exploration, pattern matching, documentation lookup, simple code generation |
-| Sonnet | ~20% | Code review, feature implementation, refactoring, API development, most T1/T2 agents |
-| Opus | ~10% | Architectural decisions, complex system design, security reviews, T3 agents |
+| Tier | Model | Multiplier | Agent Share | Use For |
+|------|-------|-----------|-------------|---------|
+| **Free** | `GPT-5 mini` | **0x** | ~10% | File exploration, meeting analysis, documentation generation, prompt crafting |
+| **Standard** | `Claude Sonnet 4.6` ⭐ | 1x | ~50% | SDD workflow phases, data science, architecture design, Fabric, LLM/prompt agents |
+| **Standard** | `GPT-5.3-Codex` | 1x | ~38% | Agentic execution chains: data engineering, cloud infra, code generation, testing |
+| **Premium** | `Claude Opus 4.6` | 3x | ~2% | Security & compliance reviews only (`fabric-security-specialist`) |
+| ⚠️ Avoid | `Claude Opus 4.7` | 15x | — | Never default; only on explicit user request |
+| ⚠️ Avoid | `GPT-5.5` | 7.5x | — | Only on explicit user request |
+
+**Category → default model:**
+
+| Category | Model | Rationale |
+|----------|-------|-----------|
+| `workflow-brainstorm` | `GPT-5 mini` | Exploratory conversation, zero cost |
+| `workflow-define/design/iterate/ship` | `Claude Sonnet 4.6` | Structured SDD document reasoning |
+| `workflow-build` | `GPT-5.3-Codex` | Multi-tool agentic implementation |
+| `de-*` (data engineering) | `GPT-5.3-Codex` | Agentic SQL/Spark/dbt/Lakeflow chains |
+| `ds-*` (data science) | `Claude Sonnet 4.6` | Statistical and scientific reasoning |
+| `architect-*` | `Claude Sonnet 4.6` | System design and trade-off analysis |
+| `cloud-aws-deployer`, `cloud-lambda-builder`, `cloud-ci-cd-specialist` | `GPT-5.3-Codex` | CLI execution, IaC generation |
+| `cloud-*` (architecture) | `Claude Sonnet 4.6` | Cloud platform design and analysis |
+| `fabric-*` (except security) | `Claude Sonnet 4.6` | Microsoft Fabric platform reasoning |
+| `fabric-security-specialist` | `Claude Opus 4.6` | Compliance, RLS, governance — escalate |
+| `python-developer/cleaner/reviewer` | `GPT-5.3-Codex` | Code generation and refactoring |
+| `python-ai-prompt-specialist`, `python-llm-specialist` | `Claude Sonnet 4.6` | LLM reasoning |
+| `test-*` | `GPT-5.3-Codex` | Systematic test and contract generation |
+| `dev-codebase-explorer/meeting-analyst/prompt-crafter` | `GPT-5 mini` | Discovery and docs, zero cost |
+| `python-code-documenter`, `architect-kb` | `GPT-5 mini` | Background generation, zero cost |
 
 **Override rules:**
-- Agent frontmatter `model:` wins over task-complexity heuristics.
-- Tasks touching production data or security escalate to Opus.
-- Confidence below 0.75 on Sonnet → retry on Opus before asking user.
+- Agent frontmatter `model:` is the authoritative assignment; this table is the design rationale.
+- Tasks touching production security/compliance escalate to `Claude Opus 4.6` (3x) at minimum.
+- Confidence below 0.75 on first response → retry with `Claude Sonnet 4.6` before escalating.
+- **Never use `Claude Opus 4.7` (15x) or `GPT-5.5` (7.5x) as an agent default.**
+- Deprecated models (`GPT-4.1`, `GPT-5.2`) — do not assign to new agents.
 
 ## E. Composition Hints
 
