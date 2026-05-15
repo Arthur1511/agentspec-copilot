@@ -134,13 +134,29 @@ This command streamlines PR creation by:
 
 ## Process
 
-### Step 1: Analyze Changes
+### Step 1: Detect Base Branch
+
+Before analyzing changes, resolve the target base branch:
+
+```bash
+# Check if 'develop' exists on the remote
+git ls-remote --heads origin develop
+```
+
+| Result | Base branch |
+|--------|-------------|
+| Output is non-empty | `develop` |
+| Output is empty | `main` |
+
+Store the result as `BASE_BRANCH` and use it in every subsequent step.
+
+### Step 2: Analyze Changes
 
 ```bash
 # Run these commands to understand the change scope
 git status
 git diff --stat
-git log origin/main..HEAD --oneline
+git log origin/$BASE_BRANCH..HEAD --oneline
 ```
 
 Categorize files into change types:
@@ -159,7 +175,7 @@ style:    Formatting, whitespace
 perf:     Performance improvements
 ```
 
-### Step 2: Determine PR Type
+### Step 3: Determine PR Type
 
 Based on file analysis, identify the primary change type:
 
@@ -175,7 +191,7 @@ Based on file analysis, identify the primary change type:
 | `.github/kb/**` | `docs(kb):` |
 | `.github/sdd/**` | `docs(sdd):` |
 
-### Step 3: Generate Commit Message
+### Step 4: Generate Commit Message
 
 Use Conventional Commits format:
 
@@ -199,7 +215,7 @@ feat(auth): add OAuth2 token refresh flow
 Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
-### Step 4: Ask Clarifying Questions
+### Step 5: Ask Clarifying Questions
 
 Use AskUserQuestion to confirm:
 
@@ -219,7 +235,7 @@ Use AskUserQuestion to confirm:
 - **GitHub**: Link to any related issues? (e.g., "Closes #123")
 - **Azure DevOps**: Link to any related work items? (e.g., work item IDs: `1234 5678`)
 
-### Step 5: Build PR Description
+### Step 6: Build PR Description
 
 Generate structured description following this template:
 
@@ -267,10 +283,10 @@ Generate structured description following this template:
 Generated with [GitHub Copilot](https://github.com/features/copilot)
 ```
 
-### Step 6: Create Branch (if needed)
+### Step 7: Create Branch (if needed)
 
 ```bash
-# If on main, create feature branch
+# If on main or develop, create feature branch
 git checkout -b <type>/<short-description>
 
 # Examples:
@@ -279,7 +295,7 @@ git checkout -b fix/parser-null-handling
 git checkout -b refactor/agents-standardization
 ```
 
-### Step 7: Commit and Push
+### Step 8: Commit and Push
 
 ```bash
 # Stage all changes (or specific files)
@@ -292,7 +308,7 @@ git commit -m "<message>"
 git push -u origin <branch-name>
 ```
 
-### Step 8: Create PR
+### Step 9: Create PR
 
 #### GitHub
 
@@ -300,7 +316,7 @@ git push -u origin <branch-name>
 gh pr create \
   --title "<type>(<scope>): <description>" \
   --body "<generated-body>" \
-  --base main
+  --base $BASE_BRANCH
 ```
 
 For draft PRs:
@@ -308,7 +324,7 @@ For draft PRs:
 gh pr create --draft \
   --title "<type>(<scope>): <description>" \
   --body "<generated-body>" \
-  --base main
+  --base $BASE_BRANCH
 ```
 
 #### Azure DevOps
@@ -326,7 +342,7 @@ az repos pr create \
   --title "<type>(<scope>): <description>" \
   --description "<generated-body>" \
   --source-branch "<branch-name>" \
-  --target-branch main \
+  --target-branch $BASE_BRANCH \
   --repository "$ADO_REPO" \
   --project "$ADO_PROJECT" \
   --organization "$ADO_ORG"
@@ -338,7 +354,7 @@ az repos pr create --draft \
   --title "<type>(<scope>): <description>" \
   --description "<generated-body>" \
   --source-branch "<branch-name>" \
-  --target-branch main \
+  --target-branch $BASE_BRANCH \
   --repository "$ADO_REPO" \
   --project "$ADO_PROJECT" \
   --organization "$ADO_ORG"
@@ -389,7 +405,8 @@ PR DESCRIPTION
 
 BRANCH
 [ ] Branch name matches convention
-[ ] Not committing directly to main
+[ ] Not committing directly to main or develop
+[ ] Base branch resolved (develop if it exists, otherwise main)
 [ ] All changes are staged
 ```
 
